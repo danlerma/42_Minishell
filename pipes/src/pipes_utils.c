@@ -91,3 +91,9 @@ void	valid_path(t_info *info)
 		i++;
 	}
 }
+
+void	error(char *file)
+{
+	perror(file);
+	exit(0);
+}

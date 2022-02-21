@@ -33,7 +33,7 @@ int	main(int argc, char **argv)
 	t_lst		*lst;
 	t_info		info;
 
-	// atexit(leaks);
+	atexit(leaks);
 	lst = NULL;
 	lst = argv_init_temp(argv, argc);
 	// s_list(lst);

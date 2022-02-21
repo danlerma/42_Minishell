@@ -1,13 +1,5 @@
 #include<pipes.h>
 
-static void	error(char *file)
-{
-	perror(file);
-	exit(0);
-}
-
-//cd /tmp
-
 static void	redir_out(t_info *info, t_lst *lst, char *file, int n)
 {
 	int	out;

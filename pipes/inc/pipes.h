@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:55:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/20 19:28:03 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/02/21 13:05:56 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ char	**find_path(char **environ);
 void	valid_path(t_info *info);
 char	**create_cmd(t_lst *lst, t_info *info);
 void	open_pipes(t_info *info);
+void	error(char *file);
 //command
 void	commands(t_info *info, t_lst *lst, char **environ);
 //void	valid_path(char **paths, t_commands *command);
