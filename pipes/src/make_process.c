@@ -14,6 +14,26 @@ static void	wait_child(t_info *info)
 	}
 }
 
+static void	make_heredoc(t_info *info, t_lst *lst, char *file, int pos)
+{
+	char	*line;
+
+	while (1)
+	{
+		line = get_next_line(STDIN_FILENO);
+		if (ft_strncmp(line, lst->argv[pos], ft_strlen(lst->argv[pos])) == 0
+			&& ((int)ft_strlen(line) - 1) == ft_strlen(lst->argv[pos]))
+		{
+			printf("Final de heredoc\n");
+			free(line);
+			break ;
+		}
+		open(file, O_WRONLY | O_APPEND, line);
+		free(line);
+	}
+	
+}
+
 static void	check_here(t_info *info, t_lst *lst)
 {
 	int		i;
@@ -31,13 +51,15 @@ static void	check_here(t_info *info, t_lst *lst)
 			if (lst->type[i] == 6)
 			{
 				nbr = ft_itoa(num);
-				file = ft_strjoin("/tmp/.temp", nbr);
+				// file = ft_strjoin("/tmp/.temp", nbr);
+				file = ft_strjoin(".temp", nbr);
 				f = open(file, O_CREAT | O_RDWR | O_TRUNC, 0644);
 				if (f < 0)
 					error(file);
+				make_heredoc(info, lst, file, i + 1);
 				free(file);
 				free(nbr);
-				// lst->type[i] = 4;
+				close(f);
 				num++;
 			}
 			i++;
