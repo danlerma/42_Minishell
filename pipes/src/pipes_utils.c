@@ -6,26 +6,26 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:39:33 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/22 13:40:18 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/02/22 17:22:06 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pipes.h>
 
-void	open_pipes(t_info *info)
-{
-	int	i;
+// void	open_pipes(t_info *info)
+// {
+// 	int	i;
 
-	i = 0;
-	while (i < info->nlst)
-	{
-		info->pipe[i] = (int *)ft_calloc(2, sizeof(int));
-		if (info->pipe[i] == NULL)
-			exit(0);
-		pipe(info->pipe[i]);
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (i < info->nlst)
+// 	{
+// 		info->pipe[i] = (int *)ft_calloc(2, sizeof(int));
+// 		if (info->pipe[i] == NULL)
+// 			exit(0);
+// 		pipe(info->pipe[i]);
+// 		i++;
+// 	}
+// }
 
 char	**create_cmd(t_lst *lst, t_info *info)
 {

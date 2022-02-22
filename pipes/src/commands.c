@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:37:32 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/22 13:37:35 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/02/22 17:35:40 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,10 @@ static void	search_command(t_info *info, t_lst *lst, char **environ, char *com)
 		make_one_command(info, lst, environ, com);
 	else
 	{
+		info->pipe[info->np] = (int *)ft_calloc(2, sizeof(int));
+		if (info->pipe[info->np] == NULL)
+			exit(0);
+		pipe(info->pipe[info->np]);
 		if ((info->pos == 0 || info->pos != 0) && info->pos != info->nlst - 1)
 			make_command(info, lst, environ, com);
 		else if (info->pos == info->nlst - 1)
