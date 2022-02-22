@@ -55,8 +55,7 @@ static void	check_here(t_info *info, t_lst *lst)
 			if (lst->type[i] == 6)
 			{
 				nbr = ft_itoa(num);
-				// file = ft_strjoin("/tmp/.temp", nbr);
-				file = ft_strjoin(".temp", nbr);
+				file = ft_strjoin("/tmp/.temp", nbr);
 				f = open(file, O_CREAT | O_RDWR | O_TRUNC, 0644);
 				if (f < 0)
 					error(file);
