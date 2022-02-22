@@ -6,13 +6,13 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:04:57 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/15 13:24:33 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/02/22 13:41:58 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<pipes.h>
 
-static t_lst *assing_loop(int cont, int prev, char **argv)
+static t_lst	*assing_loop(int cont, int prev, char **argv)
 {
 	int		i;
 	t_lst	*temp;

@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/22 13:41:41 by dlerma-c          #+#    #+#             */
+/*   Updated: 2022/02/22 13:41:42 by dlerma-c         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <pipes.h>
-//valgrind --tool=memcheck --leak-check=yes --track-origins=yes ./pipes ls ">" salida -l ">" salida2 -a "|" wc "|"
+
 void	leaks(void)
 {
 	system("leaks -q pipes\n");

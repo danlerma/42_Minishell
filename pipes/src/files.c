@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   files.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/22 13:32:42 by dlerma-c          #+#    #+#             */
+/*   Updated: 2022/02/22 13:32:45 by dlerma-c         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include<pipes.h>
 
 static void	redir_out(t_info *info, t_lst *lst, char *file, int n)
 {
 	int	out;
 
+	(void)info;
 	out = open(file, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (out < 0)
 		error(file);
@@ -16,6 +29,7 @@ static void	redir_in(t_info *info, t_lst *lst, char *file, int n)
 {
 	int	in;
 
+	(void)info;
 	in = open(file, O_RDONLY);
 	if (in < 0)
 		error(file);
@@ -28,6 +42,7 @@ static void	redir_appd(t_info *info, t_lst *lst, char *file, int n)
 {
 	int	end;
 
+	(void)info;
 	end = open(file, O_CREAT | O_WRONLY | O_APPEND, 0644);
 	if (end < 0)
 		error(file);
@@ -44,15 +59,9 @@ static void	redir_here(t_info *info, t_lst *lst, char *file, int n)
 
 	nbr = ft_itoa(info->nh);
 	f = ft_strjoin(file, nbr);
-	in = open(f, O_RDONLY);
-	if (in < 0)
-		error(f);
-	if (n == 1)
-		dup2(in, STDIN_FILENO);
-	close(in);
+	redir_in(info, lst, f, 1);
 	free(f);
 	free(nbr);
-	info->nh++;
 }
 
 void	check_redir(t_info *info, t_lst *lst, int n)

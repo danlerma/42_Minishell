@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:55:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/22 12:14:37 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/02/22 13:46:48 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,16 @@ typedef struct s_info
 	6- heredoc <<
 	7- append >>
 	8- texto
+
+
+
+	TODO
+	heredoc que pare con ctrl-D
+	meter señales
+	sacar errores en ejecucion
+	eliminar PATH
+	error de permisos
+	flag para heredoc
 */
 
 //init_comands
@@ -95,7 +105,8 @@ void	lstdelone(t_lst *lst, void (*del)(void*));
 void	lstclear(t_lst **lst, void (*del)(void *));
 //file.c
 void	check_redir(t_info *info, t_lst *lst, int n);
-// void	redir_in(t_info *info, t_lst *lst, char **env, char *file);
+//here.c
+void	check_here(t_info *info, t_lst *lst);
 //argv_temp
 t_lst	*argv_init_temp(char **argv, int argc);
 

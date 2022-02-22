@@ -1,13 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/22 13:35:29 by dlerma-c          #+#    #+#             */
+/*   Updated: 2022/02/22 13:35:31 by dlerma-c         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include<pipes.h>
 
-/*
-	Dentro del nodo, saber cual es la posicion donde esta
-	el comando y cuantas partes de comando hay.
-	Si se diese el caso que no hay ningun comando, se pone la posicion
-	a 0 por defecto, para que no haya segfault.
-		lst->lista de parseo
-		info->estructura principal de datos
-*/
 void	init_commands(t_lst *lst, t_info *info)
 {
 	int	i;
@@ -29,12 +33,6 @@ void	init_commands(t_lst *lst, t_info *info)
 	}
 }
 
-/*
-	Inicializa todos los valores de las estructuras
-		lst->lista de parseo
-		info->estructura principal de datos
-		environ-> datos de env
-*/
 void	init_structs(t_lst **lst, t_info *info, char **environ)
 {
 	info->nlst = lstsize(*lst);

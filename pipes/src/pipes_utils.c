@@ -1,8 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipes_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/22 13:39:33 by dlerma-c          #+#    #+#             */
+/*   Updated: 2022/02/22 13:40:18 by dlerma-c         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <pipes.h>
 
-/*
-	Abrir todas las pipes +1 de momento
-*/
 void	open_pipes(t_info *info)
 {
 	int	i;
@@ -41,10 +50,6 @@ char	**create_cmd(t_lst *lst, t_info *info)
 	return (str);
 }
 
-/*
-	Busca en env la PATH y almacena la ruta
-		environ-> datos de env
-*/
 char	**find_path(char **environ)
 {
 	int		i;
@@ -66,11 +71,6 @@ char	**find_path(char **environ)
 	return (paths);
 }
 
-/*
-	Transforma la path guardada a una path que se pueda 
-	ejecutar añadiendo un comando
-		info->estructura principal de datos
-*/
 void	valid_path(t_info *info)
 {
 	int		i;
@@ -92,6 +92,7 @@ void	valid_path(t_info *info)
 	}
 }
 
+/*TEMP*/
 void	error(char *file)
 {
 	perror(file);

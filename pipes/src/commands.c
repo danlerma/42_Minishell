@@ -1,11 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   commands.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/22 13:37:32 by dlerma-c          #+#    #+#             */
+/*   Updated: 2022/02/22 13:37:35 by dlerma-c         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <pipes.h>
 
-/*
-	Ejecuta el ultimo comando
-		info-> estructura general de informacion
-		environ-> para poder ejecutar
-		com-> comando a ejecutar
-*/
 static void	make_last_command(t_info *info, t_lst *lst, char **env, char *com)
 {
 	pid_t	child;
@@ -32,12 +38,6 @@ static void	make_last_command(t_info *info, t_lst *lst, char **env, char *com)
 	}
 }
 
-/*
-	Ejecuta los comandos del medio y primero
-		info-> estructura general de informacion
-		environ-> para poder ejecutar
-		com-> comando a ejecutar
-*/
 static void	make_command(t_info *info, t_lst *lst, char **env, char *com)
 {
 	pid_t	child;
@@ -64,12 +64,6 @@ static void	make_command(t_info *info, t_lst *lst, char **env, char *com)
 	}
 }
 
-/*
-	Ejecuta en un hijo solo un comando
-		info-> estructura general de informacion
-		environ-> para poder ejecutar
-		com-> comando a ejecutar
-*/
 static void	make_one_command(t_info *info, t_lst *lst, char **env, char *com)
 {
 	pid_t	child;
@@ -91,12 +85,6 @@ static void	make_one_command(t_info *info, t_lst *lst, char **env, char *com)
 	}
 }
 
-/*
-	Depende la posicion del comando va a hacer una cosa u otra
-		info-> estructura general de informacion
-		environ-> para poder ejecutar
-		com-> comando a ejecutar
-*/
 static void	search_command(t_info *info, t_lst *lst, char **environ, char *com)
 {
 	if (info->nlst == 1 || (info->pos == info->nlst - 1 && info->nc >= 1))
@@ -111,10 +99,6 @@ static void	search_command(t_info *info, t_lst *lst, char **environ, char *com)
 	}
 }
 
-/*
-	Bucle de cada argumento de cada nodo del comando que comprueba la 
-	ejecucion de los comandos
-*/
 void	commands(t_info *info, t_lst *lst, char **environ)
 {
 	int		i;
