@@ -36,11 +36,32 @@ static void	redir_appd(t_info *info, t_lst *lst, char *file, int n)
 	close(end);
 }
 
+static void	redir_here(t_info *info, t_lst *lst, char *file, int n)
+{
+	int		in;
+	char	*f;
+	char	*nbr;
+
+	nbr = ft_itoa(info->nh);
+	f = ft_strjoin(file, nbr);
+	printf("FILE %s\n", f);
+	in = open(f, O_RDONLY);
+	if (in < 0)
+		error(f);
+	if (n == 1)
+		dup2(in, STDIN_FILENO);
+	close(in);
+	free(f);
+	free(nbr);
+	info->nh++;
+}
+
 void	check_redir(t_info *info, t_lst *lst, int n)
 {
 	int	i;
 
 	i = 0;
+	printf("REDIR %d\n", info->pos);
 	while (lst->argv[i])
 	{
 		if (lst->type[i] == 4 && lst->type[i + 1])
@@ -49,6 +70,8 @@ void	check_redir(t_info *info, t_lst *lst, int n)
 			redir_in(info, lst, lst->argv[i + 1], n);
 		if (lst->type[i] == 7 && lst->type[i + 1])
 			redir_appd(info, lst, lst->argv[i + 1], n);
+		if (lst->type[i] == 6 && lst->argv[i + 1])
+			redir_here(info, lst, ".temp", 1);
 		i++;
 	}
 }

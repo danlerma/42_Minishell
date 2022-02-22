@@ -64,6 +64,7 @@ static void	check_here(t_info *info, t_lst *lst)
 				free(file);
 				free(nbr);
 				close(f);
+				info->nh = num;
 				num++;
 			}
 			i++;

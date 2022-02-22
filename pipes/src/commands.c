@@ -21,6 +21,7 @@ static void	make_last_command(t_info *info, t_lst *lst, char **env, char *com)
 		check_redir(info, lst, 1);
 		close(info->pipe[info->np][0]);
 		close(info->pipe[info->np][1]);
+		printf("MAKE LAST COMMAND (%s)\n", com);
 		execve(com, cmd, env);
 	}
 	else
@@ -43,6 +44,7 @@ static void	make_command(t_info *info, t_lst *lst, char **env, char *com)
 	pid_t	child;
 	char	**cmd;
 
+	printf("MAKE COMMAND (%s)\n", com);
 	cmd = create_cmd(lst, info);
 	child = fork();
 	if (child < 0 || info->pipe[info->np] < 0)
@@ -75,6 +77,7 @@ static void	make_one_command(t_info *info, t_lst *lst, char **env, char *com)
 	pid_t	child;
 	char	**cmd;
 
+	printf("MAKE ONE COMMAND (%s)\n", com);
 	cmd = create_cmd(lst, info);
 	child = fork();
 	if (child < 0)

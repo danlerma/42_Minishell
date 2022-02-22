@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:55:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/21 13:05:56 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/02/22 12:14:37 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_info
 	int			pos; //posicion del nodo
 	int			np; //numero de pipes para saber en cual estoy
 	int			nc; //numero de comandos pasados
+	int			nh; //numero de heredoc
 	t_command	*cmd; //puntero a estructura de commandos
 }t_info;
 
