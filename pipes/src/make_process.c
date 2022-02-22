@@ -17,6 +17,7 @@ static void	wait_child(t_info *info)
 static void	make_heredoc(t_info *info, t_lst *lst, char *file, int pos)
 {
 	char	*line;
+	int		f;
 
 	while (1)
 	{
@@ -24,11 +25,14 @@ static void	make_heredoc(t_info *info, t_lst *lst, char *file, int pos)
 		if (ft_strncmp(line, lst->argv[pos], ft_strlen(lst->argv[pos])) == 0
 			&& ((int)ft_strlen(line) - 1) == ft_strlen(lst->argv[pos]))
 		{
-			printf("Final de heredoc\n");
 			free(line);
 			break ;
 		}
-		open(file, O_WRONLY | O_APPEND, line);
+		f = open(file, O_RDWR | O_APPEND, line);
+		if (f < 0)
+			exit(0);
+		write(f, line, ft_strlen(line));
+		close(f);
 		free(line);
 	}
 	
