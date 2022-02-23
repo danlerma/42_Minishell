@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:37:32 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/22 17:35:40 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/02/23 17:13:08 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ static void	make_command(t_info *info, t_lst *lst, char **env, char *com)
 		exit(0);
 	if (child == 0)
 	{
+		if (com == NULL)
+		{
+			check_redir(info, lst, 0);
+			exit(0);
+		}
 		close(info->pipe[info->np][0]);
 		dup2(info->pipe[info->np][1], STDOUT_FILENO);
 		close(info->pipe[info->np][1]);
@@ -87,7 +92,7 @@ static void	make_one_command(t_info *info, t_lst *lst, char **env, char *com)
 
 static void	search_command(t_info *info, t_lst *lst, char **environ, char *com)
 {
-	if (info->nlst == 1 || (info->pos == info->nlst - 1 && info->nc >= 1))
+	if (info->nlst == 1)
 		make_one_command(info, lst, environ, com);
 	else
 	{
@@ -106,10 +111,12 @@ static void	search_command(t_info *info, t_lst *lst, char **environ, char *com)
 void	commands(t_info *info, t_lst *lst, char **environ)
 {
 	int		i;
+	int		flag;
 	char	*com;
 
 	init_commands(lst, info);
 	i = -1;
+	flag = 0;
 	while (info->path[++i])
 	{
 		com = ft_strjoin(info->path[i], lst->argv[info->cmd->pos]);
@@ -117,10 +124,12 @@ void	commands(t_info *info, t_lst *lst, char **environ)
 		{
 			search_command(info, lst, environ, com);
 			free (com);
-			info->nc = -200;
+			flag = 1;
 			break ;
 		}
 		free(com);
 	}
-	info->nc++;
+	if (flag == 0)
+		search_command(info, lst, environ, NULL);
+	flag = 0;
 }

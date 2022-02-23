@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:55:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/22 17:22:22 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/02/23 17:20:39 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct s_info
 	int			**pipe; //matriz de pipes
 	int			pos; //posicion del nodo
 	int			np; //numero de pipes para saber en cual estoy
-	int			nc; //numero de comandos pasados
 	int			nh; //numero de heredoc
 	t_command	*cmd; //puntero a estructura de commandos
 }t_info;
@@ -59,9 +58,8 @@ typedef struct s_info
 /*
 	1- comando simple -> cat, wc -w, ls...
 	2- redirecion in <
-	3- infile
 	4- redireción out >
-	5- outfile
+	5- archivo
 	6- heredoc <<
 	7- append >>
 	8- texto
