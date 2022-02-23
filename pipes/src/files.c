@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:32:42 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/23 15:06:08 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/02/23 20:13:27 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,15 @@ static void	redir_here(t_info *info, t_lst *lst, char *file, int n)
 	int		in;
 	char	*f;
 	char	*nbr;
-
-	nbr = ft_itoa(info->nh);
+	
+	printf("NUMERO DE HEREDOCS: %d %d\n", info->iter, n);
+	nbr = ft_itoa(info->iter);
 	f = ft_strjoin(file, nbr);
 	redir_in(info, lst, f, 1);
+	unlink(f);
 	free(f);
 	free(nbr);
+	info->iter++;
 }
 
 void	check_redir(t_info *info, t_lst *lst, int n)

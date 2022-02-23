@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:55:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/23 17:20:39 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/02/23 19:52:59 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_command
 typedef struct s_info
 {
 	int			nlst; //numero de nodos
+	int			iter; //iterador de archivos heredoc
 	char		**paths; //path env (sin modificar)
 	char		**path; //path env (modificada)
 	int			**pipe; //matriz de pipes

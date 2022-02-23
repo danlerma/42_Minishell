@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:33:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/22 13:33:28 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/02/23 19:47:37 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,6 @@ void	check_here(t_info *info, t_lst *lst)
 		}
 		lst = lst->next;
 	}
+	if (info->nh == 0)
+		info->nh = -1;
 }
