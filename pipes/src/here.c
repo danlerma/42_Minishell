@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:33:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/23 19:47:37 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/02/24 12:25:38 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ static void	make_heredoc(t_lst *lst, char *file, int pos)
 void	check_here(t_info *info, t_lst *lst)
 {
 	int		i;
-	int		num;
+	int		y;
 	char	*nbr;
 	char	*file;
 
-	num = 0;
+	y = 0;
 	while (lst)
 	{
 		i = 0;
@@ -54,18 +54,15 @@ void	check_here(t_info *info, t_lst *lst)
 		{
 			if (lst->type[i] == 6)
 			{
-				nbr = ft_itoa(num);
+				nbr = ft_itoa(y);
 				file = ft_strjoin("/tmp/.temp", nbr);
 				make_heredoc(lst, file, i + 1);
 				free(file);
 				free(nbr);
-				info->nh = num;
-				num++;
 			}
 			i++;
 		}
 		lst = lst->next;
+		y++;
 	}
-	if (info->nh == 0)
-		info->nh = -1;
 }

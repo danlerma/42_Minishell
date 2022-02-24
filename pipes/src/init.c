@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:35:29 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/23 19:53:37 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/02/24 12:25:53 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,5 @@ void	init_structs(t_lst **lst, t_info *info, char **environ)
 		exit(0);
 	info->pos = 0;
 	info->np = 0;
-	info->iter = 0;
 	// open_pipes(info);
 }

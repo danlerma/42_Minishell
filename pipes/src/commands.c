@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:37:32 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/23 20:01:18 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/02/24 12:19:49 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ static void	make_one_command(t_info *info, t_lst *lst, char **env, char *com)
 
 static void	search_command(t_info *info, t_lst *lst, char **environ, char *com)
 {
-	printf("COM %s\n", com);
 	if (info->nlst == 1)
 		make_one_command(info, lst, environ, com);
 	else
