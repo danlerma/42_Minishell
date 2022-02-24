@@ -68,15 +68,17 @@ int	main(void)
 	signal(SIGQUIT, signal_control);
 	while (1)
 	{
-		argv = readline("\033[1;34m""Mini""\033[1;33m""Shell""\033[0m");
+		argv = readline("\033[1;34m""Mini""\033[1;33m""Shell""\033[0m"" ");
+		//printf("\033[0m""");
 		add_history(argv);
-		sep = ft_split_mod_2(argv, ' ');
+		sep = split_data(argv);
 		nodes = create_nodes(sep);
 		nodes = set_data_nodes(nodes);
-		show_recorded(sep);
+		//show_recorded(sep);
 		show_nodes(nodes);
 		free_nodes(nodes);
-		free_argv(sep);
+		free_argv(sep, argv);
+		system("leaks -q minishell");
 	}
 	return (0);
 }

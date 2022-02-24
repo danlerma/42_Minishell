@@ -31,9 +31,11 @@ typedef struct s_argv
 }t_argv;
 
 char	**ft_split_mod_2(char const *s, char c);
+char	**split_data(char const *s);
+t_list	*make_lst(t_list *lst, char const *s);
 t_lst	*create_nodes(char **argv);
 t_lst	*set_data_nodes(t_lst *nodes);
 void	free_nodes(t_lst *nodes);
-void	free_argv(char **argv);
+void	free_argv(char **argv, char *str);
 
 #endif

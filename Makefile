@@ -6,7 +6,7 @@
 #    By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/08 10:12:01 by dlerma-c          #+#    #+#              #
-#    Updated: 2022/02/23 14:21:09 by mortiz-d         ###   ########.fr        #
+#    Updated: 2022/02/24 19:21:17 by mortiz-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ LDLIBS += -lreadline
 #                                    SRCS                                      #
 #··············································································#
 
-SRCS = main.c ft_split_mod_2.c nodes_create.c nodes_set_data.c free_data.c
+SRCS = main.c ft_split_mod_2.c nodes_create.c nodes_set_data.c free_data.c split_data_array.c split_data_lst.c
 OBJS_NAME = $(SRCS:%.c=%.o)
 OBJS = $(addprefix $(OBJ_PATH)/, $(OBJS_NAME))
 

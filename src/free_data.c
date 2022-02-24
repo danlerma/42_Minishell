@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 17:18:03 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/02/23 17:01:16 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/02/24 22:04:03 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,36 @@ void	free_nodes(t_lst *nodes)
 	int		nodes_i;
 	t_lst	*aux;
 
-	aux = nodes;
 	nodes_i = 1;
-	while (aux)
+	while (nodes)
 	{
 		//printf("Node %i ...\n", nodes_i);
 		//printf ("Puntero argv ->%p\n", aux->argv);
-		free(aux->argv);
-		free(aux->type);
-		free(aux->flag);
+		free(nodes->argv);
+		free(nodes->type);
+		free(nodes->flag);
 		//printf("Liberado\n");
-		free(aux);
-		aux = aux->next;
+		aux = nodes->next;
+		free(nodes);
+		nodes = aux;
 		nodes_i++;
 	}
 }
 
-void	free_argv(char **argv)
+void	free_argv(char **argv, char *str)
 {
 	int	i;
 
 	i = 0;
+	//printf("puntero de la frase %p\n",str);
+	free(str);
 	while (argv[i] != 0)
 	{
+		//printf ("Puntero string en array->%s<-|->%p<-\n", argv[i], argv[i]);
 		free(argv[i]);
 		i++;
 	}
+	//printf("merde\n");
+	//printf ("Puntero array de arrays ->%p\n", argv[i]);
 	free(argv);
 }
