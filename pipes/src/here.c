@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:33:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/24 12:25:38 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/02/24 12:55:05 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,11 @@ void	check_here(t_info *info, t_lst *lst)
 {
 	int		i;
 	int		y;
+	int		num;
 	char	*nbr;
 	char	*file;
 
+	num = 0;
 	y = 0;
 	while (lst)
 	{
@@ -59,10 +61,14 @@ void	check_here(t_info *info, t_lst *lst)
 				make_heredoc(lst, file, i + 1);
 				free(file);
 				free(nbr);
+				info->nh = num;
+				num++;
 			}
 			i++;
 		}
 		lst = lst->next;
 		y++;
 	}
+	if (info->nh == 0)
+		info->nh = -1;
 }

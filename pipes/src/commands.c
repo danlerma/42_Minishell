@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:37:32 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/24 12:19:49 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/02/24 15:42:01 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ static void	make_one_command(t_info *info, t_lst *lst, char **env, char *com)
 	char	**cmd;
 
 	cmd = create_cmd(lst, info);
+	// printf("ARGV %s  %s\n", cmd[0], cmd[1]);
 	child = fork();
 	if (child < 0)
 		exit(0);
