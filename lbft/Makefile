@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+         #
+#    By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/07 13:40:36 by dlerma-c          #+#    #+#              #
-#    Updated: 2021/12/06 14:11:23 by dlerma-c         ###   ########.fr        #
+#    Updated: 2022/02/28 19:00:09 by mortiz-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c\
 		ft_free_malloc.c ft_print_errors.c ft_open_file.c \
 		ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstlast_bonus.c \
 		ft_lstsize_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c \
-		get_next_line.c get_next_line_utils.c 
+		get_next_line.c get_next_line_utils.c ft_strjoin_mortiz.c
 
 OBJS = $(SRC:.c=.o)
 
