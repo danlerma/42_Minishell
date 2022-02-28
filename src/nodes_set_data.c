@@ -6,17 +6,71 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 13:15:05 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/02/23 17:30:37 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/02/28 18:35:51 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-static int	check_is_flagged(char *str)
+char	*join_and_liberate_str(char *s,char c)
 {
-	if (str[0] == '"' && str[ft_strlen(str) - 1] == '"')
-		return (1);
-	return (0);
+	char	*aux;
+
+	aux = ft_strjoin_2(s, c);
+	free(s);
+	return (aux);
+}
+
+char	*unquote_str(char *s)
+{
+	char	*aux;
+	char	auxchar;
+	int		i;
+
+	i = 0;
+	aux = ft_strdup("");
+	while (s[i] != 0)
+	{
+		if (s[i] == 34 || s[i] == 39)
+		{
+			auxchar = s[i];
+			i++;
+			while (s[i] != 0)
+			{
+				if (s[i] == auxchar)
+					break ;
+				aux = join_and_liberate_str(aux, s[i]);
+				i++;
+			}
+			i++;
+		}
+		if (s[i] == '$')
+		{
+			while (s[i] != 0)
+			{
+				if (s[i] == 34 || s[i] == 39)
+				{
+					auxchar = s[i];
+					while (s[i] != 0)
+					{
+						aux = join_and_liberate_str(aux, s[i]);
+						i++;
+						if (s[i] == auxchar)
+						{
+							aux = join_and_liberate_str(aux, s[i]);
+							break ;
+						}
+					}
+					i++;
+				}
+				else
+					aux = join_and_liberate_str(aux, s[i++]);
+			}
+		}
+		else
+			aux = join_and_liberate_str(aux, s[i++]);
+	}
+	return (aux);
 }
 
 static t_lst	*set_flags_nodes(t_lst *node)
@@ -27,12 +81,20 @@ static t_lst	*set_flags_nodes(t_lst *node)
 	i = 0;
 	while (node->argv[i] != 0)
 	{
-		if (check_is_flagged(node->argv[i]))
+		if (node->type[i] == 8)
 		{
 			node->flag[i] = 1;
 			aux = node->argv[i];
+			node->argv[i] = unquote_str(aux);
+			free(node->argv[i]);
+			//printf("Puntero 1 :%p -- %s\n", aux, aux);
+			//printf("Puntero 2 :%p -- %s \n",node->argv[i], node->argv[i]);
+			//free(aux);
+			/*
+			aux = node->argv[i];
 			free(node->argv[i]);
 			node->argv[i] = ft_substr(aux, 1, ft_strlen(aux) - 2);
+			*/
 		}
 		else
 			node->flag[i] = 0;
@@ -75,8 +137,8 @@ t_lst	*set_data_nodes(t_lst *nodes)
 	aux = nodes;
 	while (aux)
 	{
-		aux = set_flags_nodes(aux);
 		aux = set_types_nodes(aux);
+		aux = set_flags_nodes(aux);
 		aux = aux->next;
 	}
 	return (nodes);

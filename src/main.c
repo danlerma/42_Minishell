@@ -78,7 +78,6 @@ int	main(void)
 		show_nodes(nodes);
 		free_nodes(nodes);
 		free_argv(sep, argv);
-		system("leaks -q minishell");
 	}
 	return (0);
 }
