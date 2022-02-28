@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+         #
+#    By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/08 10:12:01 by dlerma-c          #+#    #+#              #
-#    Updated: 2022/01/08 13:38:12 by dlerma-c         ###   ########.fr        #
+#    Updated: 2022/02/28 18:56:00 by mortiz-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ LDLIBS += -lreadline
 #                                    SRCS                                      #
 #··············································································#
 
-SRCS = main.c
+SRCS = main.c nodes_create.c nodes_set_data.c free_data.c split_data_array.c split_data_lst.c
 OBJS_NAME = $(SRCS:%.c=%.o)
 OBJS = $(addprefix $(OBJ_PATH)/, $(OBJS_NAME))
 
