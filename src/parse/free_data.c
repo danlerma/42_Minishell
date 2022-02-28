@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include <minishell.h>
 
 void	free_nodes(t_lst *nodes)
 {

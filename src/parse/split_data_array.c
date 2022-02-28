@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include <minishell.h>
 
 char	**create_array(t_list *lst)
 {

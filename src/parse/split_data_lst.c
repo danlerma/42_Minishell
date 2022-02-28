@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include <minishell.h>
 
 static int	is_separator(char const *c)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include <minishell.h>
 
 void	leaks()
 {
@@ -74,7 +74,7 @@ int	main(void)
 	char	**sep;
 	t_lst	*nodes;
 
-	atexit(leaks);
+	// atexit(leaks);
 	signal(EOF, signal_control);
 	signal(SIGINT, signal_control);
 	signal(SIGQUIT, signal_control);
@@ -88,6 +88,7 @@ int	main(void)
 		nodes = set_data_nodes(nodes);
 		//show_recorded(sep);
 		show_nodes(nodes);
+		exec(nodes);
 		free_nodes(nodes);
 		free_argv(sep, argv);
 	}

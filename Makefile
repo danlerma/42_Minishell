@@ -40,8 +40,21 @@ LDLIBS += -lreadline
 #                                    SRCS                                      #
 #··············································································#
 
-SRCS = main.c nodes_create.c nodes_set_data.c free_data.c split_data_array.c split_data_lst.c
-OBJS_NAME = $(SRCS:%.c=%.o)
+SRCS_PARSE_PATH = parse
+SRCS_EXE_PATH = execute
+
+SRCS_PARSE = nodes_create.c nodes_set_data.c free_data.c split_data_array.c \
+			split_data_lst.c
+SRCS_EXE = execute.c make_process.c show_list.c commands.c init.c files.c \
+			utils.c here.c lst.c
+SRCS = main.c
+SRCS_NAME = $(addprefix $(SRCS_PARSE_PATH)/, $(SRCS_PARSE)) \
+			$(addprefix $(SRCS_EXE_PATH)/, $(SRCS_EXE)) \
+			$(SRCS)
+
+OBJS_NAME_PATH = $(SRCS_PARSE_PATH) $(SRCS_EXE_PATH)
+OBJS_PATH = $(addprefix $(OBJ_PATH)/, $(OBJS_NAME_PATH))
+OBJS_NAME = $(SRCS_NAME:%.c=%.o)
 OBJS = $(addprefix $(OBJ_PATH)/, $(OBJS_NAME))
 
 #··············································································#
@@ -49,7 +62,7 @@ OBJS = $(addprefix $(OBJ_PATH)/, $(OBJS_NAME))
 #··············································································#
 
 CC = gcc
-CFLAGS =  -Wall -Werror -Wextra  -g3 
+# CFLAGS =  -Wall -Werror -Wextra  -g3 
 #include <xx.h> // path of .h
 CFLAGS += -I $(INC_PATH) -I $(LBFT_PATH) -I /Users/$(USER)/.brew/opt/readline/include 
 CFLAGS +="-I/Users/$(USER)/.brew/opt/readline/include"
@@ -71,10 +84,13 @@ debug: $(NAME)
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJS): | $(OBJ_PATH)
+$(OBJS): | $(OBJ_PATH) $(OBJS_PATH)
 
 $(OBJ_PATH): 
 	mkdir -p $(OBJ_PATH) 2> /dev/null
+
+$(OBJS_PATH): 
+	mkdir -p $(OBJS_PATH)
 
 clean:
 	make fclean -C $(LBFT_PATH)

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include <minishell.h>
 
 static int	number_nodes(char **argv)
 {
@@ -136,3 +136,4 @@ t_lst	*create_nodes(char **argv)
 		aux = aux->next;
 	}
 	printf("Nodo %p \n",aux);*/
+	
