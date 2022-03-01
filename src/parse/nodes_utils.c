@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.h                                            :+:      :+:    :+:   */
+/*   nodes_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/11 10:55:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/01 16:04:33 by mortiz-d         ###   ########.fr       */
+/*   Created: 2022/03/01 14:35:49 by mortiz-d          #+#    #+#             */
+/*   Updated: 2022/03/01 15:38:18 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_H
+#include "../inc/minishell.h"
 
-# define PARSE_H
+int	nodes_check_error(t_lst *list)
+{
+	t_lst	*aux;
+	int		i;
 
-# include <minishell.h>
-
-char	**ft_split_mod_2(char const *s, char c);
-char	**split_data(char const *s);
-t_list	*make_lst(t_list *lst, char const *s);
-t_lst	*create_nodes(char **argv);
-t_lst	*set_data_nodes(t_lst *nodes);
-int		nodes_check_error(t_lst *list);
-void	free_nodes(t_lst *nodes);
-void	free_argv(char **argv, char *str);
-
-#endif
+	aux = list;
+	if (aux->next == 0 && aux->argv[0] == 0)
+		return (0);
+	while (aux)
+	{
+		i = 0;
+		while (aux->argv[i] != 0)
+			i++;
+		if (i == 0)
+		{
+			printf("syntax error near unexpected token `|'\n");
+			return (0);
+		}
+		aux = aux->next;
+	}
+	return (1);
+}

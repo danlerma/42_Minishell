@@ -6,13 +6,13 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 13:15:05 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/02/28 18:35:51 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/01 16:02:41 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	*join_and_liberate_str(char *s,char c)
+char	*join_and_liberate_str(char *s, char c)
 {
 	char	*aux;
 
@@ -44,29 +44,6 @@ char	*unquote_str(char *s)
 			}
 			i++;
 		}
-		if (s[i] == '$')
-		{
-			while (s[i] != 0)
-			{
-				if (s[i] == 34 || s[i] == 39)
-				{
-					auxchar = s[i];
-					while (s[i] != 0)
-					{
-						aux = join_and_liberate_str(aux, s[i]);
-						i++;
-						if (s[i] == auxchar)
-						{
-							aux = join_and_liberate_str(aux, s[i]);
-							break ;
-						}
-					}
-					i++;
-				}
-				else
-					aux = join_and_liberate_str(aux, s[i++]);
-			}
-		}
 		else
 			aux = join_and_liberate_str(aux, s[i++]);
 	}
@@ -87,14 +64,6 @@ static t_lst	*set_flags_nodes(t_lst *node)
 			aux = node->argv[i];
 			node->argv[i] = unquote_str(aux);
 			free(node->argv[i]);
-			//printf("Puntero 1 :%p -- %s\n", aux, aux);
-			//printf("Puntero 2 :%p -- %s \n",node->argv[i], node->argv[i]);
-			//free(aux);
-			/*
-			aux = node->argv[i];
-			free(node->argv[i]);
-			node->argv[i] = ft_substr(aux, 1, ft_strlen(aux) - 2);
-			*/
 		}
 		else
 			node->flag[i] = 0;

@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 18:17:34 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/02/24 21:49:49 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/01 16:03:01 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ char	**create_array(t_list *lst)
 		i++;
 	}
 	free(lst);
-	//printf("nº tamaño array ->%i\n",i);
 	return (array);
 }
 
