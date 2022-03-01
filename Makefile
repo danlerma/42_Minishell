@@ -6,7 +6,7 @@
 #    By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/08 10:12:01 by dlerma-c          #+#    #+#              #
-#    Updated: 2022/03/01 16:09:25 by mortiz-d         ###   ########.fr        #
+#    Updated: 2022/03/01 18:03:31 by mortiz-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ SRCS_PARSE_PATH = parse
 SRCS_EXE_PATH = execute
 
 SRCS_PARSE = nodes_create.c nodes_set_data.c free_data.c split_data_array.c \
-			split_data_lst.c nodes_utils.c
+			split_data_lst.c nodes_utils.c nodes_create_rework.c
 SRCS_EXE = execute.c make_process.c show_list.c commands.c init.c files.c \
 			utils.c here.c lst.c
 SRCS = main.c

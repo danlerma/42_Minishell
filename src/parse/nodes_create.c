@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:30:16 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/01 16:02:12 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/01 21:19:23 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static t_lst	*declare_nodes(char **argv)
 
 	i = 0;
 	n_nodes = number_nodes(argv);
-	nodes = ft_calloc(sizeof(t_lst), 1);
+	nodes = ft_calloc(sizeof(t_lst *), 1);
 	aux = nodes;
 	s_inside_nodes = sizesinsidenodes(argv, n_nodes);
 	while (i < n_nodes)
@@ -99,6 +99,7 @@ static t_lst	*fill_nodes(char **argv, t_lst	*nodes)
 			aux->argv[j] = argv[i];
 			aux->type[j] = -1;
 			aux->flag[j] = -1;
+			printf("Palabra  -> %s / %s\n", aux->argv[j], argv[i]);
 			j++;
 		}
 		else
@@ -114,7 +115,14 @@ static t_lst	*fill_nodes(char **argv, t_lst	*nodes)
 t_lst	*create_nodes(char **argv)
 {
 	t_lst	*nodes;
+	int		i;
 
+	i = 0;
+	while (argv[i] != 0)
+	{
+		printf("palabra antes ->%s\n",argv[i]);
+		i++;
+	}
 	nodes = declare_nodes(argv);
 	nodes = fill_nodes(argv, nodes);
 	return (nodes);

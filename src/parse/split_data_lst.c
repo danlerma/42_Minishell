@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 12:51:06 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/01 16:03:45 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/01 18:02:34 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,3 +99,16 @@ t_list	*make_lst(t_list *lst, char const *s)
 	return (aux_lst);
 }
 //printf("palabra: %s\n",lst->content);
+
+t_list	*split_data(char const *s)
+{
+	//char	**aux1;
+	t_list	*aux2;
+
+	if (s == NULL)
+		return (0);
+	aux2 = make_lst(ft_lstnew(0), s);
+	//aux1 = create_array(aux2);
+	//aux1 = fakedata();
+	return (aux2);
+}

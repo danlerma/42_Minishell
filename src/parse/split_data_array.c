@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 18:17:34 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/01 16:03:01 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/01 17:52:59 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,4 @@ char	**fakedata(void)
 	data[4] = ft_strdup(">>");
 	data[5] = ft_strdup("texto");
 	return (data);
-}
-
-char	**split_data(char const *s)
-{
-	char	**aux1;
-	t_list	*aux2;
-
-	if (s == NULL)
-		return (0);
-	aux2 = make_lst(ft_lstnew(0), s);
-	aux1 = create_array(aux2);
-	//aux1 = fakedata();
-	return (aux1);
 }
