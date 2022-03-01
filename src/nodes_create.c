@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:30:16 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/02/23 15:41:17 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/01 14:40:28 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static int	number_nodes(char **argv)
 			n_nodes++;
 		i++;
 	}
-	//printf("Hay %i nodos\n",n_nodes);
 	return (n_nodes);
 }
 
@@ -83,8 +82,6 @@ static t_lst	*declare_nodes(char **argv)
 	free(s_inside_nodes);
 	return (nodes);
 }
-//printf("declarando con tamaño %i\n",s_inside_nodes[i]);
-//printf("Tamaño de los arrays creados %i -> en la lista", s_inside_nodes[i]);
 
 static t_lst	*fill_nodes(char **argv, t_lst	*nodes)
 {
@@ -113,12 +110,6 @@ static t_lst	*fill_nodes(char **argv, t_lst	*nodes)
 	}
 	return (nodes);
 }
-//printf("New node set : \n");
-	//printf("Frase -> %s\n", argv[i]);
-	//printf("Frase copiada -> %s\n", aux->argv[j]);
-	//printf("type -> %i\n", aux->type[j]);
-	//printf("flag -> %i\n", aux->flag[j]);
-	//printf("detecta una pipe\n");
 
 t_lst	*create_nodes(char **argv)
 {
@@ -128,11 +119,3 @@ t_lst	*create_nodes(char **argv)
 	nodes = fill_nodes(argv, nodes);
 	return (nodes);
 }
-/*t_lst	*aux;
-	aux = nodes;
-	while (aux->next != 0)
-	{
-		printf("Nodo %p \n",aux);
-		aux = aux->next;
-	}
-	printf("Nodo %p \n",aux);*/

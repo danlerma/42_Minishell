@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/28 18:57:48 by mortiz-d          #+#    #+#             */
+/*   Updated: 2022/03/01 15:37:34 by mortiz-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/minishell.h"
 
 void	leaks()
@@ -25,7 +37,8 @@ void	show_recorded(char **argv)
 	i = 0;
 	while (argv[i] != 0)
 	{
-		printf("%s\n",argv[i++]);
+		printf("Frase %i->%s\n", i, argv[i]);
+		i++;
 	}
 	printf("\n");
 }
@@ -62,7 +75,7 @@ int	main(void)
 	char	**sep;
 	t_lst	*nodes;
 
-	atexit(leaks);
+	//atexit(leaks);
 	signal(EOF, signal_control);
 	signal(SIGINT, signal_control);
 	signal(SIGQUIT, signal_control);
@@ -74,8 +87,11 @@ int	main(void)
 		sep = split_data(argv);
 		nodes = create_nodes(sep);
 		nodes = set_data_nodes(nodes);
-		//show_recorded(sep);
-		show_nodes(nodes);
+		if (nodes_check_error(nodes))
+		{
+			//show_recorded(sep);
+			show_nodes(nodes);
+		}
 		free_nodes(nodes);
 		free_argv(sep, argv);
 	}

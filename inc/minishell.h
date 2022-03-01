@@ -35,6 +35,7 @@ char	**split_data(char const *s);
 t_list	*make_lst(t_list *lst, char const *s);
 t_lst	*create_nodes(char **argv);
 t_lst	*set_data_nodes(t_lst *nodes);
+int		nodes_check_error(t_lst *list);
 void	free_nodes(t_lst *nodes);
 void	free_argv(char **argv, char *str);
 
