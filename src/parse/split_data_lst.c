@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 12:51:06 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/02/28 14:40:02 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/01 16:03:45 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,16 +81,18 @@ t_list	*make_lst(t_list *lst, char const *s)
 	while (s[i] != 0)
 	{
 		i += dst_next_word(&s[i]);
-		if (!is_separator(&s[i]))
+		if (!is_separator(&s[i]) && s[i] != 0)
 		{
 			lst->content = ft_substr (s, i, get_tam_word(&s[i]));
 			i += get_tam_word(&s[i]);
 		}
-		else
+		else if (s[i] != 0)
 		{
 			lst->content = ft_substr (s, i, get_tam_token(&s[i]));
 			i += get_tam_token(&s[i]);
 		}
+		else
+			break ;
 		lst->next = ft_lstnew(0);
 		lst = lst->next;
 	}

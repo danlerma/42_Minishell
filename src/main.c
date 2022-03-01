@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:57:38 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/01 13:40:00 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/01 16:12:02 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,24 @@ int	main(void)
 	while (1)
 	{
 		argv = readline("\033[1;34m""Mini""\033[1;33m""Shell""\033[0m"" ");
+		add_history(argv);
+		//__________________
+		sep = split_data(argv);
+		nodes = create_nodes(sep);
+		nodes = set_data_nodes(nodes);
+		if (nodes_check_error(nodes))
+		{
+			//show_recorded(sep);
+			//show_nodes(nodes);
+			exec(nodes);
+		}
+		free_nodes(nodes);
+		free_argv(sep, argv);
+	}
+	return (0);
+}
+/*
+		argv = readline("\033[1;34m""Mini""\033[1;33m""Shell""\033[0m"" ");
 		//printf("\033[0m""");
 		add_history(argv);
 		sep = split_data(argv);
@@ -91,7 +109,4 @@ int	main(void)
 		show_nodes(nodes);
 		exec(nodes);
 		free_nodes(nodes);
-		free_argv(sep, argv);
-	}
-	return (0);
-}
+		free_argv(sep, argv);*/
