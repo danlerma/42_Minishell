@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:32:42 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/24 12:52:42 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/01 13:33:21 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	redir_out(t_info *info, t_lst *lst, char *file, int n)
 	int	out;
 
 	(void)info;
+	(void)lst;
 	out = open(file, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (out < 0)
 		error(file);
@@ -30,6 +31,7 @@ static void	redir_in(t_info *info, t_lst *lst, char *file, int n)
 	int	in;
 
 	(void)info;
+	(void)lst;
 	in = open(file, O_RDONLY);
 	if (in < 0)
 		error(file);
@@ -43,6 +45,7 @@ static void	redir_appd(t_info *info, t_lst *lst, char *file, int n)
 	int	end;
 
 	(void)info;
+	(void)lst;
 	end = open(file, O_CREAT | O_WRONLY | O_APPEND, 0644);
 	if (end < 0)
 		error(file);
@@ -53,10 +56,10 @@ static void	redir_appd(t_info *info, t_lst *lst, char *file, int n)
 
 static void	redir_here(t_info *info, t_lst *lst, char *file, int n)
 {
-	int		in;
 	char	*f;
 	char	*nbr;
 	
+	(void)n;
 	nbr = ft_itoa(info->pos);
 	f = ft_strjoin(file, nbr);
 	redir_in(info, lst, f, 1);

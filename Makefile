@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+         #
+#    By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/08 10:12:01 by dlerma-c          #+#    #+#              #
-#    Updated: 2022/02/28 18:56:00 by mortiz-d         ###   ########.fr        #
+#    Updated: 2022/03/01 13:31:31 by dlerma-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ OBJS = $(addprefix $(OBJ_PATH)/, $(OBJS_NAME))
 #··············································································#
 
 CC = gcc
-# CFLAGS =  -Wall -Werror -Wextra  -g3 
+CFLAGS =  -Wall -Werror -Wextra  -g3 
 #include <xx.h> // path of .h
 CFLAGS += -I $(INC_PATH) -I $(LBFT_PATH) -I /Users/$(USER)/.brew/opt/readline/include 
 CFLAGS +="-I/Users/$(USER)/.brew/opt/readline/include"

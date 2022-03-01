@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:41:41 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/24 13:42:28 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/01 13:32:03 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	free_pipes(int **pipe, int num)
 
 static void	free_all(t_info *info, t_lst **lst)
 {
+	(void)lst;
 	// lstclear(lst, free);
 	free(info->cmd);
 	free_pipes(info->pipe, info->nlst);
