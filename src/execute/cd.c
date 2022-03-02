@@ -6,6 +6,7 @@ Es un espejismo
 void	make_cd(t_lst *lst, t_info *info, char *com)
 {
 	char	**cmd;
+	(void)com;
 
 	/*
 	Si no tiene nada de argumentos, solo el cd, por defecto se tiene que
@@ -24,6 +25,7 @@ void	make_cd(t_lst *lst, t_info *info, char *com)
 void	make_export(t_lst *lst, t_info *info, char *com)
 {
 	char	**cmd;
+	(void)com;
 
 	cmd = create_cmd(lst, info);
 	execve(com, cmd, info->env);
@@ -32,5 +34,8 @@ void	make_export(t_lst *lst, t_info *info, char *com)
 
 void	make_exit(t_lst *lst, t_info *info, char *com)
 {
+	(void)com;
+	(void)lst;
+	(void)info;
 	exit(0);
 }

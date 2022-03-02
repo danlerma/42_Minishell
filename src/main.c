@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:57:38 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/02 13:26:23 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/02 14:36:22 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,18 @@ void	show_recorded(char **argv)
 	printf("\n");
 }
 
+void	show_recorded_lst(t_list *argv)
+{
+	t_list	*aux;
+
+	aux = argv;
+	while (aux)
+	{
+		printf("Palabra : %s - %p\n", aux->content, aux->content);
+		aux = aux->next;
+	}
+}
+
 void	show_nodes(t_lst *nodes)
 {
 	int		i;
@@ -56,9 +68,9 @@ void	show_nodes(t_lst *nodes)
 		printf("Node %i :\n", nodes_i);
 		while (aux->argv[i] != 0)
 		{
-			printf("Argv - %s\n",aux->argv[i]);
-			printf("Type - %i\n",aux->type[i]);
-			printf("Flag - %i\n",aux->flag[i]);
+			printf("Argv - %s - %p\n", aux->argv[i], aux->argv[i]);
+			printf("Type - %i\n", aux->type[i]);
+			printf("Flag - %i\n", aux->flag[i]);
 			printf("\n");
 			i++;
 		}
@@ -70,12 +82,13 @@ void	show_nodes(t_lst *nodes)
 
 int	main(void)
 {
-	char		*argv;
-	char		**sep;
-	t_lst		*nodes;
+	char	*argv;
+	//char	**sep;
+	t_lst	*nodes;
+	t_list	*sep;
 	t_mirage	*env;
-
-	atexit(leaks);
+	
+	// atexit(leaks);
 	signal(EOF, signal_control);
 	signal(SIGINT, signal_control);
 	signal(SIGQUIT, signal_control);
@@ -86,16 +99,21 @@ int	main(void)
 		add_history(argv);
 		//__________________
 		sep = split_data(argv);
-		nodes = create_nodes(sep);
+		//show_recorded_lst(sep);
+		//printf("//__________________\n");
+		nodes = create_nodes_rework(sep);
+		//nodes = create_nodes(sep);
 		nodes = set_data_nodes(nodes);
 		if (nodes_check_error(nodes))
 		{
 			//show_recorded(sep);
-			//show_nodes(nodes);
+			show_nodes(nodes);
 			exec(nodes, &env);
 		}
 		free_nodes(nodes);
 		free_argv(sep, argv);
+		system("leaks -q minishell");
+		
 	}
 	lstclear_env(&env, free);
 	return (0);

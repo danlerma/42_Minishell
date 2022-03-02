@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:41:41 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/02 14:20:00 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/02 14:39:08 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	exec(t_lst *lst, t_mirage **env)
 	t_info		info;
 
 	// s_list(lst);
+	(void)env;
 	init_structs(&lst, &info, environ);
 	make_process(&info, lst);
 	free_all(&info, &lst);

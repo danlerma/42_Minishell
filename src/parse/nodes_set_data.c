@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 13:15:05 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/01 16:02:41 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/01 17:29:02 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,10 @@ static t_lst	*set_types_nodes(t_lst *node)
 	int		i;
 
 	i = 0;
+	printf("Prueba antes de caer\n");
 	while (node->argv[i] != 0)
 	{
+		//printf(" node->argv[%i] ->  %s \n", i, node->argv[i]);
 		if (ft_strncmp(node->argv[i], "<", sizeof(node->argv[i])) == 0)
 			node->type[i] = 2;
 		else if (ft_strncmp(node->argv[i], ">", sizeof(node->argv[i])) == 0)
@@ -107,7 +109,9 @@ t_lst	*set_data_nodes(t_lst *nodes)
 	while (aux)
 	{
 		aux = set_types_nodes(aux);
+		printf("Hace los tipos\n");
 		aux = set_flags_nodes(aux);
+		printf("Haace las banderas\n");
 		aux = aux->next;
 	}
 	return (nodes);

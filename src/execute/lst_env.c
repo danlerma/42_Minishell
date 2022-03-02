@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 12:54:42 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/02 13:11:50 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/02 14:40:21 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	lstclear_env(t_mirage **lst, void (*del)(void *))
 {
 	t_mirage	*next;
 
+	(void)(*del);
 	if (lst == NULL)
 		return ;
 	while (*lst != NULL)
