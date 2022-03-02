@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:57:38 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/02 14:36:22 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/02 17:55:26 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	main(void)
 	t_list	*sep;
 	t_mirage	*env;
 	
-	// atexit(leaks);
+	atexit(leaks);
 	signal(EOF, signal_control);
 	signal(SIGINT, signal_control);
 	signal(SIGQUIT, signal_control);
@@ -108,6 +108,7 @@ int	main(void)
 		{
 			//show_recorded(sep);
 			show_nodes(nodes);
+			s_mirage(env);
 			exec(nodes, &env);
 		}
 		free_nodes(nodes);
@@ -124,7 +125,6 @@ int	main(void)
 		add_history(argv);
 		sep = split_data(argv);
 		nodes = create_nodes(sep);
-		printf("NO PETA\n");
 		nodes = set_data_nodes(nodes);
 		//show_recorded(sep);
 		show_nodes(nodes);

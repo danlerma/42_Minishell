@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:38:50 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/02 14:38:30 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/02 17:55:58 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ void	s_mirage(t_mirage *lst)
 	{
 		i = 0;
 		printf("Direction: %p\n", lst);
-		printf("\tVAR: %s\n", lst->var);
+		printf("\tVARIABLE: %s\n", lst->var);
+		printf("\tNAME: %s\n", lst->name);
+		printf("\tVALUE: %s\n", lst->value);
 		printf("Next:      %p\n\n", lst->next);
 		lst = lst->next;
 	}
