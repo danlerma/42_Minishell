@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:35:29 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/02 17:54:46 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/02 18:28:12 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	init_commands(t_lst *lst, t_info *info)
 	int	i;
 
 	i = 0;
-	info->cmd->pos = 0;
+	info->cmd->pos = 0; 
 	info->cmd->nc = 0;
 	while (lst->argv[i] != NULL)
 	{

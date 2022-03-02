@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:57:38 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/02 17:55:26 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/02 18:47:20 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,8 @@ int	main(void)
 		{
 			//show_recorded(sep);
 			show_nodes(nodes);
-			s_mirage(env);
+			// s_mirage(env);
+			get_var_env(env, "SER");
 			exec(nodes, &env);
 		}
 		free_nodes(nodes);
