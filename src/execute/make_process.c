@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:40:23 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/23 19:50:10 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/02 14:15:40 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	wait_child(t_info *info)
 	}
 }
 
-void	make_process(t_info *info, t_lst *lst, char **environ)
+void	make_process(t_info *info, t_lst *lst)
 {
 	int	i;
 
@@ -35,7 +35,7 @@ void	make_process(t_info *info, t_lst *lst, char **environ)
 	while (lst)
 	{
 		info->pos = i;
-		commands(info, lst, environ);
+		commands(info, lst);
 		lst = lst->next;
 		i++;
 	}

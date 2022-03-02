@@ -6,49 +6,29 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:35:29 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/24 15:41:52 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/02 13:26:48 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<minishell.h>
 
-static	t_env	*lstlast_env(t_env *lst)
+t_mirage	*init_env()
 {
-	if (lst == NULL)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
-}
-
-static void	add_back_env(t_env **lst, t_env *new)
-{
-	t_env	*aux;
-
-	if (*lst == NULL)
-		*lst = new;
-	else if (*lst)
-	{
-		aux = lstlast_env(*lst);
-		aux->next = new;
-	}
-}
-
-t_env	*init_env()
-{
-	extern char	**environ;
-	t_env		*temp;
-	int			i;
+	extern char		**environ;
+	t_mirage		*temp;
+	t_mirage		*env;
+	int				i;
 
 	i = 0;
+	env = NULL;
 	while (environ[i])
 	{
-		temp = (t_env *)ft_calloc(1, sizeof(t_env));
+		temp = (t_mirage *)ft_calloc(1, sizeof(t_mirage));
 		if (temp == NULL)
 			exit(0);
-		temp->env = environ[i];
+		temp->var = environ[i];
 		temp->next = NULL;
-		
+		add_back_env(&env, temp);
 		i++;
 	}
 	return (env);
@@ -83,4 +63,5 @@ void	init_structs(t_lst **lst, t_info *info, char **environ)
 	info->pos = 0;
 	info->np = 0;
 	info->iter = 0;
+	info->env = environ;
 }

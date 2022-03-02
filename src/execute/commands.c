@@ -6,13 +6,13 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:37:32 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/24 15:42:01 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/02 14:15:03 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	make_last_command(t_info *info, t_lst *lst, char **env, char *com)
+static void	make_last_command(t_info *info, t_lst *lst, char *com)
 {
 	pid_t	child;
 	char	**cmd;
@@ -27,7 +27,7 @@ static void	make_last_command(t_info *info, t_lst *lst, char **env, char *com)
 		check_redir(info, lst, 1);
 		close(info->pipe[info->np][0]);
 		close(info->pipe[info->np][1]);
-		execve(com, cmd, env);
+		execve(com, cmd, info->env);
 	}
 	else
 	{
@@ -38,7 +38,7 @@ static void	make_last_command(t_info *info, t_lst *lst, char **env, char *com)
 	}
 }
 
-static void	make_command(t_info *info, t_lst *lst, char **env, char *com)
+static void	make_command(t_info *info, t_lst *lst, char *com)
 {
 	pid_t	child;
 	char	**cmd;
@@ -58,7 +58,7 @@ static void	make_command(t_info *info, t_lst *lst, char **env, char *com)
 		dup2(info->pipe[info->np][1], STDOUT_FILENO);
 		close(info->pipe[info->np][1]);
 		check_redir(info, lst, 1);
-		execve(com, cmd, env);
+		execve(com, cmd, info->env);
 	}
 	else
 	{
@@ -69,7 +69,7 @@ static void	make_command(t_info *info, t_lst *lst, char **env, char *com)
 	}
 }
 
-static void	make_one_command(t_info *info, t_lst *lst, char **env, char *com)
+static void	make_one_command(t_info *info, t_lst *lst, char *com)
 {
 	pid_t	child;
 	char	**cmd;
@@ -81,7 +81,7 @@ static void	make_one_command(t_info *info, t_lst *lst, char **env, char *com)
 	if (child == 0)
 	{
 		check_redir(info, lst, 1);
-		execve(com, cmd, env);
+		execve(com, cmd, info->env);
 	}
 	else
 	{
@@ -90,12 +90,12 @@ static void	make_one_command(t_info *info, t_lst *lst, char **env, char *com)
 	}
 }
 
-static void	search_command(t_info *info, t_lst *lst, char **environ, char *com)
+static void	search_command(t_info *info, t_lst *lst, char *com)
 {
 	if (info->nlst == 1)
 	{
-		if (check_built(lst, info, environ, com) == 0)
-			make_one_command(info, lst, environ, com);
+		if (check_built(lst, info, com) == 0)
+			make_one_command(info, lst, com);
 	}
 	else
 	{
@@ -104,14 +104,14 @@ static void	search_command(t_info *info, t_lst *lst, char **environ, char *com)
 			exit(0);
 		pipe(info->pipe[info->np]);
 		if ((info->pos == 0 || info->pos != 0) && info->pos != info->nlst - 1)
-			make_command(info, lst, environ, com);
+			make_command(info, lst, com);
 		else if (info->pos == info->nlst - 1)
-			make_last_command(info, lst, environ, com);
+			make_last_command(info, lst, com);
 		info->np++;
 	}
 }
 
-void	commands(t_info *info, t_lst *lst, char **environ)
+void	commands(t_info *info, t_lst *lst)
 {
 	int		i;
 	int		flag;
@@ -125,7 +125,7 @@ void	commands(t_info *info, t_lst *lst, char **environ)
 		com = ft_strjoin(info->path[i], lst->argv[info->cmd->pos]);
 		if (access(com, X_OK) == 0)
 		{
-			search_command(info, lst, environ, com);
+			search_command(info, lst, com);
 			free (com);
 			flag = 1;
 			break ;
@@ -133,6 +133,6 @@ void	commands(t_info *info, t_lst *lst, char **environ)
 		free(com);
 	}
 	if (flag == 0)
-		search_command(info, lst, environ, NULL);
+		search_command(info, lst, NULL);
 	flag = 0;
 }

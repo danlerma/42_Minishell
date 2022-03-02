@@ -6,13 +6,13 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:39:33 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/22 17:22:06 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/02 14:20:23 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	check_built(t_lst *lst, t_info *info, char **environ, char *com)
+int	check_built(t_lst *lst, t_info *info, char *com)
 {
 	int	check;
 
@@ -21,19 +21,19 @@ int	check_built(t_lst *lst, t_info *info, char **environ, char *com)
 	{
 		check = 1;
 		printf("CD\n");
-		make_cd(lst, info, environ, com);
+		make_cd(lst, info, com);
 	}
 	if (ft_strncmp(lst->argv[0], "exit", ft_strlen(lst->argv[0])) == 0)
 	{
 		check = 1;
 		printf("EXIT\n");
-		make_exit(lst, info, environ, com);
+		make_exit(lst, info, com);
 	}
 	if (ft_strncmp(lst->argv[0], "export", ft_strlen(lst->argv[0])) == 0)
 	{
 		check = 1;
-		printf("EXIT\n");
-		make_export(lst, info, environ, com);
+		printf("EXPORT\n");
+		make_export(lst, info, com);
 	}
 	return (check);
 }

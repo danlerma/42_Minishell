@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+         #
+#    By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/08 10:12:01 by dlerma-c          #+#    #+#              #
-#    Updated: 2022/03/01 16:09:25 by mortiz-d         ###   ########.fr        #
+#    Updated: 2022/03/02 13:09:54 by dlerma-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ SRCS_EXE_PATH = execute
 SRCS_PARSE = nodes_create.c nodes_set_data.c free_data.c split_data_array.c \
 			split_data_lst.c nodes_utils.c
 SRCS_EXE = execute.c make_process.c show_list.c commands.c init.c files.c \
-			utils.c here.c lst.c cd.c
+			utils.c here.c lst.c cd.c lst_env.c
 SRCS = main.c
 SRCS_NAME = $(addprefix $(SRCS_PARSE_PATH)/, $(SRCS_PARSE)) \
 			$(addprefix $(SRCS_EXE_PATH)/, $(SRCS_EXE)) \

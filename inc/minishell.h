@@ -19,11 +19,13 @@ typedef struct s_lst
 	struct s_lst	*next;
 }t_lst;
 
-typedef struct s_env
+typedef struct s_mirage
 {
-	char			*env;
-	struct	s_env	*next;
-}t_env;
+	char				*var;
+	char				*name;
+	char				*value;
+	struct	s_mirage	*next;
+}t_mirage;
 
 # include <stdio.h>
 # include <stdlib.h>

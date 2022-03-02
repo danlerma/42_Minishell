@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:57:38 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/01 16:12:02 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/02 13:26:23 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,10 @@ void	show_nodes(t_lst *nodes)
 	int		i;
 	int		nodes_i;
 	t_lst	*aux;
-	t_env	*env;
 
 	aux = nodes;
 	nodes_i = 1;
 	i = 0;
-	env = init_env();
 	while (aux)
 	{
 		printf("Node %i :\n", nodes_i);
@@ -72,14 +70,16 @@ void	show_nodes(t_lst *nodes)
 
 int	main(void)
 {
-	char	*argv;
-	char	**sep;
-	t_lst	*nodes;
+	char		*argv;
+	char		**sep;
+	t_lst		*nodes;
+	t_mirage	*env;
 
-	// atexit(leaks);
+	atexit(leaks);
 	signal(EOF, signal_control);
 	signal(SIGINT, signal_control);
 	signal(SIGQUIT, signal_control);
+	env = init_env();
 	while (1)
 	{
 		argv = readline("\033[1;34m""Mini""\033[1;33m""Shell""\033[0m"" ");
@@ -92,11 +92,12 @@ int	main(void)
 		{
 			//show_recorded(sep);
 			//show_nodes(nodes);
-			exec(nodes);
+			exec(nodes, &env);
 		}
 		free_nodes(nodes);
 		free_argv(sep, argv);
 	}
+	lstclear_env(&env, free);
 	return (0);
 }
 /*

@@ -3,7 +3,7 @@
 No es cambiar el environment, es hacer creer que lo has cambiado
 Es un espejismo
 */
-void	make_cd(t_lst *lst, t_info *info, char **environ, char *com)
+void	make_cd(t_lst *lst, t_info *info, char *com)
 {
 	char	**cmd;
 
@@ -21,16 +21,16 @@ void	make_cd(t_lst *lst, t_info *info, char **environ, char *com)
 	ft_free_malloc(cmd);
 }
 
-void	make_export(t_lst *lst, t_info *info, char **environ, char *com)
+void	make_export(t_lst *lst, t_info *info, char *com)
 {
 	char	**cmd;
 
 	cmd = create_cmd(lst, info);
-	execve(com, cmd, environ);
+	execve(com, cmd, info->env);
 	printf("FEBKEWBJE\n");
 }
 
-void	make_exit(t_lst *lst, t_info *info, char **environ, char *com)
+void	make_exit(t_lst *lst, t_info *info, char *com)
 {
 	exit(0);
 }
