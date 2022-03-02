@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 12:54:42 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/02 14:40:21 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/02 17:53:37 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	lstdelone_env(t_mirage *lst, void (*del)(void*))
 
 	if (lst)
 	{
-		(*del)(lst->var);
+		(*del)(lst->value);
+		(*del)(lst->name);
 	}
 }
 
@@ -47,12 +48,12 @@ void	lstclear_env(t_mirage **lst, void (*del)(void *))
 {
 	t_mirage	*next;
 
-	(void)(*del);
 	if (lst == NULL)
 		return ;
 	while (*lst != NULL)
 	{
 		next = (*lst)->next;
+		lstdelone_env(*lst, del);
 		free(*lst);
 		*lst = next;
 	}

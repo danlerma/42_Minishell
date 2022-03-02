@@ -6,13 +6,13 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:35:29 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/02 14:37:48 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/02 17:54:46 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<minishell.h>
 
-t_mirage	*init_env()
+t_mirage	*init_env(void)
 {
 	extern char		**environ;
 	t_mirage		*temp;
@@ -27,6 +27,7 @@ t_mirage	*init_env()
 		if (temp == NULL)
 			exit(0);
 		temp->var = environ[i];
+		split_variables(environ[i], & temp);
 		temp->next = NULL;
 		add_back_env(&env, temp);
 		i++;
