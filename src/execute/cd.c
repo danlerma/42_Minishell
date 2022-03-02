@@ -7,7 +7,6 @@ void	make_cd(t_lst *lst, t_info *info, char *com)
 {
 	char	**cmd;
 	(void)com;
-	
 
 	/*
 	Si no tiene nada de argumentos, solo el cd, por defecto se tiene que
@@ -38,6 +37,5 @@ void	make_exit(t_lst *lst, t_info *info, char *com)
 	(void)com;
 	(void)lst;
 	(void)info;
-	
 	exit(0);
 }

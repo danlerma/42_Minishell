@@ -115,6 +115,7 @@ int	main(void)
 		system("leaks -q minishell");
 		
 	}
+	lstclear_env(&env, free);
 	return (0);
 }
 /*
