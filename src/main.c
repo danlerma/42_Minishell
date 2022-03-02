@@ -47,10 +47,12 @@ void	show_nodes(t_lst *nodes)
 	int		i;
 	int		nodes_i;
 	t_lst	*aux;
+	t_env	*env;
 
 	aux = nodes;
 	nodes_i = 1;
 	i = 0;
+	env = init_env();
 	while (aux)
 	{
 		printf("Node %i :\n", nodes_i);

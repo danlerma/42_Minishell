@@ -12,6 +12,48 @@
 
 #include<minishell.h>
 
+static	t_env	*lstlast_env(t_env *lst)
+{
+	if (lst == NULL)
+		return (NULL);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
+}
+
+static void	add_back_env(t_env **lst, t_env *new)
+{
+	t_env	*aux;
+
+	if (*lst == NULL)
+		*lst = new;
+	else if (*lst)
+	{
+		aux = lstlast_env(*lst);
+		aux->next = new;
+	}
+}
+
+t_env	*init_env()
+{
+	extern char	**environ;
+	t_env		*temp;
+	int			i;
+
+	i = 0;
+	while (environ[i])
+	{
+		temp = (t_env *)ft_calloc(1, sizeof(t_env));
+		if (temp == NULL)
+			exit(0);
+		temp->env = environ[i];
+		temp->next = NULL;
+		
+		i++;
+	}
+	return (env);
+}
+
 void	init_commands(t_lst *lst, t_info *info)
 {
 	int	i;
@@ -41,5 +83,4 @@ void	init_structs(t_lst **lst, t_info *info, char **environ)
 	info->pos = 0;
 	info->np = 0;
 	info->iter = 0;
-	// open_pipes(info);
 }

@@ -19,6 +19,12 @@ typedef struct s_lst
 	struct s_lst	*next;
 }t_lst;
 
+typedef struct s_env
+{
+	char			*env;
+	struct	s_env	*next;
+}t_env;
+
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
@@ -29,6 +35,7 @@ typedef struct s_lst
 # include <readline/readline.h>
 # include <readline/history.h>
 // # include "../pipes/inc/pipes.h"
+
 
 /*
 	1 -> commando

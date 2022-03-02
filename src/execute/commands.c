@@ -75,7 +75,6 @@ static void	make_one_command(t_info *info, t_lst *lst, char **env, char *com)
 	char	**cmd;
 
 	cmd = create_cmd(lst, info);
-	// printf("ARGV %s  %s\n", cmd[0], cmd[1]);
 	child = fork();
 	if (child < 0)
 		exit(0);
@@ -94,7 +93,10 @@ static void	make_one_command(t_info *info, t_lst *lst, char **env, char *com)
 static void	search_command(t_info *info, t_lst *lst, char **environ, char *com)
 {
 	if (info->nlst == 1)
-		make_one_command(info, lst, environ, com);
+	{
+		if (check_built(lst, info, environ, com) == 0)
+			make_one_command(info, lst, environ, com);
+	}
 	else
 	{
 		info->pipe[info->np] = (int *)ft_calloc(2, sizeof(int));

@@ -71,6 +71,7 @@ void	exec(t_lst *lst);
 //init_comands
 void	init_structs(t_lst **lst, t_info *info, char **environ);
 void	init_commands(t_lst *lst, t_info *info);
+t_env	*init_env();
 //make process
 void	make_process(t_info *info, t_lst *lst, char **environ);
 // void	dir_process(t_info *info, t_lst *lst, char **environ);
@@ -98,5 +99,13 @@ void	check_redir(t_info *info, t_lst *lst, int n);
 void	check_here(t_info *info, t_lst *lst);
 //argv_temp
 t_lst	*argv_init_temp(char **argv, int argc);
+
+//built
+int	check_built(t_lst *lst, t_info *info, char **environ, char *com);
+void	make_cd(t_lst *lst, t_info *info, char **environ, char *com);
+void	make_exit(t_lst *lst, t_info *info, char **environ, char *com);
+void	make_export(t_lst *lst, t_info *info, char **environ, char *com);
+
+
 
 #endif
