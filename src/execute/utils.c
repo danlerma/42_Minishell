@@ -6,26 +6,37 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:39:33 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/22 17:22:06 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/02 14:38:38 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-// void	open_pipes(t_info *info)
-// {
-// 	int	i;
+int	check_built(t_lst *lst, t_info *info, char *com)
+{
+	int	check;
 
-// 	i = 0;
-// 	while (i < info->nlst)
-// 	{
-// 		info->pipe[i] = (int *)ft_calloc(2, sizeof(int));
-// 		if (info->pipe[i] == NULL)
-// 			exit(0);
-// 		pipe(info->pipe[i]);
-// 		i++;
-// 	}
-// }
+	check = 0;
+	if (ft_strncmp(lst->argv[0], "cd", ft_strlen(lst->argv[0])) == 0)
+	{
+		check = 1;
+		printf("CD\n");
+		make_cd(lst, info, com);
+	}
+	if (ft_strncmp(lst->argv[0], "exit", ft_strlen(lst->argv[0])) == 0)
+	{
+		check = 1;
+		printf("EXIT\n");
+		make_exit(lst, info, com);
+	}
+	if (ft_strncmp(lst->argv[0], "export", ft_strlen(lst->argv[0])) == 0)
+	{
+		check = 1;
+		printf("EXPORT\n");
+		make_export(lst, info, com);
+	}
+	return (check);
+}
 
 char	**create_cmd(t_lst *lst, t_info *info)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:57:38 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/01 21:22:13 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/02 14:36:22 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,13 @@ int	main(void)
 	//char	**sep;
 	t_lst	*nodes;
 	t_list	*sep;
+	t_mirage	*env;
 	
 	// atexit(leaks);
 	signal(EOF, signal_control);
 	signal(SIGINT, signal_control);
 	signal(SIGQUIT, signal_control);
+	env = init_env();
 	while (1)
 	{
 		argv = readline("\033[1;34m""Mini""\033[1;33m""Shell""\033[0m"" ");
@@ -106,7 +108,7 @@ int	main(void)
 		{
 			//show_recorded(sep);
 			show_nodes(nodes);
-			//exec(nodes);
+			exec(nodes, &env);
 		}
 		free_nodes(nodes);
 		free_argv(sep, argv);

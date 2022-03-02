@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:55:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/24 12:53:45 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/02 14:35:34 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_info
 	int			pos; //posicion del nodo
 	int			np; //numero de pipes para saber en cual estoy
 	int			nh; //numero de heredoc
+	char		**env; //environ
 	t_command	*cmd; //puntero a estructura de commandos
 }t_info;
 
@@ -66,37 +67,47 @@ typedef struct s_info
 */
 
 //execute
-void	exec(t_lst *lst);
+void	exec(t_lst *lst, t_mirage **env);
 
 //init_comands
-void	init_structs(t_lst **lst, t_info *info, char **environ);
-void	init_commands(t_lst *lst, t_info *info);
+void		init_structs(t_lst **lst, t_info *info, char **environ);
+void		init_commands(t_lst *lst, t_info *info);
+t_mirage	*init_env();
 //make process
-void	make_process(t_info *info, t_lst *lst, char **environ);
-// void	dir_process(t_info *info, t_lst *lst, char **environ);
-//heredoc
-void	do_here(t_lst *lst, t_info *info, char **environ);
+void		make_process(t_info *info, t_lst *lst);
 //show list
-void	s_list(t_lst *lst);
+void		s_list(t_lst *lst);
+void		s_mirage(t_mirage *lst);
 //pipes utils
-char	**find_path(char **environ);
-void	valid_path(t_info *info);
-char	**create_cmd(t_lst *lst, t_info *info);
+char		**find_path(char **environ);
+void		valid_path(t_info *info);
+char		**create_cmd(t_lst *lst, t_info *info);
 // void	open_pipes(t_info *info);
-void	error(char *file);
+void		error(char *file);
 //command
-void	commands(t_info *info, t_lst *lst, char **environ);
+void		commands(t_info *info, t_lst *lst);
 //lst
-int		lstsize(t_lst *lst);
-void	lstadd_back(t_lst **lst, t_lst *new);
-t_lst	*lstlast(t_lst *lst);
-void	lstdelone(t_lst *lst, void (*del)(void*));
-void	lstclear(t_lst **lst, void (*del)(void *));
+int			lstsize(t_lst *lst);
+void		lstadd_back(t_lst **lst, t_lst *new);
+t_lst		*lstlast(t_lst *lst);
+void		lstdelone(t_lst *lst, void (*del)(void*));
+void		lstclear(t_lst **lst, void (*del)(void *));
+//lst_env
+t_mirage	*lstlast_env(t_mirage *lst);
+void		add_back_env(t_mirage **lst, t_mirage *new);
+void		lstdelone_env(t_mirage *lst, void (*del)(void*));
+void		lstclear_env(t_mirage **lst, void (*del)(void *));
 //file.c
-void	check_redir(t_info *info, t_lst *lst, int n);
+void		check_redir(t_info *info, t_lst *lst, int n);
 //here.c
-void	check_here(t_info *info, t_lst *lst);
+void		check_here(t_info *info, t_lst *lst);
 //argv_temp
-t_lst	*argv_init_temp(char **argv, int argc);
+t_lst		*argv_init_temp(char **argv, int argc);
+
+//built
+int			check_built(t_lst *lst, t_info *info, char *com);
+void		make_cd(t_lst *lst, t_info *info, char *com);
+void		make_exit(t_lst *lst, t_info *info, char *com);
+void		make_export(t_lst *lst, t_info *info, char *com);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:41:41 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/01 13:32:03 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/02 14:39:08 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,14 @@ static void	free_all(t_info *info, t_lst **lst)
 	ft_free_malloc(info->path);
 }
 
-void	exec(t_lst *lst)
+void	exec(t_lst *lst, t_mirage **env)
 {
 	extern char	**environ;
-	// t_lst		*lst;
 	t_info		info;
 
-	// atexit(leaks);
-	// lst = NULL;
-	// lst = argv_init_temp(argv, argc);
 	// s_list(lst);
+	(void)env;
 	init_structs(&lst, &info, environ);
-	make_process(&info, lst, environ);
+	make_process(&info, lst);
 	free_all(&info, &lst);
 }

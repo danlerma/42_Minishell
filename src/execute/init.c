@@ -6,11 +6,33 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:35:29 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/24 15:41:52 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/02 14:37:48 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<minishell.h>
+
+t_mirage	*init_env()
+{
+	extern char		**environ;
+	t_mirage		*temp;
+	t_mirage		*env;
+	int				i;
+
+	i = 0;
+	env = NULL;
+	while (environ[i])
+	{
+		temp = (t_mirage *)ft_calloc(1, sizeof(t_mirage));
+		if (temp == NULL)
+			exit(0);
+		temp->var = environ[i];
+		temp->next = NULL;
+		add_back_env(&env, temp);
+		i++;
+	}
+	return (env);
+}
 
 void	init_commands(t_lst *lst, t_info *info)
 {
@@ -41,5 +63,5 @@ void	init_structs(t_lst **lst, t_info *info, char **environ)
 	info->pos = 0;
 	info->np = 0;
 	info->iter = 0;
-	// open_pipes(info);
+	info->env = environ;
 }
