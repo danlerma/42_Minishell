@@ -6,49 +6,11 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 13:15:05 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/01 17:29:02 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/02 19:46:08 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-
-char	*join_and_liberate_str(char *s, char c)
-{
-	char	*aux;
-
-	aux = ft_strjoin_2(s, c);
-	free(s);
-	return (aux);
-}
-
-char	*unquote_str(char *s)
-{
-	char	*aux;
-	char	auxchar;
-	int		i;
-
-	i = 0;
-	aux = ft_strdup("");
-	while (s[i] != 0)
-	{
-		if (s[i] == 34 || s[i] == 39)
-		{
-			auxchar = s[i];
-			i++;
-			while (s[i] != 0)
-			{
-				if (s[i] == auxchar)
-					break ;
-				aux = join_and_liberate_str(aux, s[i]);
-				i++;
-			}
-			i++;
-		}
-		else
-			aux = join_and_liberate_str(aux, s[i++]);
-	}
-	return (aux);
-}
 
 static t_lst	*set_flags_nodes(t_lst *node)
 {
@@ -59,14 +21,12 @@ static t_lst	*set_flags_nodes(t_lst *node)
 	while (node->argv[i] != 0)
 	{
 		if (node->type[i] == 8)
-		{
 			node->flag[i] = 1;
-			aux = node->argv[i];
-			node->argv[i] = unquote_str(aux);
-			free(node->argv[i]);
-		}
 		else
 			node->flag[i] = 0;
+		aux = node->argv[i];
+		node->argv[i] = real_str(aux);
+		free(aux);
 		i++;
 	}
 	return (node);
@@ -77,10 +37,8 @@ static t_lst	*set_types_nodes(t_lst *node)
 	int		i;
 
 	i = 0;
-	printf("Prueba antes de caer\n");
 	while (node->argv[i] != 0)
 	{
-		//printf(" node->argv[%i] ->  %s \n", i, node->argv[i]);
 		if (ft_strncmp(node->argv[i], "<", sizeof(node->argv[i])) == 0)
 			node->type[i] = 2;
 		else if (ft_strncmp(node->argv[i], ">", sizeof(node->argv[i])) == 0)
@@ -109,9 +67,7 @@ t_lst	*set_data_nodes(t_lst *nodes)
 	while (aux)
 	{
 		aux = set_types_nodes(aux);
-		printf("Hace los tipos\n");
 		aux = set_flags_nodes(aux);
-		printf("Haace las banderas\n");
 		aux = aux->next;
 	}
 	return (nodes);

@@ -6,11 +6,11 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 14:35:49 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/01 15:38:18 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/02 12:24:27 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include <minishell.h>
 
 int	nodes_check_error(t_lst *list)
 {
