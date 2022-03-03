@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:30:16 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/03 15:25:26 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/03 16:19:28 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,28 +54,22 @@ void	set_nodes_data_rework(t_lst *nodes, t_list *lst)
 
 	aux_nodes = nodes;
 	aux = lst;
-	//printf("Circus begin\n");
 	while (aux)
 	{
 		i = 0;
-		//printf("Busca desde la palabra :%s\n",aux->content);
-		n_words = get_n_words_per_token(aux);
-		//printf("Nwords : %i\n", n_words);
-		aux_nodes->argv = ft_calloc(sizeof(char *), n_words + 1);
-		aux_nodes->type = ft_calloc(sizeof(int *), n_words);
-		aux_nodes->flag = ft_calloc(sizeof(int *), n_words);
-		while (i < n_words)
+		aux_nodes->n_words = get_n_words_per_token(aux);
+		printf("Hemos creado un nodo con %i palabras\n", aux_nodes->n_words);
+		aux_nodes->argv = ft_calloc(sizeof(char *), aux_nodes->n_words + 1);
+		aux_nodes->type = ft_calloc(sizeof(int *), aux_nodes->n_words);
+		aux_nodes->flag = ft_calloc(sizeof(int *), aux_nodes->n_words);
+		while (i < aux_nodes->n_words)
 		{
 			aux_nodes->argv[i] = get_word(aux);
-			//printf("palabra :%s\n",aux_nodes->argv[i]);
 			aux = aux->next;
 			i++;
 		}
-		//printf("Sigue al siguiente palabra tras leer\n");
 		if (aux)
 			aux = aux->next;
-		//printf("aux node %p\n", aux_nodes);
-		//printf("aux node->next %p\n", aux_nodes->next);
 		aux_nodes = aux_nodes->next;
 	}
 }
@@ -109,7 +103,6 @@ t_lst	*create_nodes_rework(t_list *lst)
 	t_lst	*nodes;
 
 	nodes = make_nodes_rework(lst);
-	printf("Termina de crear las cosas y nos disponemos a llenarlas\n");
 	set_nodes_data_rework(nodes, lst);
 	return (nodes);
 }

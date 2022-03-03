@@ -4,6 +4,7 @@
 
 typedef struct s_lst
 {
+	int				n_words;
 	char			**argv;
 	int				*type;
 	int				*flag;

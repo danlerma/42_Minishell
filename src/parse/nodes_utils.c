@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 14:35:49 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/03 14:42:58 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/03 16:10:40 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ int	nodes_check_error(t_lst *list)
 	t_lst	*aux;
 	int		i;
 
+	i = 1;
 	aux = list;
-	printf("Piuntero 1 %p\n",aux);
-	printf("Piuntero 2 %p\n",aux->next);
-	//if (aux->next == 0 && aux->argv[0] == 0)
-	//	return (0);
+	if (aux->next == 0 && aux->n_words == 0)
+		return (0);
 	while (aux)
 	{
-		if (aux->argv[0] != 0)
+		printf("Nodo : %i tiene %i palabras\n", i, aux->n_words);
+		if (aux->n_words == 0)
 		{
 			printf("syntax error near unexpected token `|'\n");
 			return (0);
