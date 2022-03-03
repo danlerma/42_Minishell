@@ -71,6 +71,8 @@ t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstdelone(t_list *lst, void (*del)(void*));
+char	*ft_strjoin_2(char const *s1, char s2);
+
 //get_next_line
 char	*get_next_line(int fd);
 char	*ft_strjoin_gnl(char const *s1, char const *s2);

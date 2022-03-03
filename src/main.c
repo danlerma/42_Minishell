@@ -83,6 +83,7 @@ void	show_nodes(t_lst *nodes)
 int	main(void)
 {
 	char	*argv;
+
 	//char	**sep;
 	t_lst	*nodes;
 	t_list	*sep;
@@ -92,6 +93,7 @@ int	main(void)
 	signal(EOF, signal_control);
 	signal(SIGINT, signal_control);
 	signal(SIGQUIT, signal_control);
+
 	env = init_env();
 	while (1)
 	{
