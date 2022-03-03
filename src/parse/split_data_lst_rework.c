@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 13:24:04 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/02 19:19:36 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:25:02 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,6 @@ static int	is_separator_rework(char const *c)
 	}
 	return (0);
 }
-/*
-static int	tam_between_quotes(char const *s)
-{
-	int		tam;
-	char	aux;
-
-	tam = 0;
-	aux = s[tam];
-	while (s[tam] != 0)
-	{
-		tam++;
-		if (s[tam] == aux && s[tam - 1] == '\\')
-			break ;
-	}
-	return (tam);
-}
-*/
 
 static int	get_tam_word_rework(char const *s)
 {
@@ -90,6 +73,26 @@ static int	dst_next_word_rework(char const *s)
 	return (dst);
 }
 
+static	t_list	*cut_last_null(t_list *lst)
+{
+	t_list	*aux_lst;
+
+	aux_lst = lst;
+	if (lst->content == 0)
+	{
+		free(lst);
+		return (0);
+	}
+	else
+	{
+		while (aux_lst->next->content != 0)
+			aux_lst = aux_lst->next;
+		free(aux_lst->next);
+		aux_lst->next = NULL;
+	}
+	return (lst);
+}
+
 static t_list	*make_lst_rework(t_list *lst, char const *s)
 {
 	t_list	*aux_lst;
@@ -126,5 +129,6 @@ t_list	*split_data_rework(char const *s)
 	if (s == NULL)
 		return (0);
 	aux = make_lst_rework(ft_lstnew(0), s);
+	aux = cut_last_null(aux);
 	return (aux);
 }

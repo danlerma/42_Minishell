@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 14:21:37 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/02 19:27:30 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/03 13:20:01 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	static	*get_variable_value(char *s)
 		i++;
 	}
 	var = ft_substr(s, 1, i);
-	printf("Variable detectada : $%s\n",var);
+	//printf("Variable detectada : $%s\n",var);
 	//Buscamos el valor equivalente
 	aux = ft_strdup("valor de la variable");
 	free(var);
@@ -73,7 +73,7 @@ int	static	get_variable_tam(char *s)
 			break ;
 		i++;
 	}
-	printf("Tamaño de la variable: %i \n", i);
+	//printf("Tamaño de la variable: %i \n", i);
 	return (i + 1);
 }
 
@@ -149,7 +149,7 @@ char	*real_str(char *s)
 		else
 			aux = join_and_liberate_str(aux, 0, s[i], 1);
 		i++;
-		printf("Palabra : %s\n",aux);
+		//printf("Palabra : %s\n",aux);
 	}
 	return (aux);
 }

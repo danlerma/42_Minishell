@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:57:38 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/02 17:55:26 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:33:47 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	main(void)
 	t_list	*sep;
 	t_mirage	*env;
 	
-	atexit(leaks);
+	//atexit(leaks);
 	signal(EOF, signal_control);
 	signal(SIGINT, signal_control);
 	signal(SIGQUIT, signal_control);
@@ -97,24 +97,25 @@ int	main(void)
 	{
 		argv = readline("\033[1;34m""Mini""\033[1;33m""Shell""\033[0m"" ");
 		add_history(argv);
-		//__________________
-		sep = split_data(argv);
-		//show_recorded_lst(sep);
-		//printf("//__________________\n");
+		sep = split_data_rework(argv);
+		show_recorded_lst(sep);
+		printf("//__________________\n");
 		nodes = create_nodes_rework(sep);
-		//nodes = create_nodes(sep);
-		nodes = set_data_nodes(nodes);
+		printf("Empezamos a settear las cosas\n");
+		//show_nodes(nodes);
 		if (nodes_check_error(nodes))
 		{
+			nodes = set_data_nodes(nodes);
 			//show_recorded(sep);
 			show_nodes(nodes);
-			s_mirage(env);
+			//s_mirage(env);
+			printf("JAJA VOY A EJECUTAR EL CODIGO\n");
+		exec(nodes, &env);
 			exec(nodes, &env);
 		}
-		free_nodes(nodes);
+		//free_nodes(nodes);
 		free_argv(sep, argv);
-		system("leaks -q minishell");
-		
+		//system("leaks -q minishell");
 	}
 	lstclear_env(&env, free);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 14:35:49 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/02 12:24:27 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/03 14:42:58 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,13 @@ int	nodes_check_error(t_lst *list)
 	int		i;
 
 	aux = list;
-	if (aux->next == 0 && aux->argv[0] == 0)
-		return (0);
+	printf("Piuntero 1 %p\n",aux);
+	printf("Piuntero 2 %p\n",aux->next);
+	//if (aux->next == 0 && aux->argv[0] == 0)
+	//	return (0);
 	while (aux)
 	{
-		i = 0;
-		while (aux->argv[i] != 0)
-			i++;
-		if (i == 0)
+		if (aux->argv[0] != 0)
 		{
 			printf("syntax error near unexpected token `|'\n");
 			return (0);
