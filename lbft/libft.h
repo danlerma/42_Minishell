@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 16:39:05 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/02/28 16:51:10 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/02/28 18:59:46 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+char	*ft_strjoin_2(char const *s1, char s2);
 
 char	**ft_free_malloc(char **str);
 void	ft_print_errors(char *mssg);

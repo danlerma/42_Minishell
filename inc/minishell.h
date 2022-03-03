@@ -1,9 +1,23 @@
 #ifndef MINISHELL_H
 
 # define MINISHELL_H
+# define RED "\033[1;31m"
+# define GREEN "\033[1;32m"
+# define CYAN "\033[1;36m"
+# define GREY "\033[1;90m"
+# define YELLOW "\033[1;33m"
+# define MAGENTA "\033[1;35m"
+# define RESET "\033[0m"
+
+# include "../lbft/libft.h"
+# include <general.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
 # include <signal.h>
+# include <execute.h>
+# include <parse.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../lbft/libft.h"
@@ -22,21 +36,5 @@
 	el execuve.
 	Ex: "ls -la" o "wc -l"
 */
-
-typedef struct s_argv
-{
-	int				type;
-	char			*s_arg;
-	struct s_argv	*next;
-}t_argv;
-
-char	**ft_split_mod_2(char const *s, char c);
-char	**split_data(char const *s);
-t_list	*make_lst(t_list *lst, char const *s);
-t_lst	*create_nodes(char **argv);
-t_lst	*set_data_nodes(t_lst *nodes);
-int		nodes_check_error(t_lst *list);
-void	free_nodes(t_lst *nodes);
-void	free_argv(char **argv, char *str);
 
 #endif

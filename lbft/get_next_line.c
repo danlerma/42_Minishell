@@ -15,11 +15,9 @@
 static char	*assign_chars(char *aux)
 {
 	int		i;
-	int		y;
 	char	*str;
 
 	i = 0;
-	y = -1;
 	while (aux[i] != '\n' && aux[i] != '\0')
 		i++;
 	str = ft_substr_gnl(aux, 0, i + 1);
