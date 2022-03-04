@@ -12,6 +12,21 @@
 
 #include<minishell.h>
 
+int	lstsize_env(t_mirage *lst)
+{
+	int	i;
+
+	i = 0;
+	if (lst == NULL)
+		return (0);
+	while (lst != NULL)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
+}
+
 void	add_back_env(t_mirage **lst, t_mirage *new)
 {
 	t_mirage	*aux;

@@ -23,3 +23,32 @@ char	*get_val_env(t_mirage *env, char *var)
 	}
 	return (NULL);
 }
+
+void	delete_var(t_mirage **env, char *var)
+{
+	t_mirage	*aux;
+	t_mirage	*temp;
+
+	aux = *env;
+	while (aux != NULL)
+	{
+		if (ft_strncmp(aux->name, var, ft_strlen(aux->name)) == 0
+			&& ft_strlen(var) == ft_strlen(aux->name))
+		{
+			if (aux->next == NULL)
+			{
+				temp->next = NULL;
+				lstdelone_env(aux, free);
+			}
+			else
+			{
+				temp->next = aux->next;
+				lstdelone_env(aux, free);
+			}
+			break;
+		}
+		temp = aux;
+		aux = aux->next;
+	}
+	s_mirage(*env);
+}

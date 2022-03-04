@@ -64,7 +64,7 @@ typedef struct s_info
 void	exec(t_lst *lst, t_mirage **env);
 
 //init_comands
-void	init_structs(t_lst **lst, t_info *info, char **environ);
+void	init_structs(t_lst **lst, t_info *info, t_mirage *env);
 void	init_commands(t_lst *lst, t_info *info);
 t_mirage	*init_env(void);
 
@@ -96,6 +96,7 @@ t_mirage	*lstlast_env(t_mirage *lst);
 void	add_back_env(t_mirage **lst, t_mirage *new);
 void	lstdelone_env(t_mirage *lst, void (*del)(void*));
 void	lstclear_env(t_mirage **lst, void (*del)(void *));
+int		lstsize_env(t_mirage *lst);
 
 //file.c
 void	check_redir(t_info *info, t_lst *lst, int n);
@@ -114,8 +115,10 @@ void	make_export(t_lst *lst, t_info *info, char *com);
 //utils env
 int		check_built(t_lst *lst, t_info *info, char *com, t_mirage **env);
 void	split_variables(char *variable, t_mirage **env);
+char	**lst2array(t_mirage *env);
 
 //env
 char	*get_val_env(t_mirage *env, char *var);
+void	delete_var(t_mirage **env, char *var);
 
 #endif

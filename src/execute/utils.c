@@ -40,19 +40,23 @@ char	**find_path(char **environ)
 	int		i;
 	char	**paths;
 	char	*pos;
+	int		check;
 
 	i = 0;
-	paths = NULL;
+	check = 0;
 	while (environ[i])
 	{
 		if (ft_strncmp(environ[i], "PATH", 4) == 0)
 		{
 			pos = ft_strchr(environ[i], '=');
 			paths = ft_split(pos + 1, ':');
+			check = 1;
 			break ;
 		}
 		i++;
 	}
+	if (check == 0)
+		printf("No esta la PATH\n");
 	return (paths);
 }
 

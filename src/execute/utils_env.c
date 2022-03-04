@@ -48,3 +48,21 @@ void	split_variables(char *variable, t_mirage **env)
 	free(var);
 
 }
+//TODO liberar
+char	**lst2array(t_mirage *env)
+{
+	char	**arr;
+	int		i;
+
+	arr = (char **)ft_calloc(lstsize_env(env) + 1, sizeof(char*));
+	if (arr == NULL)
+		exit(0);
+	i = 0;
+	while (env != NULL)
+	{
+		arr[i] = env->var;
+		env = env->next;
+		i++;
+	}
+	return (arr);
+}
