@@ -6,26 +6,26 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 13:15:05 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/02 19:46:08 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/04 13:14:05 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static t_lst	*set_flags_nodes(t_lst *node)
+static t_lst	*set_flags_nodes(t_lst *node, t_mirage *env)
 {
 	int		i;
 	char	*aux;
 
 	i = 0;
-	while (node->argv[i] != 0)
+	while (i < node->n_words)
 	{
 		if (node->type[i] == 8)
 			node->flag[i] = 1;
 		else
 			node->flag[i] = 0;
 		aux = node->argv[i];
-		node->argv[i] = real_str(aux);
+		node->argv[i] = real_str(aux, env);
 		free(aux);
 		i++;
 	}
@@ -37,7 +37,7 @@ static t_lst	*set_types_nodes(t_lst *node)
 	int		i;
 
 	i = 0;
-	while (node->argv[i] != 0)
+	while (i < node->n_words)
 	{
 		if (ft_strncmp(node->argv[i], "<", sizeof(node->argv[i])) == 0)
 			node->type[i] = 2;
@@ -59,7 +59,7 @@ static t_lst	*set_types_nodes(t_lst *node)
 	return (node);
 }
 
-t_lst	*set_data_nodes(t_lst *nodes)
+t_lst	*set_data_nodes(t_lst *nodes, t_mirage *env)
 {
 	t_lst	*aux;
 
@@ -67,7 +67,7 @@ t_lst	*set_data_nodes(t_lst *nodes)
 	while (aux)
 	{
 		aux = set_types_nodes(aux);
-		aux = set_flags_nodes(aux);
+		aux = set_flags_nodes(aux, env);
 		aux = aux->next;
 	}
 	return (nodes);

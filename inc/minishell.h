@@ -21,7 +21,6 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../lbft/libft.h"
-# include "../pipes/inc/pipes.h"
 
 /*
 	1 -> commando
