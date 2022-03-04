@@ -12,14 +12,13 @@
 
 #include<minishell.h>
 
-char	**get_var_env(t_mirage *env, char *var)
+char	*get_val_env(t_mirage *env, char *var)
 {
 	while (env != NULL)
 	{
-		if (ft_strncmp(env->name, var, ft_strlen(var)) == 0)
-		{
-			printf("SI es \n");
-		}
+		if (ft_strncmp(env->name, var, ft_strlen(env->name)) == 0
+			&& ft_strlen(var) == ft_strlen(env->name))
+			return(env->value);
 		env = env->next;
 	}
 	return (NULL);

@@ -69,7 +69,7 @@ void	init_commands(t_lst *lst, t_info *info);
 t_mirage	*init_env(void);
 
 //make process
-void	make_process(t_info *info, t_lst *lst);
+void	make_process(t_info *info, t_lst *lst, t_mirage **env);
 
 //show list
 void	s_list(t_lst *lst);
@@ -82,7 +82,7 @@ char	**create_cmd(t_lst *lst, t_info *info);
 void	error(char *file);
 
 //command
-void	commands(t_info *info, t_lst *lst);
+void	commands(t_info *info, t_lst *lst, t_mirage **env);
 
 //lst
 int		lstsize(t_lst *lst);
@@ -107,12 +107,15 @@ void	check_here(t_info *info, t_lst *lst);
 t_lst	*argv_init_temp(char **argv, int argc);
 
 //built
-int		check_built(t_lst *lst, t_info *info, char *com);
 void	make_cd(t_lst *lst, t_info *info, char *com);
 void	make_exit(t_lst *lst, t_info *info, char *com);
 void	make_export(t_lst *lst, t_info *info, char *com);
 
 //utils env
+int		check_built(t_lst *lst, t_info *info, char *com, t_mirage **env);
 void	split_variables(char *variable, t_mirage **env);
+
+//env
+char	*get_val_env(t_mirage *env, char *var);
 
 #endif

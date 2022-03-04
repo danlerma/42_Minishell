@@ -26,7 +26,7 @@ static void	wait_child(t_info *info)
 	}
 }
 
-void	make_process(t_info *info, t_lst *lst)
+void	make_process(t_info *info, t_lst *lst, t_mirage **env)
 {
 	int	i;
 
@@ -35,7 +35,7 @@ void	make_process(t_info *info, t_lst *lst)
 	while (lst)
 	{
 		info->pos = i;
-		commands(info, lst);
+		commands(info, lst, env);
 		lst = lst->next;
 		i++;
 	}

@@ -25,10 +25,8 @@ static void	free_pipes(int **pipe, int num)
 	free(pipe);
 }
 
-static void	free_all(t_info *info, t_lst **lst)
+static void	free_all(t_info *info)
 {
-	(void)lst;
-	// lstclear(lst, free);
 	free(info->cmd);
 	free_pipes(info->pipe, info->nlst);
 	ft_free_malloc(info->paths);
@@ -40,11 +38,9 @@ void	exec(t_lst *lst, t_mirage **env)
 	extern char	**environ;
 	t_info		info;
 
-	// s_list(lst);
-	(void)env;
 	init_structs(&lst, &info, environ);
-	make_process(&info, lst);
+	make_process(&info, lst, env);
 	dup2(info.fd_in, STDIN_FILENO);
 	dup2(info.fd_out, STDOUT_FILENO);
-	free_all(&info, &lst);
+	free_all(&info);
 }

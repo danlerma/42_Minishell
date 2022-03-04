@@ -23,7 +23,6 @@ int	nodes_check_error(t_lst *list)
 		return (0);
 	while (aux)
 	{
-		printf("Nodo : %i tiene %i palabras\n", i, aux->n_words);
 		if (aux->n_words == 0)
 		{
 			printf("syntax error near unexpected token `|'\n");

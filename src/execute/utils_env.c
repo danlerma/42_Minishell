@@ -12,7 +12,7 @@
 
 #include<minishell.h>
 
-int	check_built(t_lst *lst, t_info *info, char *com)
+int	check_built(t_lst *lst, t_info *info, char *com, t_mirage **env)
 {
 	int	check;
 

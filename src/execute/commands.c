@@ -90,11 +90,11 @@ static void	make_one_command(t_info *info, t_lst *lst, char *com)
 	}
 }
 
-static void	search_command(t_info *info, t_lst *lst, char *com)
+static void	search_command(t_info *info, t_lst *lst, char *com, t_mirage **env)
 {
 	if (info->nlst == 1)
 	{
-		if (check_built(lst, info, com) == 0)
+		if (check_built(lst, info, com, env) == 0)
 			make_one_command(info, lst, com);
 	}
 	else
@@ -111,7 +111,7 @@ static void	search_command(t_info *info, t_lst *lst, char *com)
 	}
 }
 
-void	commands(t_info *info, t_lst *lst)
+void	commands(t_info *info, t_lst *lst, t_mirage **env)
 {
 	int		i;
 	int		flag;
@@ -125,7 +125,7 @@ void	commands(t_info *info, t_lst *lst)
 		com = ft_strjoin(info->path[i], lst->argv[info->cmd->pos]);
 		if (access(com, X_OK) == 0)
 		{
-			search_command(info, lst, com);
+			search_command(info, lst, com, env);
 			free (com);
 			flag = 1;
 			break ;
@@ -133,6 +133,6 @@ void	commands(t_info *info, t_lst *lst)
 		free(com);
 	}
 	if (flag == 0)
-		search_command(info, lst, NULL);
+		search_command(info, lst, NULL, env);
 	flag = 0;
 }

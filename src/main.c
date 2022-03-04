@@ -15,7 +15,6 @@
 void	leaks()
 {
 	system("leaks -q minishell");
-	//> > leaks_texto
 }
 
 void	signal_control(int signum)
@@ -37,7 +36,6 @@ void	show_recorded_lst(t_list *argv)
 	aux = argv;
 	while (aux)
 	{
-		printf("Palabra : %s - %p\n", aux->content, aux->content);
 		aux = aux->next;
 	}
 }

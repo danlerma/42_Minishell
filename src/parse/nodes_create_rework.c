@@ -57,7 +57,6 @@ void	set_nodes_data_rework(t_lst *nodes, t_list *lst)
 	{
 		i = 0;
 		aux_nodes->n_words = get_n_words_per_token(aux);
-		printf("Hemos creado un nodo con %i palabras\n", aux_nodes->n_words);
 		aux_nodes->argv = ft_calloc(sizeof(char *), aux_nodes->n_words + 1);
 		aux_nodes->type = ft_calloc(sizeof(int *), aux_nodes->n_words);
 		aux_nodes->flag = ft_calloc(sizeof(int *), aux_nodes->n_words);

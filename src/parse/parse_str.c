@@ -53,7 +53,6 @@ char	static	*get_variable_value(char *s, t_mirage *env)
 		i++;
 	}
 	var = ft_substr(s, 1, i);
-	printf("Variable leida $%s\n",var);
 	aux = getvariable(var, env);
 	free(var);
 	return (aux);
@@ -145,7 +144,6 @@ char	*real_str(char *s, t_mirage *env)
 		else
 			aux = join_and_liberate_str(aux, 0, s[i], 1);
 		i++;
-		//printf("Palabra : %s\n",aux);
 	}
 	return (aux);
 }
