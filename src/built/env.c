@@ -24,6 +24,19 @@ char	*get_val_env(t_mirage *env, char *var)
 	return (NULL);
 }
 
+char	*get_name_env(t_mirage *env, char *var)
+{
+	while (env != NULL)
+	{
+		printf("NAME %s\n", env->name);
+		if (ft_strncmp(env->name, var, ft_strlen(env->name)) == 0
+			&& ft_strlen(var) == ft_strlen(env->name))
+			return(env->name);
+		env = env->next;
+	}
+	return (NULL);
+}
+
 void	delete_var(t_mirage **env, char *var)
 {
 	t_mirage	*aux;
@@ -50,5 +63,28 @@ void	delete_var(t_mirage **env, char *var)
 		temp = aux;
 		aux = aux->next;
 	}
-	s_mirage(*env);
+}
+
+void	insert_var(t_mirage **env, t_mirage *en)
+{
+	add_back_env(env, en);
+}
+
+void	change_val_env(t_mirage **env, char *var, char *value)
+{
+	t_mirage	*aux;
+	t_mirage	*temp;
+
+	aux = *env;
+	while (aux != NULL)
+	{
+		if (ft_strncmp(aux->name, var, ft_strlen(aux->name)) == 0
+			&& ft_strlen(var) == ft_strlen(aux->name))
+		{
+			aux->value = ft_strdup(value);
+			break ;
+		}
+		temp = aux;
+		aux = aux->next;
+	}
 }

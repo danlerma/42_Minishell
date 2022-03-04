@@ -110,7 +110,7 @@ t_lst	*argv_init_temp(char **argv, int argc);
 //built
 void	make_cd(t_lst *lst, t_info *info, char *com);
 void	make_exit(t_lst *lst, t_info *info, char *com);
-void	make_export(t_lst *lst, t_info *info, char *com);
+void	make_export( t_lst *lst, t_info *info, t_mirage **env);
 
 //utils env
 int		check_built(t_lst *lst, t_info *info, char *com, t_mirage **env);
@@ -120,5 +120,7 @@ char	**lst2array(t_mirage *env);
 //env
 char	*get_val_env(t_mirage *env, char *var);
 void	delete_var(t_mirage **env, char *var);
+// void	change_val_env(t_mirage **env, char *var, char *value);
+char	*get_name_env(t_mirage *env, char *var);
 
 #endif

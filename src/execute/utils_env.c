@@ -33,7 +33,7 @@ int	check_built(t_lst *lst, t_info *info, char *com, t_mirage **env)
 	{
 		check = 1;
 		printf("EXPORT\n");
-		make_export(lst, info, com);
+		make_export(lst, info, env);
 	}
 	return (check);
 }

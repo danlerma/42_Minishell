@@ -27,7 +27,7 @@ t_mirage	*init_env(void)
 		if (temp == NULL)
 			exit(0);
 		temp->var = environ[i];
-		split_variables(environ[i], & temp);
+		split_variables(environ[i], &temp);
 		temp->next = NULL;
 		add_back_env(&env, temp);
 		i++;
