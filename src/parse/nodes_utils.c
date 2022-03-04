@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 14:35:49 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/03 16:10:40 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/04 13:23:52 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,3 +33,20 @@ int	nodes_check_error(t_lst *list)
 	}
 	return (1);
 }
+/*
+void	getvariable(char *var, t_mirage *env)
+{
+	char		*env;
+	t_mirage	*aux;
+
+	aux = env;
+	while (aux)
+	{
+		printf("variable : %i\n",aux->var);
+		printf("var : %s\n",aux->var);
+		printf("name : %s\n",aux->name);
+		printf("content : %s\n",aux->value);
+		aux = aux->next;
+	}
+}
+*/

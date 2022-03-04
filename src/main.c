@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:57:38 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/03 16:59:10 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/04 13:11:17 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,13 @@ int	main(void)
 		sep = split_data_rework(argv);
 		//show_recorded_lst(sep);
 		nodes = create_nodes_rework(sep);
-		nodes = set_data_nodes(nodes);
+		nodes = set_data_nodes(nodes, env);
 		if (nodes_check_error(nodes))
 		{
 			//show_nodes(nodes);
 			//printf("JAJA VOY A EJECUTAR EL CODIGO\n");
 			exec(nodes, &env);
 		}
-		printf("HIVDSBHUDVSFIHDFIOSIFBFSID\n");
 		free_nodes(nodes);
 		free_argv(sep, argv);
 		//system("leaks -q minishell");
