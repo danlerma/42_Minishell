@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 14:21:37 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/04 13:24:56 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/04 14:53:48 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 char static	*join_and_liberate_str(char *s, char *s2, char c, int intent)
 {
 	char	*aux;
-	char	*aux2;
 
 	if (intent == 1)
 	{
@@ -41,15 +40,21 @@ char	static	*get_variable_value(char *s, t_mirage *env)
 	char	*aux;
 
 	i = 1;
+	if (s[i] == 0 || s[i] == 34 || s[i] == 39 || s[i] == ' ')
+		return (ft_strdup("$"));
 	while (s[i] != 0)
 	{
 		if (s[i] == '\\' || s[i] == 34 || s[i] == 39
 			|| s[i] == '$' || s[i] == ' ')
+		{
+			i--;
 			break ;
+		}
 		i++;
 	}
 	var = ft_substr(s, 1, i);
-	aux = ft_strdup("valor de la variable");
+	printf("Variable leida $%s\n",var);
+	aux = getvariable(var, env);
 	free(var);
 	return (aux);
 }
@@ -63,10 +68,13 @@ int	static	get_variable_tam(char *s)
 	{
 		if (s[i] == '\\' || s[i] == 34 || s[i] == 39
 			|| s[i] == '$' || s[i] == ' ')
+		{
+			i--;
 			break ;
+		}
 		i++;
 	}
-	return (i + 1);
+	return (i);
 }
 
 char	static	*get_inside_quotes(char *s, t_mirage *env)

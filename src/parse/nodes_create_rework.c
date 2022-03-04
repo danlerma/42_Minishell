@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:30:16 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/03 16:19:28 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/04 15:06:16 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	set_nodes_data_rework(t_lst *nodes, t_list *lst)
 	t_list	*aux;
 	t_lst	*aux_nodes;
 	int		i;
-	int		n_words;
 
 	aux_nodes = nodes;
 	aux = lst;
