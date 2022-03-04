@@ -44,8 +44,8 @@ SRCS_PARSE_PATH = parse
 SRCS_EXE_PATH = execute
 SRCS_BUILT_PATH = built
 
-SRCS_PARSE = nodes_create.c nodes_set_data.c free_data.c split_data_array.c \
-			split_data_lst.c nodes_utils.c nodes_create_rework.c
+SRCS_PARSE = nodes_set_data.c free_data.c split_data_lst_rework.c \
+			nodes_utils.c nodes_create_rework.c parse_str.c
 SRCS_EXE = execute.c make_process.c show_list.c commands.c init.c files.c \
 			utils.c here.c lst.c lst_env.c utils_env.c
 SRCS_BUILT = cd.c export.c env.c
@@ -65,7 +65,7 @@ OBJS = $(addprefix $(OBJ_PATH)/, $(OBJS_NAME))
 #··············································································#
 
 CC = gcc
-CFLAGS =  -Wall -Werror -Wextra  -g3 
+# CFLAGS =  -Wall -Werror -Wextra  -g3 
 #include <xx.h> // path of .h
 CFLAGS += -I $(INC_PATH) -I $(LBFT_PATH) -I /Users/$(USER)/.brew/opt/readline/include 
 CFLAGS +="-I/Users/$(USER)/.brew/opt/readline/include"

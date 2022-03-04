@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:55:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/02 18:22:52 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/02 17:19:46 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct s_info
 	int			pos; //posicion del nodo
 	int			np; //numero de pipes para saber en cual estoy
 	int			nh; //numero de heredoc
+	int			fd_in; //STDIN
+	int			fd_out; //STDOUT
 	char		**env; //environ
 	t_command	*cmd; //puntero a estructura de commandos
 }t_info;
@@ -109,8 +111,6 @@ int		check_built(t_lst *lst, t_info *info, char *com);
 void	make_cd(t_lst *lst, t_info *info, char *com);
 void	make_exit(t_lst *lst, t_info *info, char *com);
 void	make_export(t_lst *lst, t_info *info, char *com);
-
-char	**get_var_env(t_mirage *env, char *var);
 
 //utils env
 void	split_variables(char *variable, t_mirage **env);

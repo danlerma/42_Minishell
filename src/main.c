@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:57:38 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/02 18:47:20 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/04 14:29:55 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,6 @@ void	signal_control(int signum)
 	}
 	else if (signum == SIGQUIT)
 		printf("Control 4 llamado\n");
-}
-
-void	show_recorded(char **argv)
-{
-	int	i;
-
-	i = 0;
-	while (argv[i] != 0)
-	{
-		printf("%s\n",argv[i++]);
-	}
-	printf("\n");
 }
 
 void	show_recorded_lst(t_list *argv)
@@ -82,53 +70,40 @@ void	show_nodes(t_lst *nodes)
 
 int	main(void)
 {
-	char	*argv;
-	//char	**sep;
-	t_lst	*nodes;
-	t_list	*sep;
+	char		*argv;
+	t_lst		*nodes;
+	t_list		*sep;
 	t_mirage	*env;
-	
-	atexit(leaks);
+
+	//atexit(leaks);
 	signal(EOF, signal_control);
 	signal(SIGINT, signal_control);
 	signal(SIGQUIT, signal_control);
 	env = init_env();
 	while (1)
 	{
-		argv = readline("\033[1;34m""Mini""\033[1;33m""Shell""\033[0m"" ");
+		argv = readline(BLUE"Mini"YELLOW"Shell"RESET" ");
+		if (argv == NULL)
+			exit(0);
+		//argv = readline("MINISHELL ");
+
 		add_history(argv);
-		//__________________
-		sep = split_data(argv);
+		sep = split_data_rework(argv);
 		//show_recorded_lst(sep);
-		//printf("//__________________\n");
 		nodes = create_nodes_rework(sep);
-		//nodes = create_nodes(sep);
-		nodes = set_data_nodes(nodes);
+		nodes = set_data_nodes(nodes, env);
 		if (nodes_check_error(nodes))
 		{
-			//show_recorded(sep);
-			show_nodes(nodes);
-			// s_mirage(env);
-			get_var_env(env, "SER");
+			//show_nodes(nodes);
+			//printf("JAJA VOY A EJECUTAR EL CODIGO\n");
 			exec(nodes, &env);
 		}
 		free_nodes(nodes);
 		free_argv(sep, argv);
-		system("leaks -q minishell");
-		
+		//system("leaks -q minishell");
 	}
 	lstclear_env(&env, free);
 	return (0);
 }
-/*
-		argv = readline("\033[1;34m""Mini""\033[1;33m""Shell""\033[0m"" ");
-		//printf("\033[0m""");
-		add_history(argv);
-		sep = split_data(argv);
-		nodes = create_nodes(sep);
-		nodes = set_data_nodes(nodes);
-		//show_recorded(sep);
-		show_nodes(nodes);
-		exec(nodes);
-		free_nodes(nodes);
-		free_argv(sep, argv);*/
+//system("leaks -q minishell");
+//s_mirage(env);

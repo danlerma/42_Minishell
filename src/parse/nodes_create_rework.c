@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:30:16 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/01 21:18:00 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/04 15:06:16 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,24 +50,25 @@ void	set_nodes_data_rework(t_lst *nodes, t_list *lst)
 	t_list	*aux;
 	t_lst	*aux_nodes;
 	int		i;
-	int		n_words;
 
 	aux_nodes = nodes;
 	aux = lst;
-	while (aux_nodes)
+	while (aux)
 	{
 		i = 0;
-		n_words = get_n_words_per_token(aux);
-		aux_nodes->argv = ft_calloc(sizeof(char *), n_words + 1);
-		aux_nodes->type = ft_calloc(sizeof(int *), n_words);
-		aux_nodes->flag = ft_calloc(sizeof(int *), n_words);
-		while (i < n_words + 1)
+		aux_nodes->n_words = get_n_words_per_token(aux);
+		printf("Hemos creado un nodo con %i palabras\n", aux_nodes->n_words);
+		aux_nodes->argv = ft_calloc(sizeof(char *), aux_nodes->n_words + 1);
+		aux_nodes->type = ft_calloc(sizeof(int *), aux_nodes->n_words);
+		aux_nodes->flag = ft_calloc(sizeof(int *), aux_nodes->n_words);
+		while (i < aux_nodes->n_words)
 		{
-			if (i < n_words)
-				aux_nodes->argv[i] = get_word(aux);
+			aux_nodes->argv[i] = get_word(aux);
 			aux = aux->next;
 			i++;
 		}
+		if (aux)
+			aux = aux->next;
 		aux_nodes = aux_nodes->next;
 	}
 }
@@ -77,17 +78,20 @@ t_lst	*make_nodes_rework(t_list *lst)
 	t_list	*aux;
 	t_lst	*nodes;
 	t_lst	*aux_nodes;
+	char	*str_aux;
 
 	aux = lst;
 	nodes = ft_calloc(sizeof(t_lst), 1);
 	aux_nodes = nodes;
-	while (aux->content != 0)
+	while (aux)
 	{
-		if (ft_strncmp(aux->content, "|", ft_strlen(aux->content)) == 0)
+		str_aux = get_word(aux);
+		if (ft_strncmp(str_aux, "|", 1) == 0)
 		{
 			aux_nodes->next = ft_calloc(sizeof(t_lst), 1);
 			aux_nodes = aux_nodes->next;
 		}
+		free(str_aux);
 		aux = aux->next;
 	}
 	return (nodes);
@@ -99,6 +103,5 @@ t_lst	*create_nodes_rework(t_list *lst)
 
 	nodes = make_nodes_rework(lst);
 	set_nodes_data_rework(nodes, lst);
-	
 	return (nodes);
 }

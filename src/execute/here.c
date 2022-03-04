@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:33:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/02 14:37:39 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:31:06 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 static void	make_heredoc(t_lst *lst, char *file, int pos)
 {
 	char	*line;
-	int		f;
+	int		f1;
+	int		f2;
 
-	f = open(file, O_CREAT | O_RDWR | O_TRUNC, 0644);
-	if (f < 0)
+	f1 = open(file, O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if (f1 < 0)
 		error(file);
 	while (1)
 	{
@@ -29,14 +30,14 @@ static void	make_heredoc(t_lst *lst, char *file, int pos)
 			free(line);
 			break ;
 		}
-		f = open(file, O_RDWR | O_APPEND, line);
-		if (f < 0)
+		f2 = open(file, O_RDWR | O_APPEND, line);
+		if (f2 < 0)
 			exit(0);
-		write(f, line, ft_strlen(line));
-		close(f);
+		write(f2, line, ft_strlen(line));
+		close(f2);
 		free(line);
 	}
-	close(f);
+	close(f1);
 }
 
 void	check_here(t_info *info, t_lst *lst)

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_data_lst.c                                   :+:      :+:    :+:   */
+/*   split_data_lst_rework.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/24 12:51:06 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/01 18:02:34 by mortiz-d         ###   ########.fr       */
+/*   Created: 2022/03/02 13:24:04 by mortiz-d          #+#    #+#             */
+/*   Updated: 2022/03/03 15:25:02 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static int	is_separator(char const *c)
+static int	is_separator_rework(char const *c)
 {
 	if (c[0] == ' ' || c[0] == '>' || c[0] == '<' || c[0] == '|')
 	{
@@ -21,7 +21,7 @@ static int	is_separator(char const *c)
 	return (0);
 }
 
-static int	get_tam_word(char const *s)
+static int	get_tam_word_rework(char const *s)
 {
 	int		tam;
 	char	aux;
@@ -29,24 +29,26 @@ static int	get_tam_word(char const *s)
 	tam = 0;
 	while (s[tam] != 0)
 	{
-		if (s[tam] == 34 || s[tam] == 39)
+		if (s[tam] == '\\')
+			tam++;
+		else if (s[tam] == 34 || s[tam] == 39)
 		{
 			aux = s[tam];
 			while (s[tam] != 0)
 			{
 				tam++;
-				if (s[tam] == aux)
+				if (s[tam] == aux && s[tam - 1] != '\\')
 					break ;
 			}
 		}
-		else if (is_separator(&s[tam]))
+		else if (is_separator_rework(&s[tam]))
 			return (tam);
 		tam++;
 	}
 	return (tam);
 }
 
-static int	get_tam_token(char const *s)
+static int	get_tam_token_rework(char const *s)
 {
 	if (s[0] == '>' || s[0] == '<' || s[0] == '|')
 	{
@@ -57,7 +59,7 @@ static int	get_tam_token(char const *s)
 	return (0);
 }
 
-static int	dst_next_word(char const *s)
+static int	dst_next_word_rework(char const *s)
 {
 	int	dst;
 
@@ -71,7 +73,27 @@ static int	dst_next_word(char const *s)
 	return (dst);
 }
 
-t_list	*make_lst(t_list *lst, char const *s)
+static	t_list	*cut_last_null(t_list *lst)
+{
+	t_list	*aux_lst;
+
+	aux_lst = lst;
+	if (lst->content == 0)
+	{
+		free(lst);
+		return (0);
+	}
+	else
+	{
+		while (aux_lst->next->content != 0)
+			aux_lst = aux_lst->next;
+		free(aux_lst->next);
+		aux_lst->next = NULL;
+	}
+	return (lst);
+}
+
+static t_list	*make_lst_rework(t_list *lst, char const *s)
 {
 	t_list	*aux_lst;
 	int		i;
@@ -80,16 +102,16 @@ t_list	*make_lst(t_list *lst, char const *s)
 	aux_lst = lst;
 	while (s[i] != 0)
 	{
-		i += dst_next_word(&s[i]);
-		if (!is_separator(&s[i]) && s[i] != 0)
+		i += dst_next_word_rework(&s[i]);
+		if (!is_separator_rework(&s[i]) && s[i] != 0)
 		{
-			lst->content = ft_substr (s, i, get_tam_word(&s[i]));
-			i += get_tam_word(&s[i]);
+			lst->content = ft_substr (s, i, get_tam_word_rework(&s[i]));
+			i += get_tam_word_rework(&s[i]);
 		}
 		else if (s[i] != 0)
 		{
-			lst->content = ft_substr (s, i, get_tam_token(&s[i]));
-			i += get_tam_token(&s[i]);
+			lst->content = ft_substr (s, i, get_tam_token_rework(&s[i]));
+			i += get_tam_token_rework(&s[i]);
 		}
 		else
 			break ;
@@ -100,15 +122,13 @@ t_list	*make_lst(t_list *lst, char const *s)
 }
 //printf("palabra: %s\n",lst->content);
 
-t_list	*split_data(char const *s)
+t_list	*split_data_rework(char const *s)
 {
-	//char	**aux1;
-	t_list	*aux2;
+	t_list	*aux;
 
 	if (s == NULL)
 		return (0);
-	aux2 = make_lst(ft_lstnew(0), s);
-	//aux1 = create_array(aux2);
-	//aux1 = fakedata();
-	return (aux2);
+	aux = make_lst_rework(ft_lstnew(0), s);
+	aux = cut_last_null(aux);
+	return (aux);
 }
