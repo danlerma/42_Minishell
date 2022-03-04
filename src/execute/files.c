@@ -63,7 +63,9 @@ static void	redir_here(t_info *info, t_lst *lst, char *file, int n)
 	nbr = ft_itoa(info->pos);
 	f = ft_strjoin(file, nbr);
 	redir_in(info, lst, f, 1);
+	getchar();
 	unlink(f);
+	getchar();
 	free(f);
 	free(nbr);
 }

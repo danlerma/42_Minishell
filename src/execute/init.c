@@ -54,6 +54,8 @@ void	init_commands(t_lst *lst, t_info *info)
 
 void	init_structs(t_lst **lst, t_info *info, char **environ)
 {
+	info->fd_in = dup(STDIN_FILENO);
+	info->fd_out = dup(STDOUT_FILENO);
 	info->nlst = lstsize(*lst);
 	info->paths = find_path(environ);
 	valid_path(info);

@@ -76,13 +76,15 @@ int	main(void)
 	t_mirage	*env;
 
 	//atexit(leaks);
-	signal(EOF, signal_control);
-	signal(SIGINT, signal_control);
-	signal(SIGQUIT, signal_control);
+	// signal(EOF, signal_control);
+	// signal(SIGINT, signal_control);
+	// signal(SIGQUIT, signal_control);
 	env = init_env();
 	while (1)
 	{
-		argv = readline("\033[1;34m""Mini""\033[1;33m""Shell""\033[0m"" ");
+		argv = readline(BLUE"Mini"YELLOW"Shell"RESET" ");
+		if (argv == NULL)
+			exit(0);
 		//argv = readline("MINISHELL ");
 
 		add_history(argv);

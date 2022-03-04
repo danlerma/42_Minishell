@@ -44,5 +44,7 @@ void	exec(t_lst *lst, t_mirage **env)
 	(void)env;
 	init_structs(&lst, &info, environ);
 	make_process(&info, lst);
+	dup2(info.fd_in, STDIN_FILENO);
+	dup2(info.fd_out, STDOUT_FILENO);
 	free_all(&info, &lst);
 }

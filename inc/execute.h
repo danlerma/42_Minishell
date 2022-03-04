@@ -34,6 +34,8 @@ typedef struct s_info
 	int			pos; //posicion del nodo
 	int			np; //numero de pipes para saber en cual estoy
 	int			nh; //numero de heredoc
+	int			fd_in; //STDIN
+	int			fd_out; //STDOUT
 	char		**env; //environ
 	t_command	*cmd; //puntero a estructura de commandos
 }t_info;
