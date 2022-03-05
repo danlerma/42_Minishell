@@ -35,6 +35,11 @@ int	check_built(t_lst *lst, t_info *info, char *com, t_mirage **env)
 		printf("EXPORT\n");
 		make_export(lst, info, env);
 	}
+	if (ft_strncmp(lst->argv[0], "unset", ft_strlen(lst->argv[0])) == 0)
+	{
+		check = 1;
+		make_unset(lst, info, env);
+	}
 	return (check);
 }
 

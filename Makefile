@@ -48,7 +48,7 @@ SRCS_PARSE = nodes_set_data.c free_data.c split_data_lst_rework.c \
 			nodes_utils.c nodes_create_rework.c parse_str.c
 SRCS_EXE = execute.c make_process.c show_list.c commands.c init.c files.c \
 			utils.c here.c lst.c lst_env.c utils_env.c
-SRCS_BUILT = cd.c export.c env.c
+SRCS_BUILT = cd.c export.c env.c unset.c
 SRCS = main.c
 SRCS_NAME = $(addprefix $(SRCS_PARSE_PATH)/, $(SRCS_PARSE)) \
 			$(addprefix $(SRCS_EXE_PATH)/, $(SRCS_EXE)) \

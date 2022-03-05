@@ -111,6 +111,7 @@ t_lst	*argv_init_temp(char **argv, int argc);
 void	make_cd(t_lst *lst, t_info *info, char *com);
 void	make_exit(t_lst *lst, t_info *info, char *com);
 void	make_export( t_lst *lst, t_info *info, t_mirage **env);
+void	make_unset(t_lst *lst, t_info *info, t_mirage **env);
 
 //utils env
 int		check_built(t_lst *lst, t_info *info, char *com, t_mirage **env);

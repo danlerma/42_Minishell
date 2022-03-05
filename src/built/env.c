@@ -28,7 +28,6 @@ char	*get_name_env(t_mirage *env, char *var)
 {
 	while (env != NULL)
 	{
-		printf("NAME %s\n", env->name);
 		if (ft_strncmp(env->name, var, ft_strlen(env->name)) == 0
 			&& ft_strlen(var) == ft_strlen(env->name))
 			return(env->name);

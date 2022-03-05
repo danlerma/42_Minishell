@@ -17,17 +17,14 @@ static void	new_variable(t_lst *lst, t_mirage **env)
 			split_variables(lst->argv[i], &temp);
 			temp->next = NULL;
 			if (get_name_env(*env, temp->name) != NULL)
-			{
-				printf("SON IGUALES\n");
 				delete_var(env, temp->name);
-			}
 			add_back_env(env, temp);
 		}
 		i++;
 	}
 }
 
-void	make_export( t_lst *lst, t_info *info, t_mirage **env)
+void	make_export(t_lst *lst, t_info *info, t_mirage **env)
 {
 	//si solo hace export, lo dejamos para luego
 	//si ya existe, es actualizar los datos
