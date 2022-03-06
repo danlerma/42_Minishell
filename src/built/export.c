@@ -15,28 +15,42 @@ static void sort_export(t_lst *lst, t_mirage *env)
 	i = 0;
 	len = lstsize_env(env);
 	iter = env;
-	aux = iter;
-	while (is_sorted(&env, len) == 1)
+	aux = env;
+	node = env;
+	while (len == 1)
 	{
-		printf("I(%d) %s %s %s\n", i, iter->name, env->name, aux->name);
-		if (i == len - 2)
+		printf("I(%d) env %s env %s aux %s\n", i, env->name, env->name, aux->name);
+		if (ft_strncmp(iter->name, aux->next->name, ft_strlen(iter->name)) > 0)
 		{
-			printf("FINAL %d %s\n", i, iter->name);
-			iter = aux;
-			i = 0;
-			printf("FINAL %d %s\n", i, iter->name);
-			break;
+			node 
 		}
-		if (ft_strncmp(iter->name, iter->next->name, ft_strlen(iter->name)) > 0)
-		{
-			node = iter;
-			iter = iter->next;
-			node->next = iter->next;
-			iter->next = node;
-		}
-		iter = iter->next;
+		aux = aux->next;
+		
+		/*Si el numero es mas pequeño no es el que tiene tanata diferencia
+			guardar el nodo con mas diferencia*/
+		
+		// if (i == len - 2)
+		// {
+		// 	printf("FINAL %d %s\n", i, env->name);
+		// 	env = aux;
+		// 	i = 0;
+		// 	printf("FINAL %d %s\n", i, env->name);
+		// 	break;
+		// }
+		// if (ft_strncmp(env->name, env->next->name, ft_strlen(env->name)) > 0)
+		// {
+		// 	printf(GREEN"env strcmp(antes) %s next %s"RESET"\n", env->name, env->next->name);
+		// 	node = env;
+		// 	env = env->next;
+		// 	node->next = env->next;
+		// 	env->next = node;
+		// 	aux = env;
+		// 	printf(GREEN"env strcmp(despues) %s next %s"RESET"\n", env->name, env->next->name);
+		// }
+		env = env->next;
 		i++;
 	}
+	s_mirage(env);
 }
 
 //TODO Liberar

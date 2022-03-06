@@ -81,6 +81,7 @@ int	is_sorted(t_mirage **stack, int num)
 	i = 0;
 	while (i < num - 1 && temp->next != NULL)
 	{
+		printf(RED"IS SORT?  %s next %s"RESET"\n", temp->name, temp->next->name);
 		if (ft_strncmp(temp->name, temp->next->name, ft_strlen(temp->name)) > 0)
 		{
 			printf("SORT I(%d) %s %s %s\n", i, temp->name, temp->name, temp->next->name);
