@@ -117,6 +117,7 @@ void	make_unset(t_lst *lst, t_info *info, t_mirage **env);
 int		check_built(t_lst *lst, t_info *info, char *com, t_mirage **env);
 void	split_variables(char *variable, t_mirage **env);
 char	**lst2array(t_mirage *env);
+int		is_sorted(t_mirage **stack, int num);
 
 //env
 char	*get_val_env(t_mirage *env, char *var);

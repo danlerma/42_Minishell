@@ -71,3 +71,23 @@ char	**lst2array(t_mirage *env)
 	}
 	return (arr);
 }
+
+int	is_sorted(t_mirage **stack, int num)
+{
+	t_mirage	*temp;
+	int		i;
+
+	temp = *stack;
+	i = 0;
+	while (i < num - 1 && temp->next != NULL)
+	{
+		if (ft_strncmp(temp->name, temp->next->name, ft_strlen(temp->name)) > 0)
+		{
+			printf("SORT I(%d) %s %s %s\n", i, temp->name, temp->name, temp->next->name);
+			return (1);
+		}
+		temp = temp->next;
+		i++;
+	}
+	return (0);
+}

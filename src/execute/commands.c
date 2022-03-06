@@ -12,7 +12,7 @@
 
 #include <minishell.h>
 
-static void	make_last_command(t_info *info, t_lst *lst, char *com)
+static void	make_last_command(t_info *info, t_lst *lst, char *com, t_mirage **env)
 {
 	pid_t	child;
 	char	**cmd;
@@ -25,6 +25,7 @@ static void	make_last_command(t_info *info, t_lst *lst, char *com)
 	if (child == 0)
 	{
 		check_redir(info, lst, 1);
+		check_built(lst, info, com, env);
 		close(info->pipe[info->np][0]);
 		close(info->pipe[info->np][1]);
 		execve(com, cmd, info->env);
@@ -38,7 +39,7 @@ static void	make_last_command(t_info *info, t_lst *lst, char *com)
 	}
 }
 
-static void	make_command(t_info *info, t_lst *lst, char *com)
+static void	make_command(t_info *info, t_lst *lst, char *com, t_mirage **env)
 {
 	pid_t	child;
 	char	**cmd;
@@ -54,6 +55,7 @@ static void	make_command(t_info *info, t_lst *lst, char *com)
 			check_redir(info, lst, 0);
 			exit(0);
 		}
+		check_built(lst, info, com, env);
 		close(info->pipe[info->np][0]);
 		dup2(info->pipe[info->np][1], STDOUT_FILENO);
 		close(info->pipe[info->np][1]);
@@ -104,9 +106,9 @@ static void	search_command(t_info *info, t_lst *lst, char *com, t_mirage **env)
 			exit(0);
 		pipe(info->pipe[info->np]);
 		if ((info->pos == 0 || info->pos != 0) && info->pos != info->nlst - 1)
-			make_command(info, lst, com);
+			make_command(info, lst, com, env);
 		else if (info->pos == info->nlst - 1)
-			make_last_command(info, lst, com);
+			make_last_command(info, lst, com, env);
 		info->np++;
 	}
 }
