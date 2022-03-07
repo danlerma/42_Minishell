@@ -34,6 +34,8 @@ typedef struct s_info
 	int			pos; //posicion del nodo
 	int			np; //numero de pipes para saber en cual estoy
 	int			nh; //numero de heredoc
+	int			fd_in; //STDIN
+	int			fd_out; //STDOUT
 	char		**env; //environ
 	t_command	*cmd; //puntero a estructura de commandos
 }t_info;
@@ -62,12 +64,12 @@ typedef struct s_info
 void	exec(t_lst *lst, t_mirage **env);
 
 //init_comands
-void	init_structs(t_lst **lst, t_info *info, char **environ);
+void	init_structs(t_lst **lst, t_info *info, t_mirage *env);
 void	init_commands(t_lst *lst, t_info *info);
 t_mirage	*init_env(void);
 
 //make process
-void	make_process(t_info *info, t_lst *lst);
+void	make_process(t_info *info, t_lst *lst, t_mirage **env);
 
 //show list
 void	s_list(t_lst *lst);
@@ -80,7 +82,7 @@ char	**create_cmd(t_lst *lst, t_info *info);
 void	error(char *file);
 
 //command
-void	commands(t_info *info, t_lst *lst);
+void	commands(t_info *info, t_lst *lst, t_mirage **env);
 
 //lst
 int		lstsize(t_lst *lst);
@@ -94,6 +96,7 @@ t_mirage	*lstlast_env(t_mirage *lst);
 void	add_back_env(t_mirage **lst, t_mirage *new);
 void	lstdelone_env(t_mirage *lst, void (*del)(void*));
 void	lstclear_env(t_mirage **lst, void (*del)(void *));
+int		lstsize_env(t_mirage *lst);
 
 //file.c
 void	check_redir(t_info *info, t_lst *lst, int n);
@@ -105,12 +108,21 @@ void	check_here(t_info *info, t_lst *lst);
 t_lst	*argv_init_temp(char **argv, int argc);
 
 //built
-int		check_built(t_lst *lst, t_info *info, char *com);
 void	make_cd(t_lst *lst, t_info *info, char *com);
 void	make_exit(t_lst *lst, t_info *info, char *com);
-void	make_export(t_lst *lst, t_info *info, char *com);
+void	make_export( t_lst *lst, t_info *info, t_mirage **env);
+void	make_unset(t_lst *lst, t_info *info, t_mirage **env);
 
 //utils env
+int		check_built(t_lst *lst, t_info *info, char *com, t_mirage **env);
 void	split_variables(char *variable, t_mirage **env);
+char	**lst2array(t_mirage *env);
+int		is_sorted(t_mirage **stack, int num);
+
+//env
+char	*get_val_env(t_mirage *env, char *var);
+void	delete_var(t_mirage **env, char *var);
+// void	change_val_env(t_mirage **env, char *var, char *value);
+char	*get_name_env(t_mirage *env, char *var);
 
 #endif

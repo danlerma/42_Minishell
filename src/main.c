@@ -15,7 +15,6 @@
 void	leaks()
 {
 	system("leaks -q minishell");
-	//> > leaks_texto
 }
 
 void	signal_control(int signum)
@@ -37,7 +36,6 @@ void	show_recorded_lst(t_list *argv)
 	aux = argv;
 	while (aux)
 	{
-		printf("Palabra : %s - %p\n", aux->content, aux->content);
 		aux = aux->next;
 	}
 }
@@ -82,7 +80,9 @@ int	main(void)
 	env = init_env();
 	while (1)
 	{
-		argv = readline("\033[1;34m""Mini""\033[1;33m""Shell""\033[0m"" ");
+		argv = readline(BLUE"Mini"YELLOW"Shell"RESET" ");
+		if (argv == NULL)
+			exit(0);
 		//argv = readline("MINISHELL ");
 
 		add_history(argv);

@@ -148,7 +148,6 @@ char	*real_str(char *s, t_mirage *env)
 		else
 			aux = join_and_liberate_str(aux, 0, s[i], 1);
 		i++;
-		//printf("Palabra : %s\n",aux);
 	}
 	return (aux);
 }

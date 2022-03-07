@@ -12,7 +12,7 @@
 
 #include <minishell.h>
 
-static void	make_last_command(t_info *info, t_lst *lst, char *com)
+static void	make_last_command(t_info *info, t_lst *lst, char *com, t_mirage **env)
 {
 	pid_t	child;
 	char	**cmd;
@@ -25,6 +25,7 @@ static void	make_last_command(t_info *info, t_lst *lst, char *com)
 	if (child == 0)
 	{
 		check_redir(info, lst, 1);
+		check_built(lst, info, com, env);
 		close(info->pipe[info->np][0]);
 		close(info->pipe[info->np][1]);
 		execve(com, cmd, info->env);
@@ -38,7 +39,7 @@ static void	make_last_command(t_info *info, t_lst *lst, char *com)
 	}
 }
 
-static void	make_command(t_info *info, t_lst *lst, char *com)
+static void	make_command(t_info *info, t_lst *lst, char *com, t_mirage **env)
 {
 	pid_t	child;
 	char	**cmd;
@@ -54,6 +55,7 @@ static void	make_command(t_info *info, t_lst *lst, char *com)
 			check_redir(info, lst, 0);
 			exit(0);
 		}
+		check_built(lst, info, com, env);
 		close(info->pipe[info->np][0]);
 		dup2(info->pipe[info->np][1], STDOUT_FILENO);
 		close(info->pipe[info->np][1]);
@@ -90,11 +92,11 @@ static void	make_one_command(t_info *info, t_lst *lst, char *com)
 	}
 }
 
-static void	search_command(t_info *info, t_lst *lst, char *com)
+static void	search_command(t_info *info, t_lst *lst, char *com, t_mirage **env)
 {
 	if (info->nlst == 1)
 	{
-		if (check_built(lst, info, com) == 0)
+		if (check_built(lst, info, com, env) == 0)
 			make_one_command(info, lst, com);
 	}
 	else
@@ -104,14 +106,14 @@ static void	search_command(t_info *info, t_lst *lst, char *com)
 			exit(0);
 		pipe(info->pipe[info->np]);
 		if ((info->pos == 0 || info->pos != 0) && info->pos != info->nlst - 1)
-			make_command(info, lst, com);
+			make_command(info, lst, com, env);
 		else if (info->pos == info->nlst - 1)
-			make_last_command(info, lst, com);
+			make_last_command(info, lst, com, env);
 		info->np++;
 	}
 }
 
-void	commands(t_info *info, t_lst *lst)
+void	commands(t_info *info, t_lst *lst, t_mirage **env)
 {
 	int		i;
 	int		flag;
@@ -125,7 +127,7 @@ void	commands(t_info *info, t_lst *lst)
 		com = ft_strjoin(info->path[i], lst->argv[info->cmd->pos]);
 		if (access(com, X_OK) == 0)
 		{
-			search_command(info, lst, com);
+			search_command(info, lst, com, env);
 			free (com);
 			flag = 1;
 			break ;
@@ -133,6 +135,6 @@ void	commands(t_info *info, t_lst *lst)
 		free(com);
 	}
 	if (flag == 0)
-		search_command(info, lst, NULL);
+		search_command(info, lst, NULL, env);
 	flag = 0;
 }
