@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:57:38 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/04 14:29:55 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/07 12:49:23 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	main(void)
 
 		add_history(argv);
 		sep = split_data_rework(argv);
-		//show_recorded_lst(sep);
+		show_recorded_lst(sep);
 		nodes = create_nodes_rework(sep);
 		nodes = set_data_nodes(nodes, env);
 		if (nodes_check_error(nodes))

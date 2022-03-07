@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 14:21:37 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/04 14:53:48 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/07 12:57:54 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,8 @@ char	static	*get_inside_quotes(char *s, t_mirage *env)
 	aux = ft_strdup("");
 	while (s[i] != 0)
 	{
-		if (s[i] == auxchar && s[i - 1] != '\\')
+		if (s[i] == auxchar)
 			break ;
-		else if (s[i] == '\\')
-			aux = join_and_liberate_str(aux, 0, s[++i], 1);
 		else if (s[i] == '$' && auxchar == 34)
 		{
 			aux = join_and_liberate_str(aux, get_variable_value(&s[i], env), 0, 2);
@@ -101,7 +99,7 @@ char	static	*get_inside_quotes(char *s, t_mirage *env)
 			aux = join_and_liberate_str(aux, 0, s[i], 1);
 		i++;
 	}
-	i++;
+	printf("Underquote readed : %s\n",aux);
 	return (aux);
 }
 
@@ -114,7 +112,7 @@ int static	get_tam_inside_quotes(char *s)
 	i = 1;
 	while (s[i] != 0)
 	{
-		if (s[i] == auxchar && s[i - 1] != '\\')
+		if (s[i] == auxchar)
 			break ;
 		i++;
 	}
@@ -130,9 +128,7 @@ char	*real_str(char *s, t_mirage *env)
 	aux = ft_strdup("");
 	while (s[i] != 0)
 	{
-		if (s[i] == '\\')
-			aux = join_and_liberate_str(aux, 0, s[++i], 1);
-		else if (s[i] == 34 || s[i] == 39)
+		if (s[i] == 34 || s[i] == 39)
 		{
 			aux = join_and_liberate_str(aux, get_inside_quotes(&s[i], env), 0, 2);
 			i += get_tam_inside_quotes(&s[i]);
