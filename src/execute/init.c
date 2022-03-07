@@ -27,7 +27,7 @@ t_mirage	*init_env(void)
 		if (temp == NULL)
 			exit(0);
 		temp->var = environ[i];
-		split_variables(environ[i], & temp);
+		split_variables(environ[i], &temp);
 		temp->next = NULL;
 		add_back_env(&env, temp);
 		i++;
@@ -52,12 +52,13 @@ void	init_commands(t_lst *lst, t_info *info)
 	}
 }
 
-void	init_structs(t_lst **lst, t_info *info, char **environ)
+void	init_structs(t_lst **lst, t_info *info, t_mirage *env)
 {
 	info->fd_in = dup(STDIN_FILENO);
 	info->fd_out = dup(STDOUT_FILENO);
+	info->env = lst2array(env);
 	info->nlst = lstsize(*lst);
-	info->paths = find_path(environ);
+	info->paths = find_path(info->env);
 	valid_path(info);
 	info->cmd = (t_command *)ft_calloc(1, sizeof(t_command));
 	info->pipe = (int **)ft_calloc(info->nlst, sizeof(int *));
@@ -66,5 +67,4 @@ void	init_structs(t_lst **lst, t_info *info, char **environ)
 	info->pos = 0;
 	info->np = 0;
 	info->iter = 0;
-	info->env = environ;
 }

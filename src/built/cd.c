@@ -22,16 +22,6 @@ void	make_cd(t_lst *lst, t_info *info, char *com)
 	ft_free_malloc(cmd);
 }
 
-void	make_export(t_lst *lst, t_info *info, char *com)
-{
-	char	**cmd;
-	(void)com;
-
-	cmd = create_cmd(lst, info);
-	execve(com, cmd, info->env);
-	printf("FEBKEWBJE\n");
-}
-
 void	make_exit(t_lst *lst, t_info *info, char *com)
 {
 	(void)com;

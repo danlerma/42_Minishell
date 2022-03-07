@@ -39,10 +39,8 @@ void	free_nodes(t_lst *nodes)
 
 void	free_argv(t_list *argv, char *str)
 {
-	int		i;
 	t_list	*aux;
 
-	i = 0;
 	free(str);
 	while (argv)
 	{

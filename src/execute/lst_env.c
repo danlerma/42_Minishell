@@ -6,11 +6,26 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 12:54:42 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/02 17:53:37 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/02 18:10:23 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<minishell.h>
+
+int	lstsize_env(t_mirage *lst)
+{
+	int	i;
+
+	i = 0;
+	if (lst == NULL)
+		return (0);
+	while (lst != NULL)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
+}
 
 void	add_back_env(t_mirage **lst, t_mirage *new)
 {
@@ -36,7 +51,6 @@ t_mirage	*lstlast_env(t_mirage *lst)
 
 void	lstdelone_env(t_mirage *lst, void (*del)(void*))
 {
-
 	if (lst)
 	{
 		(*del)(lst->value);
