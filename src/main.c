@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:57:38 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/04 17:24:48 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/07 17:58:56 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	leaks()
 {
-	system("leaks -q minishell");
+	system("leaks -q minishell > exit");
 }
 
 void	signal_control(int signum)
@@ -73,7 +73,7 @@ int	main(void)
 	t_list		*sep;
 	t_mirage	*env;
 
-	//atexit(leaks);
+	atexit(leaks);
 	signal(EOF, signal_control);
 	signal(SIGINT, signal_control);
 	signal(SIGQUIT, signal_control);
@@ -97,7 +97,7 @@ int	main(void)
 		}
 		free_nodes(nodes);
 		free_argv(sep, argv);
-		//system("leaks -q minishell");
+		system("leaks -q minishell");
 	}
 	lstclear_env(&env, free);
 	return (0);

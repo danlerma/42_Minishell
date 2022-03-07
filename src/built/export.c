@@ -17,14 +17,14 @@ static void sort_export(t_lst *lst, t_mirage *env)
 	iter = env;
 	aux = env;
 	node = env;
-	while (len == 1)
-	{
-		printf("I(%d) env %s env %s aux %s\n", i, env->name, env->name, aux->name);
-		if (ft_strncmp(iter->name, aux->next->name, ft_strlen(iter->name)) > 0)
-		{
-			node 
-		}
-		aux = aux->next;
+	// while (len == 1)
+	// {
+	// 	printf("I(%d) env %s env %s aux %s\n", i, env->name, env->name, aux->name);
+	// 	//if (ft_strncmp(iter->name, aux->next->name, ft_strlen(iter->name)) > 0)
+	// 	//{
+	// 		node 
+	// 	}
+	// 	aux = aux->next;
 		
 		/*Si el numero es mas pequeño no es el que tiene tanata diferencia
 			guardar el nodo con mas diferencia*/
@@ -49,7 +49,7 @@ static void sort_export(t_lst *lst, t_mirage *env)
 		// }
 		env = env->next;
 		i++;
-	}
+	//}
 	s_mirage(env);
 }
 
