@@ -53,6 +53,7 @@ char	static	*get_variable_value(char *s, t_mirage *env)
 		i++;
 	}
 	var = ft_substr(s, 1, i);
+	printf("Variable leida $%s\n",var);
 	aux = getvariable(var, env);
 	free(var);
 	return (aux);
