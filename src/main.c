@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:57:38 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/04 14:29:55 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/04 17:24:48 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ int	main(void)
 		if (nodes_check_error(nodes))
 		{
 			//show_nodes(nodes);
-			//printf("JAJA VOY A EJECUTAR EL CODIGO\n");
 			exec(nodes, &env);
 		}
 		free_nodes(nodes);

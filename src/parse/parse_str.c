@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 14:21:37 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/04 14:53:48 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/04 17:58:57 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,8 @@ char	static	*get_inside_quotes(char *s, t_mirage *env)
 			aux = join_and_liberate_str(aux, 0, s[++i], 1);
 		else if (s[i] == '$' && auxchar == 34)
 		{
-			aux = join_and_liberate_str(aux, get_variable_value(&s[i], env), 0, 2);
+			aux = join_and_liberate_str(aux, get_variable_value(&s[i], \
+				env), 0, 2);
 			i += get_variable_tam(&s[i]);
 		}
 		else
@@ -134,12 +135,14 @@ char	*real_str(char *s, t_mirage *env)
 			aux = join_and_liberate_str(aux, 0, s[++i], 1);
 		else if (s[i] == 34 || s[i] == 39)
 		{
-			aux = join_and_liberate_str(aux, get_inside_quotes(&s[i], env), 0, 2);
+			aux = join_and_liberate_str(aux, get_inside_quotes(&s[i], \
+				env), 0, 2);
 			i += get_tam_inside_quotes(&s[i]);
 		}
 		else if (s[i] == '$')
 		{
-			aux = join_and_liberate_str(aux, get_variable_value(&s[i], env), 0, 2);
+			aux = join_and_liberate_str(aux, get_variable_value(&s[i], \
+				env), 0, 2);
 			i += get_variable_tam(&s[i]);
 		}
 		else
