@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:57:38 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/08 17:23:00 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/08 17:36:01 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,18 @@
 
 void	leaks()
 {
-	system("leaks -q minishell");
+	system("leaks -q minishell > exit");
 }
 
 void	signal_control(int signum)
 {
-	printf("\nSignal %i\n",signum);
+	//printf("\nSignal %i\n",signum);
 	if (signum == SIGINT)
 	{
 		printf("\n");
-		exit (0);
 	}
-	else if (signum == SIGQUIT)
-		printf("Control 4 llamado\n");
+	// else if (signum == SIGQUIT)
+	// 	printf("Control 4 llamado\n");
 }
 
 void	show_recorded_lst(t_list *argv)
@@ -73,8 +72,10 @@ int	main(void)
 	t_list		*sep;
 	t_mirage	*env;
 
-	// atexit(leaks);
-	signal(EOF, signal_control);
+
+	//atexit(leaks);
+	//signal(EOF, signal_control);
+	g_output_code = 0;
 	signal(SIGINT, signal_control);
 	signal(SIGQUIT, signal_control);
 	env = init_env();
@@ -83,17 +84,12 @@ int	main(void)
 		argv = readline(BLUE"Mini"YELLOW"Shell"RESET" ");
 		if (argv == NULL)
 			exit(0);
-		//argv = readline("MINISHELL ");
-
 		add_history(argv);
 		sep = split_data_rework(argv);
-		//show_recorded_lst(sep);
 		nodes = create_nodes_rework(sep);
 		nodes = set_data_nodes(nodes, env);
 		if (nodes_check_error(nodes))
 		{
-			//show_nodes(nodes);
-			//printf("JAJA VOY A EJECUTAR EL CODIGO\n");
 			exec(nodes, &env);
 		}
 		free_nodes(nodes);

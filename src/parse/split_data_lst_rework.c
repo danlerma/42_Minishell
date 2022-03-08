@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 13:24:04 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/03 15:25:02 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/07 12:44:02 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,13 @@ static int	get_tam_word_rework(char const *s)
 	tam = 0;
 	while (s[tam] != 0)
 	{
-		if (s[tam] == '\\')
-			tam++;
-		else if (s[tam] == 34 || s[tam] == 39)
+		if (s[tam] == 34 || s[tam] == 39)
 		{
 			aux = s[tam];
 			while (s[tam] != 0)
 			{
 				tam++;
-				if (s[tam] == aux && s[tam - 1] != '\\')
+				if (s[tam] == aux)
 					break ;
 			}
 		}

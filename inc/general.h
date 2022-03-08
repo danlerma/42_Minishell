@@ -2,6 +2,8 @@
 
 # define GENERAL_H
 
+int	g_output_code;
+
 typedef struct s_lst
 {
 	int				n_words;

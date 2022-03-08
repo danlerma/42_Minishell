@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:55:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/04 14:20:53 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/07 17:19:33 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int		nodes_check_error(t_lst *list);
 void	free_nodes(t_lst *nodes);
 void	free_argv(t_list *argv, char *str);
 char	*real_str(char *s, t_mirage *env);
-char    *getvariable(char *var, t_mirage *env);
+char	*getvariable(char *var, t_mirage *env);
+char	*get_variable_value(char *s, t_mirage *env);
+int		get_variable_tam(char *s);
 
 #endif
