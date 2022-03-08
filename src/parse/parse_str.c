@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 14:21:37 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/07 17:41:29 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/08 12:43:26 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,14 +144,11 @@ char	*real_str(char *s, t_mirage *env)
 		{
 			aux = join_and_liberate_str(aux, \
 			get_variable_value(&s[i], env), 0, 2);
-			printf("tamaño de la variable :%i \n", get_variable_tam(&s[i]));
 			i += get_variable_tam(&s[i]);
-			printf("objetivo ahora :%c \n", s[i]);
 		}
 		else
 			aux = join_and_liberate_str(aux, 0, s[i], 1);
 		i++;
-		printf("Palabra : %s\n",aux);
 	}
 	return (aux);
 }

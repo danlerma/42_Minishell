@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:33:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/03 15:31:06 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/08 15:49:25 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static void	make_heredoc(t_lst *lst, char *file, int pos)
 	while (1)
 	{
 		line = get_next_line(STDIN_FILENO);
+		if (line == NULL)
+			break ;
 		if (ft_strncmp(line, lst->argv[pos], ft_strlen(lst->argv[pos])) == 0
 			&& (ft_strlen(line) - 1) == ft_strlen(lst->argv[pos]))
 		{
