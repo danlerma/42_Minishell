@@ -77,3 +77,5 @@ int	lstsize(t_lst *lst)
 	}
 	return (i);
 }
+
+

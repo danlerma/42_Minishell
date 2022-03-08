@@ -98,6 +98,7 @@ void	add_back_env(t_mirage **lst, t_mirage *new);
 void	lstdelone_env(t_mirage *lst, void (*del)(void*));
 void	lstclear_env(t_mirage **lst, void (*del)(void *));
 int		lstsize_env(t_mirage *lst);
+t_mirage	*lstnew_env(t_mirage **env);
 
 //file.c
 void	check_redir(t_info *info, t_lst *lst, int n);

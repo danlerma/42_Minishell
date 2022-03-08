@@ -12,6 +12,29 @@
 
 #include<minishell.h>
 
+t_mirage	*lstnew_env(t_mirage **env)
+{
+	t_mirage	*temp;
+	t_mirage	*aux;
+	t_mirage	*lst;
+
+	temp = *env;
+	lst = NULL;
+	while (temp->next != NULL)
+	{
+		aux = (t_mirage *)ft_calloc(1, sizeof(t_mirage));
+		if (aux == NULL)
+			exit(0);
+		aux->var = ft_strdup(temp->var);
+		aux->name = ft_strdup(temp->name);
+		aux->value = ft_strdup(temp->value);
+		aux->next = NULL;
+		add_back_env(&lst, aux);
+		temp = temp->next;
+	}
+	return (lst);
+}
+
 int	lstsize_env(t_mirage *lst)
 {
 	int	i;

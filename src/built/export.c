@@ -22,7 +22,7 @@ static int	check_chars_ex(t_lst *lst, t_mirage *env, int i)
 		return (1);
 	}
 	y = 0;
-	while (lst->argv[i][y] != 0)
+	while (lst->argv[i][y])
 	{
 		if (lst->argv[i][y] == 61)
 			y++;
@@ -89,15 +89,20 @@ static void	new_variable(t_lst *lst, t_mirage **env)
 	}
 }
 
+//TODO Liberar
 void	make_export(t_lst *lst, t_info *info, t_mirage **env)
 {
 	t_mirage	*e;
 
-	e = *env;
 	if (lst->n_words == 1)
+	{
+		e = lstnew_env(env);
 		sort_export(lst, e);
+		// lstclear_env(&e, free);
+	}
 	else
 	{
 		new_variable(lst, env);
 	}
+
 }
