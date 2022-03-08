@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:35:29 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/08 17:30:01 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/08 17:42:19 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	init_commands(t_lst *lst, t_info *info)
 			info->cmd->nc++;
 		i++;
 	}
+	info->built = 0;
 }
 
 void	init_structs(t_lst **lst, t_info *info, t_mirage *env)

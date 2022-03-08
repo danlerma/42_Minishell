@@ -6,15 +6,35 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 16:34:24 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/08 17:35:24 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/08 18:47:37 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<minishell.h>
 
-static void	check_chars(t_lst *lst, t_mirage *env)
+static int	check_chars_ex(t_lst *lst, t_mirage *env, int i)
 {
-	
+	int	y;
+
+	if (ft_isalpha(lst->argv[i][0]) == 0)
+	{
+		printf("export: '%s' : not a valid identifier\n", lst->argv[1]);
+		return (1);
+	}
+	y = 0;
+	while (lst->argv[i][y] != 0)
+	{
+		if (lst->argv[i][y] == 61)
+			y++;
+		if ((lst->argv[i][y] >= 33 && lst->argv[i][y] <= 47) ||
+			(lst->argv[i][y] >= 58 && lst->argv[i][y] <= 64))
+		{
+			printf("export: '%s' : not a valid identifier\n", lst->argv[i]);
+			return (1);
+		}
+		y++;
+	}
+	return (0);
 }
 
 static void	sort_export(t_lst *lst, t_mirage *env)
@@ -51,6 +71,8 @@ static void	new_variable(t_lst *lst, t_mirage **env)
 	i = 1;
 	while (lst->argv[i] != NULL)
 	{
+		if (check_chars_ex(lst, *env, i) == 1)
+			break ;
 		if (ft_strchr(lst->argv[i], '=') != NULL)
 		{
 			temp = (t_mirage *)ft_calloc(1, sizeof(t_mirage));
@@ -76,7 +98,6 @@ void	make_export(t_lst *lst, t_info *info, t_mirage **env)
 		sort_export(lst, e);
 	else
 	{
-		check_chars(lst, *env);
 		new_variable(lst, env);
 	}
 }

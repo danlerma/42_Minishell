@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:37:32 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/08 17:39:55 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/08 17:43:05 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void	commands(t_info *info, t_lst *lst, t_mirage **env)
 			search_command(info, lst, com, env);
 			free (com);
 			flag = 1;
-			break ;
+			return ;
 		}
 		free(com);
 	}
