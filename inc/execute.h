@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:55:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/02 17:19:46 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/08 17:21:26 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_command
 typedef struct s_info
 {
 	int			nlst; //numero de nodos
+	int			built; //saber si es built o no
 	int			iter; //iterador de archivos heredoc
 	char		**paths; //path env (sin modificar)
 	char		**path; //path env (modificada)
@@ -118,6 +119,10 @@ int		check_built(t_lst *lst, t_info *info, char *com, t_mirage **env);
 void	split_variables(char *variable, t_mirage **env);
 char	**lst2array(t_mirage *env);
 int		is_sorted(t_mirage **stack, int num);
+
+//utils export
+int		cond_export(t_mirage **head, t_mirage **env, int i);
+void	show_export(t_mirage *env);
 
 //env
 char	*get_val_env(t_mirage *env, char *var);

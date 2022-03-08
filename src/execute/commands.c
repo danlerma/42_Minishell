@@ -6,13 +6,13 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:37:32 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/02 14:37:12 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/08 17:33:21 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	make_last_command(t_info *info, t_lst *lst, char *com, t_mirage **env)
+static void	make_last_command(t_info *info, t_lst *lst, char *com, t_mirage **e)
 {
 	pid_t	child;
 	char	**cmd;
@@ -25,10 +25,10 @@ static void	make_last_command(t_info *info, t_lst *lst, char *com, t_mirage **en
 	if (child == 0)
 	{
 		check_redir(info, lst, 1);
-		check_built(lst, info, com, env);
 		close(info->pipe[info->np][0]);
 		close(info->pipe[info->np][1]);
-		execve(com, cmd, info->env);
+		if (execve(com, cmd, info->env) == -1)
+			exit(0);
 	}
 	else
 	{
@@ -55,12 +55,12 @@ static void	make_command(t_info *info, t_lst *lst, char *com, t_mirage **env)
 			check_redir(info, lst, 0);
 			exit(0);
 		}
-		check_built(lst, info, com, env);
 		close(info->pipe[info->np][0]);
 		dup2(info->pipe[info->np][1], STDOUT_FILENO);
 		close(info->pipe[info->np][1]);
 		check_redir(info, lst, 1);
-		execve(com, cmd, info->env);
+		if (execve(com, cmd, info->env) == -1)
+			exit(0);
 	}
 	else
 	{
@@ -83,7 +83,8 @@ static void	make_one_command(t_info *info, t_lst *lst, char *com)
 	if (child == 0)
 	{
 		check_redir(info, lst, 1);
-		execve(com, cmd, info->env);
+		if (execve(com, cmd, info->env) == -1)
+			exit(0);
 	}
 	else
 	{
@@ -136,5 +137,7 @@ void	commands(t_info *info, t_lst *lst, t_mirage **env)
 	}
 	if (flag == 0)
 		search_command(info, lst, NULL, env);
+	if (lst->type[info->cmd->pos] == 1 && info->built == 0)
+		printf("AQUI DEBE HABER MENSAJE DE ERROR\n");
 	flag = 0;
 }

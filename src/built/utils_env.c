@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:45:04 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/02 17:53:18 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/08 17:32:58 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,27 @@ int	check_built(t_lst *lst, t_info *info, char *com, t_mirage **env)
 		check = 1;
 		printf("CD\n");
 		make_cd(lst, info, com);
+		info->built = 1;
 	}
 	if (ft_strncmp(lst->argv[0], "exit", ft_strlen(lst->argv[0])) == 0)
 	{
 		check = 1;
 		printf("EXIT\n");
 		make_exit(lst, info, com);
+		info->built = 1;
 	}
 	if (ft_strncmp(lst->argv[0], "export", ft_strlen(lst->argv[0])) == 0)
 	{
 		check = 1;
 		printf("EXPORT\n");
 		make_export(lst, info, env);
+		info->built = 1;
 	}
 	if (ft_strncmp(lst->argv[0], "unset", ft_strlen(lst->argv[0])) == 0)
 	{
 		check = 1;
 		make_unset(lst, info, env);
+		info->built = 1;
 	}
 	return (check);
 }
@@ -81,12 +85,8 @@ int	is_sorted(t_mirage **stack, int num)
 	i = 0;
 	while (i < num - 1 && temp->next != NULL)
 	{
-		printf(RED"IS SORT?  %s next %s"RESET"\n", temp->name, temp->next->name);
-		if (ft_strncmp(temp->name, temp->next->name, ft_strlen(temp->name)) > 0)
-		{
-			printf("SORT I(%d) %s %s %s\n", i, temp->name, temp->name, temp->next->name);
+		if (ft_strncmp(temp->name, temp->next->name, ft_strlen(temp->name) + ft_strlen(temp->next->name)) > 0)
 			return (1);
-		}
 		temp = temp->next;
 		i++;
 	}
