@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:30:16 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/09 13:36:00 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/09 13:51:11 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,15 @@ t_lst	*make_nodes_rework(t_list *lst)
 	return (nodes);
 }
 
-t_lst	*create_nodes_rework(t_list *lst, t_mirage *env)
+t_lst	*create_nodes_rework(char const *s, t_mirage *env)
 {
 	t_lst	*nodes;
+	t_list	*lst;
 
+	lst = split_data_rework(s);
 	nodes = make_nodes_rework(lst);
 	set_nodes_data_rework(nodes, lst);
 	nodes = set_data_nodes(nodes, env);
+	free_argv(lst);
 	return (nodes);
 }
