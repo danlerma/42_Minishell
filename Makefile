@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+         #
+#    By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/08 10:12:01 by dlerma-c          #+#    #+#              #
-#    Updated: 2022/03/08 17:36:24 by dlerma-c         ###   ########.fr        #
+#    Updated: 2022/03/09 13:18:13 by mortiz-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,9 +45,9 @@ SRCS_EXE_PATH = execute
 SRCS_BUILT_PATH = built
 
 SRCS_PARSE = nodes_set_data.c free_data.c nodes_utils.c nodes_create_rework.c \
-			 parse_str.c split_data_lst_rework.c variable_expansion.c
+			 parse_str.c split_data_lst_rework.c variable_expansion.c check_data_structures.c
 SRCS_EXE = execute.c make_process.c show_list.c commands.c init.c files.c \
-			utils.c here.c lst.c lst_env.c
+			utils.c here.c lst.c lst_env.c signals.c
 SRCS_BUILT = cd.c export.c env.c unset.c utils_env.c utils_export.c
 SRCS = main.c
 SRCS_NAME = $(addprefix $(SRCS_PARSE_PATH)/, $(SRCS_PARSE)) \

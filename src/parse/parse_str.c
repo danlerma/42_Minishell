@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 14:21:37 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/08 12:43:26 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/09 13:25:24 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,52 +32,6 @@ char static	*join_and_liberate_str(char *s, char *s2, char c, int intent)
 	free (s);
 	return (aux);
 }
-/*
-char	static	*get_variable_value(char *s, t_mirage *env)
-{
-	int		i;
-	char	*var;
-	char	*aux;
-
-	i = 1;
-	if (!ft_isalpha(s[i]))
-	{
-		printf("Encontro una variable vacia\n");
-		return (ft_strdup("$"));
-	}
-	while (s[i] != 0)
-	{
-		if (!ft_isalnum(s[i]))
-		{
-			i--;
-			break ;
-		}
-		i++;
-	}
-	var = ft_substr(s, 1, i);
-	printf("Variable leida $%s\n", var);
-	aux = getvariable(var, env);
-	free(var);
-	return (aux);
-}
-
-int	static	get_variable_tam(char *s)
-{
-	int		i;
-
-	i = 1;
-	while (s[i] != 0)
-	{
-		if (!ft_isalnum(s[i]))
-		{
-			i--;
-			break ;
-		}
-		i++;
-	}
-	return (i);
-}
-*/
 
 char	static	*get_inside_quotes(char *s, t_mirage *env)
 {

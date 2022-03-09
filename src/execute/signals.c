@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nodes_utils.c                                      :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 14:35:49 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/09 13:25:58 by mortiz-d         ###   ########.fr       */
+/*   Created: 2022/03/09 12:50:27 by mortiz-d          #+#    #+#             */
+/*   Updated: 2022/03/09 13:02:55 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	nodes_check_error(t_lst *list)
+static void	signal_control(int signum)
 {
-	t_lst	*aux;
-	int		i;
+	if (signum == SIGINT)
+		printf("\n");
+}
+//else if (signum == SIGQUIT)
 
-	i = 1;
-	aux = list;
-	if (aux->next == 0 && aux->n_words == 0)
-		return (0);
-	while (aux)
-	{
-		if (aux->n_words == 0)
-		{
-			return (0);
-		}
-		aux = aux->next;
-	}
-	return (1);
+void	signal_declaration(void)
+{
+	signal(SIGINT, signal_control);
+	signal(SIGQUIT, signal_control);
 }

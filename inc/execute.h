@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:55:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/08 17:21:26 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/09 12:53:17 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,4 +131,6 @@ void	delete_var(t_mirage **env, char *var);
 // void	change_val_env(t_mirage **env, char *var, char *value);
 char	*get_name_env(t_mirage *env, char *var);
 
+//signals
+void	signal_declaration(void);
 #endif
