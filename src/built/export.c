@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 16:34:24 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/08 18:47:37 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/10 13:20:32 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,15 +94,12 @@ void	make_export(t_lst *lst, t_info *info, t_mirage **env)
 {
 	t_mirage	*e;
 
+	e = NULL;
 	if (lst->n_words == 1)
 	{
 		e = lstnew_env(env);
 		sort_export(lst, e);
-		// lstclear_env(&e, free);
 	}
 	else
-	{
 		new_variable(lst, env);
-	}
-
 }
