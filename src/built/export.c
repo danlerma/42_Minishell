@@ -85,7 +85,6 @@ void	make_export(t_lst *lst, t_info *info, t_mirage **env)
 	printf("NLIST %d\n", lst->n_words);
 	if (lst->n_words == 1)
 	{
-		printf("EN CONSTRUCCION\n");
 		sort_export(lst, *env);
 	}
 	else
