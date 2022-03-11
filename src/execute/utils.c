@@ -23,11 +23,18 @@ char	**create_cmd(t_lst *lst, t_info *info)
 		exit(0);
 	i = 0;
 	y = 0;
+	if (ft_strchr(lst->argv[i], '/') != NULL)
+	{
+		str[0] = ft_strrchr(lst->argv[i], '/') + 1;
+		i++;
+		y++;
+	}
 	while (lst->argv[i])
 	{
 		if (lst->type[i] == 1)
 		{
 			str[y] = ft_strdup(lst->argv[i]);
+			printf ("LST_>ARGV %s\n", str[y]);
 			y++;
 		}
 		i++;

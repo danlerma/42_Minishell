@@ -29,9 +29,11 @@ static void	free_all(t_info *info)
 {
 	free(info->cmd);
 	free_pipes(info->pipe, info->nlst);
-	ft_free_malloc(info->paths);
+	if (info->paths)
+		ft_free_malloc(info->paths);
 	free(info->env);
-	ft_free_malloc(info->path);
+	if (info->path)
+		ft_free_malloc(info->path);
 }
 
 void	exec(t_lst *lst, t_mirage **env)

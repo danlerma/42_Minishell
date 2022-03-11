@@ -23,7 +23,7 @@ int	main(void)
 	t_lst		*nodes;
 	t_mirage	*env;
 
-	atexit(leaks);
+	// atexit(leaks);
 	g_output_code = 0;
 	signal_declaration();
 	env = init_env();

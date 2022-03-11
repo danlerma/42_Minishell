@@ -28,14 +28,14 @@ static void	make_last_command(t_info *info, t_lst *lst, char *com, t_mirage **e)
 		close(info->pipe[info->np][0]);
 		close(info->pipe[info->np][1]);
 		if (execve(com, cmd, info->env) == -1)
-			exit(0);
+			perror("EXCV");
 	}
 	else
 	{
 		close(info->pipe[info->np][1]);
 		dup2(info->pipe[info->np][0], STDIN_FILENO);
 		close(info->pipe[info->np][0]);
-		ft_free_malloc(cmd);
+		// ft_free_malloc(cmd);
 	}
 }
 
@@ -60,17 +60,17 @@ static void	make_command(t_info *info, t_lst *lst, char *com, t_mirage **env)
 		close(info->pipe[info->np][1]);
 		check_redir(info, lst, 1);
 		if (execve(com, cmd, info->env) == -1)
-			exit(0);
+			perror("EXCV");
 	}
 	else
 	{
 		close(info->pipe[info->np][1]);
 		dup2(info->pipe[info->np][0], STDIN_FILENO);
 		close(info->pipe[info->np][0]);
-		ft_free_malloc(cmd);
+		// ft_free_malloc(cmd);
 	}
 }
-
+//TODO LIBERAR
 static void	make_one_command(t_info *info, t_lst *lst, char *com)
 {
 	pid_t	child;
@@ -84,12 +84,12 @@ static void	make_one_command(t_info *info, t_lst *lst, char *com)
 	{
 		check_redir(info, lst, 1);
 		if (execve(com, cmd, info->env) == -1)
-			exit(0);
+			perror("EXECV");
 	}
 	else
 	{
 		wait(&child);
-		ft_free_malloc(cmd);
+		// ft_free_malloc(cmd);
 	}
 }
 
@@ -123,9 +123,25 @@ void	commands(t_info *info, t_lst *lst, t_mirage **env)
 	init_commands(lst, info);
 	i = -1;
 	flag = 0;
+	printf("COMANDO %s\n", lst->argv[info->cmd->pos]);
+	if (info->path == NULL)
+	{
+		if (ft_strchr(lst->argv[info->cmd->pos], '/') != NULL)
+			com = ft_strdup(lst->argv[info->cmd->pos]);
+		if (access(com, X_OK) == 0)
+		{
+			search_command(info, lst, com, env);
+			free (com);
+		}
+		else
+			perror("ACCES");
+	}
 	while (info->path[++i])
 	{
-		com = ft_strjoin(info->path[i], lst->argv[info->cmd->pos]);
+		if (ft_strchr(lst->argv[info->cmd->pos], '/') != NULL)
+			com = ft_strdup(lst->argv[info->cmd->pos]);
+		else
+			com = ft_strjoin(info->path[i], lst->argv[info->cmd->pos]);
 		if (access(com, X_OK) == 0)
 		{
 			search_command(info, lst, com, env);
@@ -139,5 +155,6 @@ void	commands(t_info *info, t_lst *lst, t_mirage **env)
 		search_command(info, lst, NULL, env);
 	if (lst->type[info->cmd->pos] == 1 && info->built == 0)
 		printf("AQUI DEBE HABER MENSAJE DE ERROR(REVISAR)\n");
+	printf("AQUIIIIIII\n");
 	flag = 0;
 }
