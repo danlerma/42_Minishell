@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:57:38 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/10 13:21:40 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/11 14:11:15 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	leaks(void)
 {
-	system("leaks -q minishell > exit");
+	system("leaks -q minishell");
 }
 
 int	main(void)
@@ -23,7 +23,7 @@ int	main(void)
 	t_lst		*nodes;
 	t_mirage	*env;
 
-	// atexit(leaks);
+	atexit(leaks);
 	g_output_code = 0;
 	signal_declaration();
 	env = init_env();

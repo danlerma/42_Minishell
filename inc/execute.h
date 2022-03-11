@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:55:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/09 12:53:17 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/11 14:05:09 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ t_mirage	*init_env(void);
 
 //make process
 void	make_process(t_info *info, t_lst *lst, t_mirage **env);
+
+//execute_cmd
+void	search_command(t_info *info, t_lst *lst, char *com, t_mirage **env);
 
 //show list
 void	s_list(t_lst *lst);
