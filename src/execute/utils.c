@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:39:33 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/02 16:45:00 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/11 14:10:26 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,17 @@ char	**create_cmd(t_lst *lst, t_info *info)
 		exit(0);
 	i = 0;
 	y = 0;
+	if (ft_strchr(lst->argv[i], '/') != NULL)
+	{
+		str[i] = ft_strrchr(lst->argv[i], '/') + 1;
+		i++;
+		y++;
+	}
 	while (lst->argv[i])
 	{
 		if (lst->type[i] == 1)
 		{
-			str[y] = ft_strdup(lst->argv[i]);
+			str[y] = lst->argv[i];
 			y++;
 		}
 		i++;
@@ -44,6 +50,7 @@ char	**find_path(char **environ)
 
 	i = 0;
 	check = 0;
+	paths = NULL;
 	while (environ[i])
 	{
 		if (ft_strncmp(environ[i], "PATH", 4) == 0)
@@ -55,8 +62,6 @@ char	**find_path(char **environ)
 		}
 		i++;
 	}
-	if (check == 0)
-		printf("No esta la PATH\n");
 	return (paths);
 }
 
@@ -66,6 +71,9 @@ void	valid_path(t_info *info)
 	char	*aux;
 
 	i = 0;
+	info->path = NULL;
+	if (info->paths == NULL)
+		return ;
 	while (info->paths[i])
 		i++;
 	info->path = ft_calloc(i + 1, sizeof(char *));
