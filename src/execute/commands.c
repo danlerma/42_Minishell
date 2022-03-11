@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:37:32 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/11 14:09:59 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/11 18:06:25 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ static void	with_path(t_lst *lst, t_info *info, t_mirage **env)
 		}
 		free(com);
 	}
-	if (flag == 0 && lst->type[info->cmd->pos] == 1)
-		perror(lst->argv[info->cmd->pos]);
-	else if (flag == 0 && lst->type[info->cmd->pos] != 1)
+	if (flag == 0 && lst->type[info->cmd->pos] == 1 && ft_strchr(lst->argv[info->cmd->pos], '/') != NULL)
+		error_cmd(lst->argv[info->cmd->pos]);
+	else if (flag == 0)
 		search_command(info, lst, NULL, env);
 }
 

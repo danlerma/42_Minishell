@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:55:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/11 14:05:09 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/11 18:07:21 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	s_mirage(t_mirage *lst);
 char	**find_path(char **environ);
 void	valid_path(t_info *info);
 char	**create_cmd(t_lst *lst, t_info *info);
-void	error(char *file);
+void	error_cmd(char *str);
 
 //command
 void	commands(t_info *info, t_lst *lst, t_mirage **env);

@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:33:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/08 17:36:39 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/11 18:08:16 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ static void	make_heredoc(t_lst *lst, char *file, int pos)
 
 	f1 = open(file, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (f1 < 0)
-		error(file);
+	{
+		perror(file);
+		exit(0);
+	}
 	while (1)
 	{
 		line = get_next_line(STDIN_FILENO);

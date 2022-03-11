@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:39:33 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/11 14:10:26 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/11 18:06:47 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,10 @@ void	valid_path(t_info *info)
 	}
 }
 
-/*TEMP*/
-void	error(char *file)
+void	error_cmd(char *str)
 {
-	perror(file);
-	exit(0);
+	if (ft_strchr(str, '/') == NULL)
+		printf("%s: command not found\n", str);
+	else
+		printf("%s: no such file or directory\n", str);
 }

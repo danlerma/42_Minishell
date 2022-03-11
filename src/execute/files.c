@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:32:42 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/10 13:22:23 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/11 18:05:56 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ static void	redir_out(t_info *info, t_lst *lst, char *file, int n)
 	(void)lst;
 	out = open(file, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (out < 0)
-		error(file);
+	{
+		perror(file);
+		exit(0);
+	}
 	if (n == 1)
 		dup2(out, STDOUT_FILENO);
 	close(out);
@@ -34,7 +37,10 @@ static void	redir_in(t_info *info, t_lst *lst, char *file, int n)
 	(void)lst;
 	in = open(file, O_RDONLY);
 	if (in < 0)
-		error(file);
+	{
+		perror(file);
+		exit(0);
+	}
 	if (n == 1)
 		dup2(in, STDIN_FILENO);
 	close(in);
@@ -48,7 +54,10 @@ static void	redir_appd(t_info *info, t_lst *lst, char *file, int n)
 	(void)lst;
 	end = open(file, O_CREAT | O_WRONLY | O_APPEND, 0644);
 	if (end < 0)
-		error(file);
+	{
+		perror(file);
+		exit(0);
+	}
 	if (n == 1)
 		dup2(end, STDOUT_FILENO);
 	close(end);

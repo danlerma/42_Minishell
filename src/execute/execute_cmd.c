@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 14:03:39 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/11 14:04:33 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/11 18:10:38 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ static void	make_last_command(t_info *info, t_lst *lst, char *com, t_mirage **e)
 		close(info->pipe[info->np][0]);
 		close(info->pipe[info->np][1]);
 		if (execve(com, cmd, info->env) == -1)
-			perror("EXCV LAST");
+		{
+			error_cmd(cmd[0]);
+			exit(0);
+		}
 	}
 	else
 	{
@@ -60,7 +63,10 @@ static void	make_command(t_info *info, t_lst *lst, char *com, t_mirage **env)
 		close(info->pipe[info->np][1]);
 		check_redir(info, lst, 1);
 		if (execve(com, cmd, info->env) == -1)
-			perror("EXCV");
+		{
+			error_cmd(cmd[0]);
+			exit(0);
+		}
 	}
 	else
 	{
@@ -84,7 +90,10 @@ static void	make_one_command(t_info *info, t_lst *lst, char *com)
 	{
 		check_redir(info, lst, 1);
 		if (execve(com, cmd, info->env) == -1)
-			perror("EXECV");
+		{
+			error_cmd(cmd[0]);
+			exit(0);
+		}
 	}
 	else
 	{
