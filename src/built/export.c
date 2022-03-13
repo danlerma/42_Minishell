@@ -16,6 +16,7 @@ static int	check_chars_ex(t_lst *lst, t_mirage *env, int i)
 {
 	int	y;
 
+	(void) env;
 	if (ft_isalpha(lst->argv[i][0]) == 0)
 	{
 		printf("export: '%s' : not a valid identifier\n", lst->argv[1]);
@@ -40,10 +41,10 @@ static int	check_chars_ex(t_lst *lst, t_mirage *env, int i)
 static void	sort_export(t_lst *lst, t_mirage *env)
 {
 	t_mirage	*head;
-	t_mirage	*aux;
 	int			i;
 	int			len;
 
+	(void)lst;
 	i = 0;
 	len = lstsize_env(env);
 	head = env;
@@ -92,13 +93,14 @@ static void	new_variable(t_lst *lst, t_mirage **env)
 //TODO Liberar
 void	make_export(t_lst *lst, t_info *info, t_mirage **env)
 {
-	t_mirage	*e;
+	t_mirage	*ex_env;
 
-	e = NULL;
+	ex_env = NULL;
+	(void) info;
 	if (lst->n_words == 1)
 	{
-		e = lstnew_env(env);
-		sort_export(lst, e);
+		ex_env = lstnew_env(env);
+		sort_export(lst, ex_env);
 	}
 	else
 		new_variable(lst, env);

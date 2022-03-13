@@ -4,6 +4,7 @@ static int	check_chars_un(t_lst *lst, t_mirage *env, int i)
 {
 	int	y;
 
+	(void) env;
 	if (ft_isalpha(lst->argv[i][0]) == 0)
 	{
 		printf("unset: '%s' : not a valid identifier\n", lst->argv[1]);
@@ -27,6 +28,7 @@ void	make_unset(t_lst *lst, t_info *info, t_mirage **env)
 {
 	int	i;
 
+	(void) info;
 	i = 0;
 	if (lst->n_words > 1)
 	{

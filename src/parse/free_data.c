@@ -40,10 +40,8 @@ void	free_nodes(t_lst *nodes, char *str)
 
 void	free_argv(t_list *argv)
 {
-	int		i;
 	t_list	*aux;
 
-	i = 0;
 	while (argv)
 	{
 		aux = argv;

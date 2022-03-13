@@ -21,7 +21,7 @@ void	show_export(t_mirage *env)
 	}
 }
 
-static void	norm_export(t_mirage **head, t_mirage **env, int i)
+static void	norm_export(t_mirage **head, t_mirage **env)
 {
 	t_mirage	*aux;
 
@@ -41,7 +41,7 @@ int	cond_export(t_mirage **head, t_mirage **env, int i)
 	t_mirage	*aux;
 
 	if (i == 0)
-		norm_export(head, env, i);
+		norm_export(head, env);
 	else if (i != 0 && (*env)->next->next != NULL)
 	{
 		if (ft_strncmp((*env)->next->name, (*env)->next->next->name,

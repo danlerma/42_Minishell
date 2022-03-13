@@ -46,10 +46,8 @@ char	**find_path(char **environ)
 	int		i;
 	char	**paths;
 	char	*pos;
-	int		check;
 
 	i = 0;
-	check = 0;
 	paths = NULL;
 	while (environ[i])
 	{
@@ -57,7 +55,6 @@ char	**find_path(char **environ)
 		{
 			pos = ft_strchr(environ[i], '=');
 			paths = ft_split(pos + 1, ':');
-			check = 1;
 			break ;
 		}
 		i++;

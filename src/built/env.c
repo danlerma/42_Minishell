@@ -72,7 +72,6 @@ void	insert_var(t_mirage **env, t_mirage *en)
 void	change_val_env(t_mirage **env, char *var, char *value)
 {
 	t_mirage	*aux;
-	t_mirage	*temp;
 
 	aux = *env;
 	while (aux != NULL)
@@ -83,7 +82,6 @@ void	change_val_env(t_mirage **env, char *var, char *value)
 			aux->value = ft_strdup(value);
 			break ;
 		}
-		temp = aux;
 		aux = aux->next;
 	}
 }

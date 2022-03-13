@@ -12,7 +12,7 @@
 
 #include <minishell.h>
 
-int		static	is_char_special_parameter(char c)
+static int	is_char_special_parameter(char c)
 {
 	if (c == '@' || c == '*' || c == '#' || c == '?' || c == '$' \
 	|| c == '-' || c == '!' || c == 34 || c == 39 || c == ' ')

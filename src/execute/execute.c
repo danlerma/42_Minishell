@@ -38,8 +38,6 @@ static void	free_all(t_info *info)
 
 void	exec(t_lst *lst, t_mirage **env)
 {
-	extern char	**environ;
-	char		**env_char;
 	t_info		info;
 
 	init_structs(&lst, &info, *env);

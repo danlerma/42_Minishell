@@ -15,9 +15,7 @@
 int	nodes_check_error(t_lst *list)
 {
 	t_lst	*aux;
-	int		i;
 
-	i = 1;
 	aux = list;
 	if (aux->next == 0 && aux->n_words == 0)
 		return (0);

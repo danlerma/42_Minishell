@@ -58,13 +58,7 @@ static void	with_path(t_lst *lst, t_info *info, t_mirage **env)
 
 void	commands(t_info *info, t_lst *lst, t_mirage **env)
 {
-	int		i;
-	int		flag;
-	char	*com;
-
 	init_commands(lst, info);
-	i = -1;
-	flag = 0;
 	if (info->path == NULL)
 		no_path(lst, info, env);
 	else
