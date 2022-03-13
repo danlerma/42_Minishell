@@ -23,10 +23,14 @@ static int	check_chars_ex(t_lst *lst, t_mirage *env, int i)
 		return (1);
 	}
 	y = 0;
-	while (lst->argv[i][y])
+	while (lst->argv[i][y] != 0)
 	{
 		if (lst->argv[i][y] == 61)
+		{
 			y++;
+			if (lst->argv[i][y] == 0)
+				break ;			
+		}
 		if ((lst->argv[i][y] >= 33 && lst->argv[i][y] <= 47) ||
 			(lst->argv[i][y] >= 58 && lst->argv[i][y] <= 64))
 		{
@@ -69,7 +73,6 @@ static void	sort_export(t_lst *lst, t_mirage *env)
 static void	new_variable(t_lst *lst, t_env **env)
 {
 	t_mirage	*temp;
-	t_mirage	*aux;
 	int			i;
 	char		**split;
 
@@ -81,17 +84,31 @@ static void	new_variable(t_lst *lst, t_env **env)
 		if (ft_strchr(lst->argv[i], '=') != NULL)
 		{
 			split = ft_split(lst->argv[i], '=');
+			if (get_name_env((*env)->ex_env, split[0]) != NULL)
+				change_val_env(&(*env)->ex_env, split[0], split[1], lst->argv[i]);
 			if (get_name_env((*env)->env, split[0]) != NULL)
+			{
 				change_val_env(&(*env)->env, split[0], split[1], lst->argv[i]);
+			}
 			else
 			{
 				temp = (t_mirage *)ft_calloc(1, sizeof(t_mirage));
 				if (temp == NULL)
 					exit(0);
-				temp->var = ft_strdup(lst->argv[i]); //esto puede dar problemas
+				temp->var = ft_strdup(lst->argv[i]);
 				split_variables(lst->argv[i], &temp);
 				temp->next = NULL;
 				add_back_env(&(*env)->env, temp);
+				if (get_name_env((*env)->ex_env, split[0]) == NULL)
+				{
+					temp = (t_mirage *)ft_calloc(1, sizeof(t_mirage));
+					if (temp == NULL)
+						exit(0);
+					temp->var = ft_strdup(lst->argv[i]);
+					split_variables(lst->argv[i], &temp);
+					temp->next = NULL;
+					add_back_env(&(*env)->ex_env, temp);
+				}
 			}
 			ft_free_malloc(split);
 		}
@@ -100,23 +117,11 @@ static void	new_variable(t_lst *lst, t_env **env)
 			temp = (t_mirage *)ft_calloc(1, sizeof(t_mirage));
 			if (temp == NULL)
 				exit(0);
-			temp->var = ft_strdup(lst->argv[i]); //esto puede dar problemas
+			temp->var = ft_strdup(lst->argv[i]);
 			split_variables(lst->argv[i], &temp);
 			temp->next = NULL;
 			add_back_env(&(*env)->ex_env, temp);
 		}
-		// if (ft_strchr(lst->argv[i], '=') != NULL)
-		// {
-		// 	temp = (t_mirage *)ft_calloc(1, sizeof(t_mirage));
-		// 	if (temp == NULL)
-		// 		exit(0);
-		// 	temp->var = ft_strdup(lst->argv[i]);
-		// 	split_variables(lst->argv[i], &temp);
-		// 	temp->next = NULL;
-		// 	if (get_name_env(*env, temp->name) != NULL)
-		// 		delete_var(env, temp->name);
-		// 	add_back_env(env, temp);
-		// }
 		i++;
 	}
 }
@@ -124,6 +129,7 @@ static void	new_variable(t_lst *lst, t_env **env)
 //TODO Liberar
 void	make_export(t_lst *lst, t_info *info, t_env **env)
 {
+	(void)info;
 	if (lst->n_words == 1)
 		sort_export(lst, (*env)->ex_env);
 	else

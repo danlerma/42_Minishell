@@ -14,6 +14,7 @@
 
 int	check_built(t_lst *lst, t_info *info, char *com, t_env **env)
 {
+	(void)com;
 	// if (ft_strncmp(lst->argv[0], "cd", ft_strlen(lst->argv[0])) == 0)
 	// {
 	// 	make_cd(lst, info, com);
