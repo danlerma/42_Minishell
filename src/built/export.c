@@ -41,20 +41,22 @@ static int	check_chars_ex(t_lst *lst, t_mirage *env, int i)
 static void	sort_export(t_lst *lst, t_mirage *env)
 {
 	t_mirage	*head;
+	t_mirage	*show;
 	int			i;
 	int			len;
 
 	(void)lst;
+	show = lstnew_env(&env);
 	i = 0;
-	len = lstsize_env(env);
-	head = env;
+	len = lstsize_env(show);
+	head = show;
 	while (is_sorted(&head, len) == 1)
 	{
-		if (env->next->next != NULL)
-			i = cond_export(&head, &env, i);
-		else if (env->next->next == NULL)
+		if (show->next->next != NULL)
+			i = cond_export(&head, &show, i);
+		else if (show->next->next == NULL)
 		{
-			env = head;
+			show = head;
 			i = -1;
 		}
 		i++;
@@ -64,28 +66,57 @@ static void	sort_export(t_lst *lst, t_mirage *env)
 }
 
 //TODO Liberar
-static void	new_variable(t_lst *lst, t_mirage **env)
+static void	new_variable(t_lst *lst, t_env **env)
 {
 	t_mirage	*temp;
+	t_mirage	*aux;
 	int			i;
+	char		**split;
 
 	i = 1;
 	while (lst->argv[i] != NULL)
 	{
-		if (check_chars_ex(lst, *env, i) == 1)
+		if (check_chars_ex(lst, (*env)->env, i) == 1)
 			break ;
 		if (ft_strchr(lst->argv[i], '=') != NULL)
+		{
+			split = ft_split(lst->argv[i], '=');
+			if (get_name_env((*env)->env, split[0]) != NULL)
+				change_val_env(&(*env)->env, split[0], split[1], lst->argv[i]);
+			else
+			{
+				temp = (t_mirage *)ft_calloc(1, sizeof(t_mirage));
+				if (temp == NULL)
+					exit(0);
+				temp->var = ft_strdup(lst->argv[i]); //esto puede dar problemas
+				split_variables(lst->argv[i], &temp);
+				temp->next = NULL;
+				add_back_env(&(*env)->env, temp);
+			}
+			ft_free_malloc(split);
+		}
+		else
 		{
 			temp = (t_mirage *)ft_calloc(1, sizeof(t_mirage));
 			if (temp == NULL)
 				exit(0);
-			temp->var = ft_strdup(lst->argv[i]);
+			temp->var = ft_strdup(lst->argv[i]); //esto puede dar problemas
 			split_variables(lst->argv[i], &temp);
 			temp->next = NULL;
-			if (get_name_env(*env, temp->name) != NULL)
-				delete_var(env, temp->name);
-			add_back_env(env, temp);
+			add_back_env(&(*env)->ex_env, temp);
 		}
+		// if (ft_strchr(lst->argv[i], '=') != NULL)
+		// {
+		// 	temp = (t_mirage *)ft_calloc(1, sizeof(t_mirage));
+		// 	if (temp == NULL)
+		// 		exit(0);
+		// 	temp->var = ft_strdup(lst->argv[i]);
+		// 	split_variables(lst->argv[i], &temp);
+		// 	temp->next = NULL;
+		// 	if (get_name_env(*env, temp->name) != NULL)
+		// 		delete_var(env, temp->name);
+		// 	add_back_env(env, temp);
+		// }
 		i++;
 	}
 }

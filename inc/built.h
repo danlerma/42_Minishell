@@ -15,7 +15,7 @@ char	*get_val_env(t_mirage *env, char *var);
 void	delete_var(t_mirage **env, char *var);
 char	*get_name_env(t_mirage *env, char *var);
 void	insert_var(t_mirage **env, t_mirage *en);
-void	change_val_env(t_mirage **env, char *var, char *value);
+void	change_val_env(t_mirage **env, char *var, char *value, char *all);
 
 //utils env
 int		check_built(t_lst *lst, t_info *info, char *com, t_env **env);

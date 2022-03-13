@@ -24,7 +24,8 @@ int	check_built(t_lst *lst, t_info *info, char *com, t_env **env)
 	// 	make_exit(lst, info, com);
 	// 	info->built = 1;
 	// }
-	if (ft_strncmp(lst->argv[0], "export", ft_strlen(lst->argv[0])) == 0)
+	if (ft_strncmp(lst->argv[0], "export", ft_strlen("export")) == 0
+		&& ft_strlen("export") == ft_strlen(lst->argv[0]))
 	{
 		make_export(lst, info, env);
 		info->built = 1;

@@ -14,9 +14,12 @@
 
 void	show_export(t_mirage *env)
 {
-	while (env->next != NULL)
+	while (env != NULL)
 	{
-		printf("declare -x %s=\"%s\"\n", env->name, env->value);
+		if (ft_strchr(env->var, '=') == NULL)
+			printf("declare -x %s\n", env->name);
+		else
+			printf("declare -x %s=\"%s\"\n", env->name, env->value);
 		env = env->next;
 	}
 }
