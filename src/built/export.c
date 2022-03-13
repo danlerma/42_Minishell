@@ -69,15 +69,27 @@ static void	sort_export(t_lst *lst, t_mirage *env)
 	lstclear_env(&head, free);
 }
 
+static t_mirage	*new_node_env(char *cont)
+{
+	t_mirage	*node;
+
+	node = (t_mirage *)ft_calloc(1, sizeof(t_mirage));
+	if (node == NULL)
+		exit(0);
+	node->var = ft_strdup(cont);
+	split_variables(cont, &node);
+	node->next = NULL;
+	return (node);
+}
+
 //TODO Liberar
 static void	new_variable(t_lst *lst, t_env **env)
 {
-	t_mirage	*temp;
 	int			i;
 	char		**split;
 
-	i = 1;
-	while (lst->argv[i] != NULL)
+	i = 0;
+	while (lst->argv[++i] != NULL)
 	{
 		if (check_chars_ex(lst, (*env)->env, i) == 1)
 			break ;
@@ -87,42 +99,17 @@ static void	new_variable(t_lst *lst, t_env **env)
 			if (get_name_env((*env)->ex_env, split[0]) != NULL)
 				change_val_env(&(*env)->ex_env, split[0], split[1], lst->argv[i]);
 			if (get_name_env((*env)->env, split[0]) != NULL)
-			{
 				change_val_env(&(*env)->env, split[0], split[1], lst->argv[i]);
-			}
 			else
 			{
-				temp = (t_mirage *)ft_calloc(1, sizeof(t_mirage));
-				if (temp == NULL)
-					exit(0);
-				temp->var = ft_strdup(lst->argv[i]);
-				split_variables(lst->argv[i], &temp);
-				temp->next = NULL;
-				add_back_env(&(*env)->env, temp);
+				add_back_env(&(*env)->env, new_node_env(lst->argv[i]));
 				if (get_name_env((*env)->ex_env, split[0]) == NULL)
-				{
-					temp = (t_mirage *)ft_calloc(1, sizeof(t_mirage));
-					if (temp == NULL)
-						exit(0);
-					temp->var = ft_strdup(lst->argv[i]);
-					split_variables(lst->argv[i], &temp);
-					temp->next = NULL;
-					add_back_env(&(*env)->ex_env, temp);
-				}
+					add_back_env(&(*env)->ex_env, new_node_env(lst->argv[i]));
 			}
 			ft_free_malloc(split);
 		}
 		else
-		{
-			temp = (t_mirage *)ft_calloc(1, sizeof(t_mirage));
-			if (temp == NULL)
-				exit(0);
-			temp->var = ft_strdup(lst->argv[i]);
-			split_variables(lst->argv[i], &temp);
-			temp->next = NULL;
-			add_back_env(&(*env)->ex_env, temp);
-		}
-		i++;
+			add_back_env(&(*env)->ex_env, new_node_env(lst->argv[i]));
 	}
 }
 
