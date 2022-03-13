@@ -1,6 +1,6 @@
 #include<minishell.h>
 
-static int	check_chars_un(t_lst *lst, t_mirage *env, int i)
+static int	check_chars_un(t_lst *lst, t_env *env, int i)
 {
 	int	y;
 
@@ -24,7 +24,7 @@ static int	check_chars_un(t_lst *lst, t_mirage *env, int i)
 	return (0);
 }
 
-void	make_unset(t_lst *lst, t_info *info, t_mirage **env)
+void	make_unset(t_lst *lst, t_info *info, t_env **env)
 {
 	int	i;
 

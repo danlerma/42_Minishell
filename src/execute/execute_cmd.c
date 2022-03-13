@@ -102,7 +102,7 @@ static void	make_one_command(t_info *info, t_lst *lst, char *com)
 	}
 }
 
-void	search_command(t_info *info, t_lst *lst, char *com, t_mirage **env)
+void	search_command(t_info *info, t_lst *lst, char *com, t_env **env)
 {
 	if (info->nlst == 1)
 	{

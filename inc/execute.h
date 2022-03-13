@@ -62,18 +62,18 @@ typedef struct s_info
 */
 
 //execute
-void	exec(t_lst *lst, t_mirage **env);
+void	exec(t_lst *lst, t_env **env);
 
 //init_comands
 void	init_structs(t_lst **lst, t_info *info, t_mirage *env);
 void	init_commands(t_lst *lst, t_info *info);
-t_mirage	*init_env(void);
+t_env	*init_env(void);
 
 //make process
-void	make_process(t_info *info, t_lst *lst, t_mirage **env);
+void	make_process(t_info *info, t_lst *lst, t_env **env);
 
 //execute_cmd
-void	search_command(t_info *info, t_lst *lst, char *com, t_mirage **env);
+void	search_command(t_info *info, t_lst *lst, char *com, t_env **env);
 
 //show list
 void	s_list(t_lst *lst);
@@ -86,7 +86,7 @@ char	**create_cmd(t_lst *lst, t_info *info);
 void	error_cmd(char *str);
 
 //command
-void	commands(t_info *info, t_lst *lst, t_mirage **env);
+void	commands(t_info *info, t_lst *lst, t_env **env);
 
 //lst
 int		lstsize(t_lst *lst);

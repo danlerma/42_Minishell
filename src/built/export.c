@@ -91,17 +91,10 @@ static void	new_variable(t_lst *lst, t_mirage **env)
 }
 
 //TODO Liberar
-void	make_export(t_lst *lst, t_info *info, t_mirage **env)
+void	make_export(t_lst *lst, t_info *info, t_env **env)
 {
-	t_mirage	*ex_env;
-
-	ex_env = NULL;
-	(void) info;
 	if (lst->n_words == 1)
-	{
-		ex_env = lstnew_env(env);
-		sort_export(lst, ex_env);
-	}
+		sort_export(lst, (*env)->ex_env);
 	else
 		new_variable(lst, env);
 }

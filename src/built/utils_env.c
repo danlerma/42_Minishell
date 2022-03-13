@@ -12,28 +12,28 @@
 
 #include<minishell.h>
 
-int	check_built(t_lst *lst, t_info *info, char *com, t_mirage **env)
+int	check_built(t_lst *lst, t_info *info, char *com, t_env **env)
 {
-	if (ft_strncmp(lst->argv[0], "cd", ft_strlen(lst->argv[0])) == 0)
-	{
-		make_cd(lst, info, com);
-		info->built = 1;
-	}
-	if (ft_strncmp(lst->argv[0], "exit", ft_strlen(lst->argv[0])) == 0)
-	{
-		make_exit(lst, info, com);
-		info->built = 1;
-	}
+	// if (ft_strncmp(lst->argv[0], "cd", ft_strlen(lst->argv[0])) == 0)
+	// {
+	// 	make_cd(lst, info, com);
+	// 	info->built = 1;
+	// }
+	// if (ft_strncmp(lst->argv[0], "exit", ft_strlen(lst->argv[0])) == 0)
+	// {
+	// 	make_exit(lst, info, com);
+	// 	info->built = 1;
+	// }
 	if (ft_strncmp(lst->argv[0], "export", ft_strlen(lst->argv[0])) == 0)
 	{
 		make_export(lst, info, env);
 		info->built = 1;
 	}
-	if (ft_strncmp(lst->argv[0], "unset", ft_strlen(lst->argv[0])) == 0)
-	{
-		make_unset(lst, info, env);
-		info->built = 1;
-	}
+	// if (ft_strncmp(lst->argv[0], "unset", ft_strlen(lst->argv[0])) == 0)
+	// {
+	// 	make_unset(lst, info, env);
+	// 	info->built = 1;
+	// }
 	return (info->built);
 }
 
