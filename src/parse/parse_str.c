@@ -12,7 +12,7 @@
 
 #include <minishell.h>
 
-char static	*join_and_liberate_str(char *s, char *s2, char c, int intent)
+static char	*join_and_liberate_str(char *s, char *s2, char c, int intent)
 {
 	char	*aux;
 
@@ -33,7 +33,7 @@ char static	*join_and_liberate_str(char *s, char *s2, char c, int intent)
 	return (aux);
 }
 
-char	static	*get_inside_quotes(char *s, t_mirage *env)
+static char	*get_inside_quotes(char *s, t_mirage *env)
 {
 	char	*aux;
 	char	auxchar;
@@ -63,7 +63,7 @@ char	static	*get_inside_quotes(char *s, t_mirage *env)
 }
 //printf("Underquote readed : %s\n",aux);
 
-int static	get_tam_inside_quotes(char *s)
+static int	get_tam_inside_quotes(char *s)
 {
 	char	auxchar;
 	int		i;

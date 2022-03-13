@@ -65,7 +65,7 @@ OBJS = $(addprefix $(OBJ_PATH)/, $(OBJS_NAME))
 #··············································································#
 
 CC = gcc
-# CFLAGS =  -Wall -Werror -Wextra  -g3 
+CFLAGS = -Wall -Werror -Wextra -g3
 #include <xx.h> // path of .h
 CFLAGS += -I $(INC_PATH) -I $(LBFT_PATH) -I /Users/$(USER)/.brew/opt/readline/include 
 CFLAGS +="-I/Users/$(USER)/.brew/opt/readline/include"

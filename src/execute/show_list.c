@@ -15,9 +15,7 @@
 void	s_list(t_lst *lst)
 {
 	int	i;
-	int	y;
 
-	y = 0;
 	i = 0;
 	while (lst != NULL)
 	{
@@ -37,14 +35,8 @@ void	s_list(t_lst *lst)
 
 void	s_mirage(t_mirage *lst)
 {
-	int	i;
-	int	y;
-
-	y = 0;
-	i = 0;
 	while (lst != NULL)
 	{
-		i = 0;
 		printf("Direction: %p\n", lst);
 		printf("\tVARIABLE: %s\n", lst->var);
 		printf("\tNAME: %s\n", lst->name);

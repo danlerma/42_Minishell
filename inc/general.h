@@ -21,4 +21,10 @@ typedef struct s_mirage
 	struct	s_mirage	*next;
 }t_mirage;
 
+typedef struct s_env
+{
+	t_mirage	*env;
+	t_mirage	*ex_env;
+}t_env;
+
 #endif

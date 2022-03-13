@@ -62,18 +62,18 @@ typedef struct s_info
 */
 
 //execute
-void	exec(t_lst *lst, t_mirage **env);
+void	exec(t_lst *lst, t_env **env);
 
 //init_comands
 void	init_structs(t_lst **lst, t_info *info, t_mirage *env);
 void	init_commands(t_lst *lst, t_info *info);
-t_mirage	*init_env(void);
+t_env	*init_env(void);
 
 //make process
-void	make_process(t_info *info, t_lst *lst, t_mirage **env);
+void	make_process(t_info *info, t_lst *lst, t_env **env);
 
 //execute_cmd
-void	search_command(t_info *info, t_lst *lst, char *com, t_mirage **env);
+void	search_command(t_info *info, t_lst *lst, char *com, t_env **env);
 
 //show list
 void	s_list(t_lst *lst);
@@ -86,7 +86,7 @@ char	**create_cmd(t_lst *lst, t_info *info);
 void	error_cmd(char *str);
 
 //command
-void	commands(t_info *info, t_lst *lst, t_mirage **env);
+void	commands(t_info *info, t_lst *lst, t_env **env);
 
 //lst
 int		lstsize(t_lst *lst);
@@ -94,14 +94,6 @@ void	lstadd_back(t_lst **lst, t_lst *new);
 t_lst	*lstlast(t_lst *lst);
 void	lstdelone(t_lst *lst, void (*del)(void*));
 void	lstclear(t_lst **lst, void (*del)(void *));
-
-//lst_env
-t_mirage	*lstlast_env(t_mirage *lst);
-void	add_back_env(t_mirage **lst, t_mirage *new);
-void	lstdelone_env(t_mirage *lst, void (*del)(void*));
-void	lstclear_env(t_mirage **lst, void (*del)(void *));
-int		lstsize_env(t_mirage *lst);
-t_mirage	*lstnew_env(t_mirage **env);
 
 //file.c
 void	check_redir(t_info *info, t_lst *lst, int n);
@@ -111,28 +103,6 @@ void	check_here(t_info *info, t_lst *lst);
 
 //argv_temp
 t_lst	*argv_init_temp(char **argv, int argc);
-
-//built
-void	make_cd(t_lst *lst, t_info *info, char *com);
-void	make_exit(t_lst *lst, t_info *info, char *com);
-void	make_export( t_lst *lst, t_info *info, t_mirage **env);
-void	make_unset(t_lst *lst, t_info *info, t_mirage **env);
-
-//utils env
-int		check_built(t_lst *lst, t_info *info, char *com, t_mirage **env);
-void	split_variables(char *variable, t_mirage **env);
-char	**lst2array(t_mirage *env);
-int		is_sorted(t_mirage **stack, int num);
-
-//utils export
-int		cond_export(t_mirage **head, t_mirage **env, int i);
-void	show_export(t_mirage *env);
-
-//env
-char	*get_val_env(t_mirage *env, char *var);
-void	delete_var(t_mirage **env, char *var);
-// void	change_val_env(t_mirage **env, char *var, char *value);
-char	*get_name_env(t_mirage *env, char *var);
 
 //signals
 void	signal_declaration(void);

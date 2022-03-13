@@ -12,15 +12,17 @@
 
 #include<minishell.h>
 
-t_mirage	*init_env(void)
+t_env	*init_env(void)
 {
 	extern char		**environ;
 	t_mirage		*temp;
-	t_mirage		*env;
+	t_env			*env_ret;
 	int				i;
 
 	i = 0;
-	env = NULL;
+	env_ret = (t_env *)ft_calloc(1, sizeof(t_env));
+	if (env_ret == NULL)
+		exit(0);
 	while (environ[i])
 	{
 		temp = (t_mirage *)ft_calloc(1, sizeof(t_mirage));
@@ -29,10 +31,11 @@ t_mirage	*init_env(void)
 		temp->var = environ[i];
 		split_variables(environ[i], &temp);
 		temp->next = NULL;
-		add_back_env(&env, temp);
+		add_back_env(&env_ret->env, temp);
 		i++;
 	}
-	return (env);
+	env_ret->ex_env = lstnew_env(&env_ret->env);
+	return (env_ret);
 }
 
 void	init_commands(t_lst *lst, t_info *info)

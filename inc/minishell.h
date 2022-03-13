@@ -11,18 +11,19 @@
 # define RESET "\033[0m"
 
 # include "../lbft/libft.h"
-# include <general.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <general.h>
 # include <signal.h>
 # include <execute.h>
+# include <built.h>
 # include <parse.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include "../lbft/libft.h"
+
 
 #endif

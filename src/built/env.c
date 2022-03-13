@@ -69,10 +69,9 @@ void	insert_var(t_mirage **env, t_mirage *en)
 	add_back_env(env, en);
 }
 
-void	change_val_env(t_mirage **env, char *var, char *value)
+void	change_val_env(t_mirage **env, char *var, char *value, char *all)
 {
 	t_mirage	*aux;
-	t_mirage	*temp;
 
 	aux = *env;
 	while (aux != NULL)
@@ -80,10 +79,16 @@ void	change_val_env(t_mirage **env, char *var, char *value)
 		if (ft_strncmp(aux->name, var, ft_strlen(aux->name)) == 0
 			&& ft_strlen(var) == ft_strlen(aux->name))
 		{
-			aux->value = ft_strdup(value);
+			if (aux->value)
+				free(aux->value);
+			free(aux->var);
+			if (value != NULL)
+				aux->value = ft_strdup(value);
+			else
+				aux->value = ft_strdup("");
+			aux->var = ft_strdup(all);
 			break ;
 		}
-		temp = aux;
 		aux = aux->next;
 	}
 }

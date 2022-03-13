@@ -20,14 +20,17 @@ t_mirage	*lstnew_env(t_mirage **env)
 
 	temp = *env;
 	lst = NULL;
-	while (temp->next != NULL)
+	while (temp != NULL)
 	{
 		aux = (t_mirage *)ft_calloc(1, sizeof(t_mirage));
 		if (aux == NULL)
 			exit(0);
 		aux->var = temp->var;
 		aux->name = ft_strdup(temp->name);
-		aux->value = ft_strdup(temp->value);
+		if (temp->value != NULL)
+			aux->value = ft_strdup(temp->value);
+		else
+			aux->value = ft_strdup("");
 		aux->next = NULL;
 		add_back_env(&lst, aux);
 		temp = temp->next;

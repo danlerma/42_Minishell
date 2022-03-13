@@ -36,13 +36,11 @@ static void	free_all(t_info *info)
 		ft_free_malloc(info->path);
 }
 
-void	exec(t_lst *lst, t_mirage **env)
+void	exec(t_lst *lst, t_env **env)
 {
-	extern char	**environ;
-	char		**env_char;
 	t_info		info;
 
-	init_structs(&lst, &info, *env);
+	init_structs(&lst, &info, (*env)->env);
 	make_process(&info, lst, env);
 	dup2(info.fd_in, STDIN_FILENO);
 	dup2(info.fd_out, STDOUT_FILENO);
