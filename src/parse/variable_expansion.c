@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:05:02 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/09 13:26:14 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/14 11:49:58 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 static int	is_char_special_parameter(char c)
 {
-	if (c == '@' || c == '*' || c == '#' || c == '?' || c == '$' \
-	|| c == '-' || c == '!' || c == 34 || c == 39 || c == ' ')
-		return (1);
-	return (0);
+	if (ft_isalnum(c) || c == '_')
+		return (0);
+	return (1);
 }
 
 char	*getvariable(char *var, t_mirage *env)
@@ -51,16 +50,16 @@ char	*get_variable_value(char *s, t_mirage *env)
 		return (ft_strdup(""));
 	if (s[i] == '?')
 		return (ft_itoa(g_output_code));
-	if (s[i] == ' ')
+	if (is_char_special_parameter(s[i]))
 		return (ft_strdup("$"));
 	while (s[i] != 0)
 	{
+		i++;
 		if (is_char_special_parameter(s[i]))
 		{
 			i--;
 			break ;
 		}
-		i++;
 	}
 	var = ft_substr(s, 1, i);
 	aux = getvariable(var, env);
@@ -77,16 +76,16 @@ int	get_variable_tam(char *s)
 		return (1);
 	if (s[i] == '?')
 		return (1);
-	if (s[i] == ' ')
+	if (is_char_special_parameter(s[i]))
 		return (0);
 	while (s[i] != 0)
 	{
+		i++;
 		if (is_char_special_parameter(s[i]))
 		{
 			i--;
 			break ;
 		}
-		i++;
 	}
 	if (s[i] == 0)
 		i--;
