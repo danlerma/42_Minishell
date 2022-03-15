@@ -15,9 +15,10 @@ typedef struct s_lst
 
 typedef struct s_mirage
 {
-	char				*var;
-	char				*name;
-	char				*value;
+	char	*var;
+	char	*name;
+	char	*value;
+	int		mem;
 	struct	s_mirage	*next;
 }t_mirage;
 

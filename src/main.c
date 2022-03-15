@@ -6,13 +6,11 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:57:38 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/11 18:03:19 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/15 18:23:46 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-
-//valgrind --tool=memcheck --leak-check=yes --track-origins=yes ./minishell
 
 void	leaks(void)
 {
@@ -32,7 +30,7 @@ int	main(void)
 	t_lst	*nodes;
 	t_env	*env_lst;
 
-	// atexit(leaks);
+	atexit(leaks);
 	g_output_code = 0;
 	signal_declaration();
 	env_lst = init_env();

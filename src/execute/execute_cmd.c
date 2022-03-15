@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 14:03:39 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/11 18:10:38 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/15 17:14:14 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ static void	make_command(t_info *info, t_lst *lst, char *com)
 		free(cmd);
 	}
 }
-//TODO LIBERAR
 static void	make_one_command(t_info *info, t_lst *lst, char *com)
 {
 	pid_t	child;
