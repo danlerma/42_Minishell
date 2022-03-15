@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 18:21:10 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/15 14:14:47 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/15 17:52:43 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void	delete_var(t_mirage **env, char *var)
 				temp->next = NULL;
 			else
 				temp->next = aux->next;
-			free(aux->var);
+			if (aux->mem == -1)
+				free(aux->var);
 			lstdelone_env(aux, free);
 			free(aux);
 			break;

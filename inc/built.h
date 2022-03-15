@@ -42,6 +42,9 @@ t_mirage	*new_node_env(char *cont);
 //unset
 void	make_unset(t_lst *lst, t_info *info, t_env **env);
 
+//echo
+void	make_echo(t_lst *lst);
+
 //utils_export
 void	show_export(t_mirage *env);
 int	cond_export(t_mirage **head, t_mirage **env, int i);
