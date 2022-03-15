@@ -37,6 +37,7 @@ void	lstdelone_env(t_mirage *lst, void (*del)(void*));
 void	lstclear_env(t_mirage **lst, void (*del)(void *));
 int		lstsize_env(t_mirage *lst);
 t_mirage	*lstnew_env(t_mirage **env);
+t_mirage	*new_node_env(char *cont);
 
 //unset
 void	make_unset(t_lst *lst, t_info *info, t_env **env);

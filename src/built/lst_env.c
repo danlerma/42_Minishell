@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 12:54:42 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/10 13:21:25 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/15 13:44:02 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,19 @@ t_mirage	*lstnew_env(t_mirage **env)
 		temp = temp->next;
 	}
 	return (lst);
+}
+
+t_mirage	*new_node_env(char *cont)
+{
+	t_mirage	*node;
+
+	node = (t_mirage *)ft_calloc(1, sizeof(t_mirage));
+	if (node == NULL)
+		exit(0);
+	node->var = ft_strdup(cont);
+	split_variables(cont, &node);
+	node->next = NULL;
+	return (node);
 }
 
 int	lstsize_env(t_mirage *lst)

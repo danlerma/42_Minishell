@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:45:04 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/08 17:44:39 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/15 14:05:39 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,27 @@
 
 int	check_built(t_lst *lst, t_info *info, char *com, t_env **env)
 {
-	(void)com;
 	// if (ft_strncmp(lst->argv[0], "cd", ft_strlen(lst->argv[0])) == 0)
 	// {
 	// 	make_cd(lst, info, com);
 	// 	info->built = 1;
 	// }
-	// if (ft_strncmp(lst->argv[0], "exit", ft_strlen(lst->argv[0])) == 0)
-	// {
-	// 	make_exit(lst, info, com);
-	// 	info->built = 1;
-	// }
+	if (ft_strncmp(lst->argv[0], "exit", ft_strlen(lst->argv[0])) == 0)
+	{
+		make_exit(lst, info, com);
+		info->built = 1;
+	}
 	if (ft_strncmp(lst->argv[0], "export", ft_strlen("export")) == 0
 		&& ft_strlen("export") == ft_strlen(lst->argv[0]))
 	{
 		make_export(lst, info, env);
 		info->built = 1;
 	}
-	// if (ft_strncmp(lst->argv[0], "unset", ft_strlen(lst->argv[0])) == 0)
-	// {
-	// 	make_unset(lst, info, env);
-	// 	info->built = 1;
-	// }
+	if (ft_strncmp(lst->argv[0], "unset", ft_strlen(lst->argv[0])) == 0)
+	{
+		make_unset(lst, info, env);
+		info->built = 1;
+	}
 	return (info->built);
 }
 

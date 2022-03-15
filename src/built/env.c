@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 18:21:10 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/02 18:33:48 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/15 14:14:47 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,25 +48,17 @@ void	delete_var(t_mirage **env, char *var)
 			&& ft_strlen(var) == ft_strlen(aux->name))
 		{
 			if (aux->next == NULL)
-			{
 				temp->next = NULL;
-				lstdelone_env(aux, free);
-			}
 			else
-			{
 				temp->next = aux->next;
-				lstdelone_env(aux, free);
-			}
+			free(aux->var);
+			lstdelone_env(aux, free);
+			free(aux);
 			break;
 		}
 		temp = aux;
 		aux = aux->next;
 	}
-}
-
-void	insert_var(t_mirage **env, t_mirage *en)
-{
-	add_back_env(env, en);
 }
 
 void	change_val_env(t_mirage **env, char *var, char *value, char *all)
