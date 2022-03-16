@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 16:34:24 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/15 15:38:03 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/16 19:14:04 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ static int	check_chars_ex(t_lst *lst, int i)
 {
 	int	y;
 
-	if (ft_isalpha(lst->argv[i][0]) == 0)
+	if (ft_isalpha(lst->argv[i][0]) == 0 && lst->type[i] == 1)
 	{
 		printf("export: '%s' : not a valid identifier\n", lst->argv[i]);
 		return (1);
 	}
 	y = 0;
-	while (lst->argv[i][y] != 0)
+	while (lst->argv[i][y] != 0 && lst->type[i] == 1)
 	{
 		if (lst->argv[i][y] == 61)
 		{
@@ -105,7 +105,7 @@ static void	new_variable(t_lst *lst, t_env **env)
 void	make_export(t_lst *lst, t_info *info, t_env **env)
 {
 	(void)info;
-	if (lst->n_words == 1)
+	if (lst->argv[1] == NULL || lst->type[1] != 1)
 		sort_export(lst, (*env)->ex_env);
 	else
 		new_variable(lst, env);

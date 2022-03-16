@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:29:18 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/15 19:07:48 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/16 18:30:19 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	make_echo(t_lst *lst)
 
 	i = 1;
 	num = num_argv(lst);
-	show_nodes(lst);
 	if (lst->argv[1] != NULL)
 	{
 		if (ft_strncmp(lst->argv[1], "-n", ft_strlen(lst->argv[1])) == 0
