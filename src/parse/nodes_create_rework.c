@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:30:16 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/14 14:11:13 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/16 13:36:41 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	set_nodes_data_rework(t_lst *nodes, t_list *lst)
 		aux_nodes->argv = ft_calloc(sizeof(char *), aux_nodes->n_words + 1);
 		aux_nodes->type = ft_calloc(sizeof(int *), aux_nodes->n_words);
 		aux_nodes->flag = ft_calloc(sizeof(int *), aux_nodes->n_words);
+		aux_nodes->built = 0;
 		while (i < aux_nodes->n_words)
 		{
 			aux_nodes->argv[i] = get_word(aux);

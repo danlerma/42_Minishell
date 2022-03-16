@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:57:38 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/16 13:03:54 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/16 13:41:23 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(void)
 	t_lst	*nodes;
 	t_env	*env_lst;
 
-	atexit(leaks);
+	//atexit(leaks);
 	g_output_code = 0;
 	signal_declaration();
 	env_lst = init_env();

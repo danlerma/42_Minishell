@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:14:46 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/09 13:19:09 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/16 13:38:31 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	show_nodes(t_lst *nodes)
 	while (aux)
 	{
 		printf("Node %i :\n", nodes_i);
+		printf("Built in - %i\n", aux->built);
 		while (aux->argv[i] != 0)
 		{
 			printf("Argv - %s - %p\n", aux->argv[i], aux->argv[i]);

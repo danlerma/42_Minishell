@@ -10,6 +10,7 @@ typedef struct s_lst
 	char			**argv;
 	int				*type;
 	int				*flag;
+	int				built;
 	struct s_lst	*next;
 }t_lst;
 

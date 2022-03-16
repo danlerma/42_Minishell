@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 13:15:05 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/16 13:02:42 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/16 13:37:57 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@ static t_lst	*set_types_nodes(t_lst *node)
 			node->type[i] = 6;
 		else if (ft_strncmp(node->argv[i], ">>", sizeof(node->argv[i])) == 0)
 			node->type[i] = 7;
-		else if (is_builtin(node->argv[i]))
-			node->type[i] = 3;
 		else
 			node->type[i] = 1;
+		if (is_builtin(node->argv[i]))
+			node->built = 1;
 		if (i > 0 && (node->type[i - 1] == 2 || node->type[i - 1] == 4 \
 			|| node->type[i - 1] == 7))
 			node->type[i] = 5;
