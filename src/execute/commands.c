@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:37:32 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/16 19:04:36 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/17 12:56:30 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	no_path(t_lst *lst, t_info *info, t_env **env)
 		free (com);
 	}
 	else if (check_built(lst, info, com, env) == 0)
-		perror(lst->argv[info->cmd->pos]);
+		printf("%s: no such file or directory\n", lst->argv[info->cmd->pos]);
 }
 
 static void	with_path(t_lst *lst, t_info *info, t_env **env)

@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:29:18 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/16 18:30:19 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/17 12:31:03 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,22 @@ void	make_echo(t_lst *lst)
 			&& ft_strlen("-n") == ft_strlen(lst->argv[1]))
 		{
 			while (++i < num - 1)
-				printf("%s ", lst->argv[i]);
-			printf("%s", lst->argv[i]);
+				if (lst->argv[i] != NULL && lst->type[i] == 1)
+					write(1, lst->argv[i], ft_strlen(lst->argv[i]));
+			if (lst->argv[i] != NULL && lst->type[i] == 1)
+				write(1, lst->argv[i], ft_strlen(lst->argv[i]));
+
 		}
 		else
 		{
 			while (i < num - 1)
 			{
-				printf("%s ", lst->argv[i]);
+				if (lst->type[i] == 1)
+					printf("%s ", lst->argv[i]);
 				i++;
 			}
-			printf("%s\n", lst->argv[i]);
+			if (lst->type[i] == 1)
+				printf("%s\n", lst->argv[i]);
 		}
 	}
 }

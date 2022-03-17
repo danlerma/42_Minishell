@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:57:38 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/16 13:41:23 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/17 13:05:32 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(void)
 		nodes = create_nodes_rework(argv, env_lst->env);
 		if (nodes_check_error(nodes))
 		{
-			//show_nodes(nodes);
+			// show_nodes(nodes);
 			exec(nodes, &env_lst);
 		}
 		free_nodes(nodes, argv);
@@ -53,5 +53,3 @@ int	main(void)
 	free_env(&env_lst);
 	return (0);
 }
-//system("leaks -q minishell");
-//s_mirage(env);
