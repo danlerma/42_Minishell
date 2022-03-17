@@ -25,7 +25,7 @@ int		is_sorted(t_mirage **stack, int num);
 
 //cd
 void	make_exit(t_lst *lst, t_info *info, char *com);
-void	make_cd(t_lst *lst, t_info *info, char *com);
+void	make_cd(t_lst *lst, t_info *info, t_env **env);
 
 //export
 void	make_export(t_lst *lst, t_info *info, t_env **env);
@@ -48,5 +48,8 @@ void	make_echo(t_lst *lst);
 //utils_export
 void	show_export(t_mirage *env);
 int	cond_export(t_mirage **head, t_mirage **env, int i);
+
+//pwd
+void	make_pwd(t_lst *lst, t_info *info, t_env *env);
 
 #endif

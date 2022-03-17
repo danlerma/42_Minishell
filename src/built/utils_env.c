@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:45:04 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/15 19:03:00 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/17 13:48:20 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,20 @@
 
 int	check_built(t_lst *lst, t_info *info, char *com, t_env **env)
 {
-	// if (ft_strncmp(lst->argv[0], "cd", ft_strlen(lst->argv[0])) == 0)
-	// {
-	// 	make_cd(lst, info, com);
-	// 	info->built = 1;
-	// }
-	if (ft_strncmp(lst->argv[0], "exit", ft_strlen(lst->argv[0])) == 0)
+	if (ft_strncmp(lst->argv[0], "cd", ft_strlen("cd")) == 0
+		&& ft_strlen("cd") == ft_strlen(lst->argv[0]))
+	{
+		make_cd(lst, info, env);
+		info->built = 1;
+	}
+	if (ft_strncmp(lst->argv[0], "pwd", ft_strlen("pwd")) == 0
+		&& ft_strlen("pwd") == ft_strlen(lst->argv[0]))
+	{
+		make_pwd(lst, info, *env);
+		info->built = 1;
+	}
+	if (ft_strncmp(lst->argv[0], "exit", ft_strlen("exit")) == 0
+		&& ft_strlen("exit") == ft_strlen(lst->argv[0]))
 	{
 		make_exit(lst, info, com);
 		info->built = 1;
