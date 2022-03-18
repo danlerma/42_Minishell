@@ -1,34 +1,77 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cd.c                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/18 12:13:58 by dlerma-c          #+#    #+#             */
+/*   Updated: 2022/03/18 13:14:36 by dlerma-c         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include<minishell.h>
-/*
-No es cambiar el environment, es hacer creer que lo has cambiado
-Es un espejismo
-*/
-void	make_cd(t_lst *lst, t_info *info, t_env **env)
+
+static void	change_dir(t_env **env, char *dir, char *msg, char *m)
+{
+	char	*old;
+
+	if (get_name_env((*env)->env, msg) != NULL)
+	{
+		delete_var(&(*env)->env, msg);
+		delete_var(&(*env)->ex_env, msg);
+	}
+	old = ft_strjoin(m, dir);
+	add_back_env(&(*env)->env, new_node_env(old));
+	add_back_env(&(*env)->ex_env, new_node_env(old));
+	free(old);
+}
+
+static void	move_dir(t_lst *lst, t_info *info, t_env **env)
 {
 	char	**cmd;
-	char	*home;
+	char	dir[4096];
 
-	/*
-	Si no tiene nada de argumentos, solo el cd, por defecto se tiene que
-	mover a la variable HOME
-	Si meten cd -, hay que mostrar el ultimo cd hechom si es la primera vez,
-	tiene que mostrar: bash: cd: OLDPWD not set
-	si meten cd .., es mover arriba, lo unico que hay que hacer es actualizar
-	el OLDPATH.
-	Lo mismo pasa con .
-	*/
-	if (lst->argv[1] == NULL)
+	getcwd(dir, sizeof(dir));
+	change_dir(env, dir, "OLDPWD", "OLDPWD=");
+	cmd = create_cmd(lst, info);
+	chdir(cmd[1]);
+	free(cmd);
+	getcwd(dir, sizeof(dir));
+	change_dir(env, dir, "PWD", "PWD=");
+}
+
+static void	move_home(t_env **env)
+{
+	char	*home;
+	char	dir[4096];
+
+	home = get_val_env((*env)->env, "HOME");
+	if (home != NULL)
 	{
-		home = get_val_env((*env)->env, "HOME");
-		if (home != NULL)
-			chdir(home);
-		else
-			printf("cd: HOME not set\n");
+		getcwd(dir, sizeof(dir));
+		change_dir(env, dir, "OLDPWD", "OLDPWD=");
+		chdir(home);
+		getcwd(dir, sizeof(dir));
+		change_dir(env, dir, "PWD", "PWD=");
 	}
 	else
+		printf("cd: HOME not set\n");
+}
+
+void	make_cd(t_lst *lst, t_info *info, t_env **env)
+{
+	if (lst->argv[1] == NULL)
+		move_home(env);
+	else if (ft_strncmp(lst->argv[1], "-", 1) == 0
+		&& ft_strlen(lst->argv[1]) == 1)
 	{
-		cmd = create_cmd(lst, info);
-		chdir(cmd[1]);
-		free(cmd);
+		if (get_name_env((*env)->env, "OLDPWD") == NULL)
+			printf("cd: OLDPWD not set\n");
+		else
+			printf("%s\n", get_val_env((*env)->env, "OLDPWD"));
 	}
+	else if (ft_strncmp(lst->argv[1], "-", 1) != 0
+		&& ft_strlen(lst->argv[1]) != 1)
+		move_dir(lst, info, env);
 }

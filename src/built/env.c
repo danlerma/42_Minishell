@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 18:21:10 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/15 17:52:43 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/18 12:57:27 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,3 +85,37 @@ void	change_val_env(t_mirage **env, char *var, char *value, char *all)
 		aux = aux->next;
 	}
 }
+
+
+/*static void	change_dir(t_env **env, char *dir, char *msg, char *m)
+{
+	char	*old;
+
+	printf("CAMBIO %s\n", dir);
+	if (get_name_env((*env)->env, msg) != NULL)
+	{
+		delete_var(&(*env)->env, msg);
+		delete_var(&(*env)->ex_env, msg);
+	}
+	else
+	{
+		old = ft_strjoin(m, dir);
+		add_back_env(&(*env)->env, new_node_env(old));
+		add_back_env(&(*env)->ex_env, new_node_env(old));
+		free(old);
+	}
+}
+
+static void	move_dir(t_lst *lst, t_info *info, t_env **env)
+{
+	char	**cmd;
+	char	dir[4096];
+
+	getcwd(dir, sizeof(dir));
+	change_dir(env, dir, "OLDPWD", "OLDPWD=");
+	cmd = create_cmd(lst, info);
+	chdir(cmd[1]);
+	free(cmd);
+	getcwd(dir, sizeof(dir));
+	change_dir(env, dir, "PWD", "PWD=");
+}*/
