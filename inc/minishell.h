@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/18 17:21:04 by dlerma-c          #+#    #+#             */
+/*   Updated: 2022/03/18 17:21:15 by dlerma-c         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 
 # define MINISHELL_H
@@ -24,6 +36,5 @@
 # include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-
 
 #endif

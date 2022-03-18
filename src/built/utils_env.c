@@ -6,22 +6,20 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:45:04 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/17 13:48:20 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/18 17:54:32 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<minishell.h>
 
-int	check_built(t_lst *lst, t_info *info, char *com, t_env **env)
+static int	norm_built(t_lst *lst, t_info *info, t_env **env)
 {
-	if (ft_strncmp(lst->argv[0], "cd", ft_strlen("cd")) == 0
-		&& ft_strlen("cd") == ft_strlen(lst->argv[0]))
+	if (ft_strncmp(lst->argv[0], "cd", 2) == 0 && ft_strlen(lst->argv[0]) == 2)
 	{
 		make_cd(lst, info, env);
 		info->built = 1;
 	}
-	if (ft_strncmp(lst->argv[0], "pwd", ft_strlen("pwd")) == 0
-		&& ft_strlen("pwd") == ft_strlen(lst->argv[0]))
+	if (ft_strncmp(lst->argv[0], "pwd", 3) == 0 && ft_strlen(lst->argv[0]) == 3)
 	{
 		make_pwd(lst, info, *env);
 		info->built = 1;
@@ -29,9 +27,15 @@ int	check_built(t_lst *lst, t_info *info, char *com, t_env **env)
 	if (ft_strncmp(lst->argv[0], "exit", ft_strlen("exit")) == 0
 		&& ft_strlen("exit") == ft_strlen(lst->argv[0]))
 	{
-		make_exit(lst, info, com);
+		make_exit(lst, info);
 		info->built = 1;
 	}
+	return (info->built);
+}
+
+int	check_built(t_lst *lst, t_info *info, t_env **env)
+{
+	info->built = norm_built(lst, info, env);
 	if (ft_strncmp(lst->argv[0], "export", ft_strlen("export")) == 0
 		&& ft_strlen("export") == ft_strlen(lst->argv[0]))
 	{
@@ -61,15 +65,14 @@ void	split_variables(char *variable, t_mirage **env)
 	(*env)->name = var[0];
 	(*env)->value = var[1];
 	free(var);
-
 }
-//TODO liberar
+
 char	**lst2array(t_mirage *env)
 {
 	char	**arr;
 	int		i;
 
-	arr = (char **)ft_calloc(lstsize_env(env) + 1, sizeof(char*));
+	arr = (char **)ft_calloc(lstsize_env(env) + 1, sizeof(char *));
 	if (arr == NULL)
 		exit(0);
 	i = 0;
@@ -85,13 +88,14 @@ char	**lst2array(t_mirage *env)
 int	is_sorted(t_mirage **stack, int num)
 {
 	t_mirage	*temp;
-	int		i;
+	int			i;
 
 	temp = *stack;
 	i = 0;
 	while (i < num - 1 && temp->next != NULL)
 	{
-		if (ft_strncmp(temp->name, temp->next->name, ft_strlen(temp->name) + ft_strlen(temp->next->name)) > 0)
+		if (ft_strncmp(temp->name, temp->next->name, ft_strlen(temp->name)
+				+ ft_strlen(temp->next->name)) > 0)
 			return (1);
 		temp = temp->next;
 		i++;

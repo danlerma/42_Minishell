@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 12:54:42 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/15 17:32:48 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/18 17:45:49 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,6 @@ t_mirage	*lstnew_env(t_mirage **env)
 	return (lst);
 }
 
-t_mirage	*new_node_env(char *cont)
-{
-	t_mirage	*node;
-
-	node = (t_mirage *)ft_calloc(1, sizeof(t_mirage));
-	if (node == NULL)
-		exit(0);
-	node->var = ft_strdup(cont);
-	split_variables(cont, &node);
-	node->mem = -1;
-	node->next = NULL;
-	return (node);
-}
-
 int	lstsize_env(t_mirage *lst)
 {
 	int	i;
@@ -70,23 +56,18 @@ int	lstsize_env(t_mirage *lst)
 void	add_back_env(t_mirage **lst, t_mirage *new)
 {
 	t_mirage	*aux;
+	t_mirage	*last;
 
 	if (*lst == NULL)
 		*lst = new;
 	else if (*lst)
 	{
-		aux = lstlast_env(*lst);
+		last = *lst;
+		while (last->next)
+			last = last->next;
+		aux = last;
 		aux->next = new;
 	}
-}
-
-t_mirage	*lstlast_env(t_mirage *lst)
-{
-	if (lst == NULL)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
 }
 
 void	lstdelone_env(t_mirage *lst, void (*del)(void*))

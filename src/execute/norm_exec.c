@@ -1,44 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   general.h                                          :+:      :+:    :+:   */
+/*   norm_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/18 17:20:16 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/18 17:20:44 by dlerma-c         ###   ########.fr       */
+/*   Created: 2022/03/18 18:12:34 by dlerma-c          #+#    #+#             */
+/*   Updated: 2022/03/18 18:24:34 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GENERAL_H
+#include<minishell.h>
 
-# define GENERAL_H
-
-int	g_output_code;
-
-typedef struct s_lst
+void	norm_cmd_child(t_lst *lst, t_info *info, char *com)
 {
-	int				n_words;
-	char			**argv;
-	int				*type;
-	int				*flag;
-	int				built;
-	struct s_lst	*next;
-}t_lst;
+	if (com == NULL)
+	{
+		check_redir(info, lst, 0);
+		exit(0);
+	}
+}
 
-typedef struct s_mirage
+void	norm_cmd_father(t_info *info, char **cmd)
 {
-	char			*var;
-	char			*name;
-	char			*value;
-	int				mem;
-	struct s_mirage	*next;
-}t_mirage;
-
-typedef struct s_env
-{
-	t_mirage	*env;
-	t_mirage	*ex_env;
-}t_env;
-
-#endif
+	close(info->pipe[info->np][1]);
+	dup2(info->pipe[info->np][0], STDIN_FILENO);
+	close(info->pipe[info->np][0]);
+	free(cmd);
+}

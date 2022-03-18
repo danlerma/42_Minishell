@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:55:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/15 16:21:34 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/18 18:22:39 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,48 +18,28 @@
 
 typedef struct s_command
 {
-	int		nc; //num de commandos totales (Reciclar)
-	int		pos; //posicion del primer comando actual (Reciclar)
-	char	**cmd; //comando a ejecutar(Reciclar)
-	char	*com; //comando para el execuve(Reciclar)
+	int		nc;
+	int		pos;
+	char	**cmd;
+	char	*com;
 }t_command;
 
 typedef struct s_info
 {
-	int			nlst; //numero de nodos
-	int			built; //saber si es built o no
-	int			iter; //iterador de archivos heredoc
-	char		**paths; //path env (sin modificar)
-	char		**path; //path env (modificada)
-	int			**pipe; //matriz de pipes
-	int			pos; //posicion del nodo
-	int			np; //numero de pipes para saber en cual estoy
-	int			nh; //numero de heredoc
-	int			fd_in; //STDIN
-	int			fd_out; //STDOUT
-	char		**env; //environ
-	t_command	*cmd; //puntero a estructura de commandos
+	int			nlst;
+	int			built;
+	int			iter;
+	char		**paths;
+	char		**path;
+	int			**pipe;
+	int			pos;
+	int			np;
+	int			nh;
+	int			fd_in;
+	int			fd_out;
+	char		**env;
+	t_command	*cmd;
 }t_info;
-
-/*
-	1- comando simple -> cat, wc -w, ls...
-	2- redirecion in <
-	4- redireción out >
-	5- archivo
-	6- heredoc <<
-	7- append >>
-	8- texto
-
-
-
-	TODO
-	heredoc que pare con ctrl-D
-	meter señales
-	sacar errores en ejecucion
-	eliminar PATH
-	error de permisos
-	flag para heredoc
-*/
 
 //execute
 void	exec(t_lst *lst, t_env **env);
@@ -74,6 +54,9 @@ void	make_process(t_info *info, t_lst *lst, t_env **env);
 
 //execute_cmd
 void	search_command(t_info *info, t_lst *lst, char *com, t_env **env);
+
+//norm_exec
+void	norm_cmd_child(t_lst *lst, t_info *info, char *com);
 
 //show list
 void	s_list(t_lst *lst);

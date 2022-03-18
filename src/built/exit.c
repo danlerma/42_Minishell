@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 13:09:10 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/18 12:24:28 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/18 17:51:16 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<minishell.h>
 
-static void	exec_exit(int exit_code, t_lst *lst, t_info *info, char *com)
+static void	exec_exit(int exit_code, t_lst *lst, t_info *info)
 {
-	(void)com;
 	(void)lst;
 	(void)info;
 	exit(exit_code);
@@ -40,7 +39,7 @@ int	check_numeric_arg(t_lst *lst)
 	return (check);
 }
 
-void	make_exit(t_lst *lst, t_info *info, char *com)
+void	make_exit(t_lst *lst, t_info *info)
 {
 	printf("exit\n");
 	if (lst->n_words <= 2)
@@ -48,10 +47,10 @@ void	make_exit(t_lst *lst, t_info *info, char *com)
 		if (lst->n_words == 2)
 		{
 			if (check_numeric_arg(lst))
-				exec_exit(ft_atoi(lst->argv[1]), lst, info, com);
+				exec_exit(ft_atoi(lst->argv[1]), lst, info);
 		}
 		else
-			exec_exit(0, lst, info, com);
+			exec_exit(0, lst, info);
 	}
 	else
 		printf("bash: exit: too many arguments\n");

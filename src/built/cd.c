@@ -6,11 +6,25 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 12:13:58 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/18 13:14:36 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/18 17:45:37 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<minishell.h>
+
+t_mirage	*new_node_env(char *cont)
+{
+	t_mirage	*node;
+
+	node = (t_mirage *)ft_calloc(1, sizeof(t_mirage));
+	if (node == NULL)
+		exit(0);
+	node->var = ft_strdup(cont);
+	split_variables(cont, &node);
+	node->mem = -1;
+	node->next = NULL;
+	return (node);
+}
 
 static void	change_dir(t_env **env, char *dir, char *msg, char *m)
 {

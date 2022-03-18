@@ -6,16 +6,11 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:57:38 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/17 13:05:32 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/18 17:55:43 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-
-void	leaks(void)
-{
-	system("leaks -q minishell");
-}
 
 static void	free_env(t_env **env_lst)
 {
@@ -30,7 +25,6 @@ int	main(void)
 	t_lst	*nodes;
 	t_env	*env_lst;
 
-	//atexit(leaks);
 	g_output_code = 0;
 	signal_declaration();
 	env_lst = init_env();
@@ -42,12 +36,8 @@ int	main(void)
 		add_history(argv);
 		nodes = create_nodes_rework(argv, env_lst->env);
 		if (nodes_check_error(nodes))
-		{
-			// show_nodes(nodes);
 			exec(nodes, &env_lst);
-		}
 		free_nodes(nodes, argv);
-		//system("leaks -q minishell");
 	}
 	s_mirage(env_lst->ex_env);
 	free_env(&env_lst);
