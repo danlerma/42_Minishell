@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 12:50:27 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/09 13:02:55 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/18 15:33:05 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 static void	signal_control(int signum)
 {
+	//printf("Señal recibida %i \n",signum);
 	if (signum == SIGINT)
 		printf("\n");
+	printf(BLUE"Mini"YELLOW"Shell"RESET" ");
 }
 //else if (signum == SIGQUIT)
 
