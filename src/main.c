@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:57:38 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/21 14:33:09 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:03:21 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	main(void)
 			exit(0);
 		add_history(argv);
 		nodes = create_nodes_rework(argv, env_lst->env);
-		show_nodes(nodes);
 		if (nodes_check_error(nodes))
 			exec(nodes, &env_lst);
 		free_nodes(nodes, argv);
