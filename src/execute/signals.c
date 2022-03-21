@@ -6,20 +6,34 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 12:50:27 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/18 15:33:05 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/21 14:17:11 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
+static	void	jump_line(void)
+{
+	printf("\n");
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
+}
+
+static	void	do_nothing(void)
+{
+	rl_on_new_line();
+	rl_replace_line(rl_line_buffer, rl_end);
+	rl_redisplay();
+}
+
 static void	signal_control(int signum)
 {
-	//printf("Señal recibida %i \n",signum);
 	if (signum == SIGINT)
-		printf("\n");
-	printf(BLUE"Mini"YELLOW"Shell"RESET" ");
+		jump_line();
+	else if (signum == SIGQUIT)
+		do_nothing();
 }
-//else if (signum == SIGQUIT)
 
 void	signal_declaration(void)
 {
