@@ -6,7 +6,7 @@
 #    By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/08 10:12:01 by dlerma-c          #+#    #+#              #
-#    Updated: 2022/03/18 18:03:47 by dlerma-c         ###   ########.fr        #
+#    Updated: 2022/03/21 13:23:04 by dlerma-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ SRCS_BUILT_PATH = built
 
 SRCS_PARSE = nodes_set_data.c free_data.c nodes_utils.c nodes_create_rework.c \
 			parse_str.c split_data_lst_rework.c variable_expansion.c \
-			check_data_structures.c
+			check_data_structures.c utils_split_data_lst.c
 SRCS_EXE = execute.c make_process.c show_list.c commands.c init.c files.c \
 			utils.c here.c lst.c signals.c execute_cmd.c norm_exec.c
 SRCS_BUILT = cd.c export.c env.c unset.c utils_env.c utils_export.c lst_env.c \

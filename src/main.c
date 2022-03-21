@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:57:38 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/18 17:55:43 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/21 13:23:53 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	main(void)
 			exit(0);
 		add_history(argv);
 		nodes = create_nodes_rework(argv, env_lst->env);
+		show_nodes(nodes);
 		if (nodes_check_error(nodes))
 			exec(nodes, &env_lst);
 		free_nodes(nodes, argv);

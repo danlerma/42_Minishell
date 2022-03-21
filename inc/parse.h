@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:55:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/09 13:50:58 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/21 13:25:46 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,9 @@ char	*getvariable(char *var, t_mirage *env);
 //show structured data
 void	show_recorded_lst(t_list *argv);
 void	show_nodes(t_lst *nodes);
+
+//utils_split_data_lst
+int		is_separator_rework(char const *c);
+int		get_tam_word_rework(char const *s);
 
 #endif
