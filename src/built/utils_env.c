@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:45:04 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/18 17:54:32 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/21 17:20:27 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,14 @@ int	check_built(t_lst *lst, t_info *info, t_env **env)
 void	split_variables(char *variable, t_mirage **env)
 {
 	char	**var;
+	int		i;
 
 	var = ft_split(variable, '=');
 	(*env)->name = var[0];
 	(*env)->value = var[1];
+	i = 1;
+	while (var[++i] != NULL)
+		free(var[i]);
 	free(var);
 }
 
