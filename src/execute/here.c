@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:33:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/21 13:16:52 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:02:03 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static int	loop_heredoc(t_lst *lst, int pos, char *file)
 	char	*line;
 	int		f;
 
-	line = get_next_line(STDIN_FILENO);
+	line = readline("> ");
 	if (line == NULL)
 		return (1);
 	if (ft_strncmp(line, lst->argv[pos], ft_strlen(lst->argv[pos])) == 0
-		&& (ft_strlen(line) - 1) == ft_strlen(lst->argv[pos]))
+		&& (ft_strlen(line)) == ft_strlen(lst->argv[pos]))
 	{
 		free(line);
 		return (1);
@@ -30,6 +30,7 @@ static int	loop_heredoc(t_lst *lst, int pos, char *file)
 	if (f < 0)
 		exit(0);
 	write(f, line, ft_strlen(line));
+	write(f, "\n", 1);
 	close(f);
 	free(line);
 	return (0);
