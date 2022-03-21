@@ -3,48 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   split_data_lst_rework.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 13:24:04 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/21 13:19:45 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:26:49 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-
-// static int	is_separator_rework(char const *c)
-// {
-// 	if (c[0] == ' ' || c[0] == '>' || c[0] == '<' || c[0] == '|')
-// 	{
-// 		return (1);
-// 	}
-// 	return (0);
-// }
-
-// static int	get_tam_word_rework(char const *s)
-// {
-// 	int		tam;
-// 	char	aux;
-
-// 	tam = 0;
-// 	while (s[tam] != 0)
-// 	{
-// 		if (s[tam] == 34 || s[tam] == 39)
-// 		{
-// 			aux = s[tam];
-// 			while (s[tam] != 0)
-// 			{
-// 				tam++;
-// 				if (s[tam] == aux)
-// 					break ;
-// 			}
-// 		}
-// 		else if (is_separator_rework(&s[tam]))
-// 			return (tam);
-// 		tam++;
-// 	}
-// 	return (tam);
-// }
 
 static int	get_tam_token_rework(char const *s)
 {

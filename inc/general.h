@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   general.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:20:16 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/18 17:20:44 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/21 18:07:34 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,14 @@
 
 # define GENERAL_H
 
-int	g_output_code;
+typedef struct s_global_lst
+{
+	int	g_output_code;
+	int	is_here_doc;
+	int	signal_heredoc;
+}t_global_lst;
+
+t_global_lst	*g_general_data;
 
 typedef struct s_lst
 {

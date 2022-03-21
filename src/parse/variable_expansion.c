@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:05:02 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/14 11:49:58 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:32:05 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*get_variable_value(char *s, t_mirage *env)
 	if (ft_isdigit(s[i]))
 		return (ft_strdup(""));
 	if (s[i] == '?')
-		return (ft_itoa(g_output_code));
+		return (ft_itoa(g_general_data->g_output_code));
 	if (is_char_special_parameter(s[i]))
 		return (ft_strdup("$"));
 	while (s[i] != 0)

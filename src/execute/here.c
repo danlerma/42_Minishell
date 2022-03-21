@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:33:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/21 16:02:03 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/21 19:18:10 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,13 @@ static int	loop_heredoc(t_lst *lst, int pos, char *file)
 	char	*line;
 	int		f;
 
+	//line = get_next_line(STDIN_FILENO);
 	line = readline("> ");
+	if (g_general_data->signal_heredoc == 1)
+	{
+		free (line);
+		return (1);
+	}
 	if (line == NULL)
 		return (1);
 	if (ft_strncmp(line, lst->argv[pos], ft_strlen(lst->argv[pos])) == 0
@@ -46,9 +52,13 @@ static void	make_heredoc(t_lst *lst, char *file, int pos)
 		perror(file);
 		exit(0);
 	}
+	//signal_heredoc();
+	g_general_data->is_here_doc = 1;
 	while (1)
 		if (loop_heredoc(lst, pos, file) == 1)
 			break ;
+	g_general_data->signal_heredoc = 0;
+	g_general_data->is_here_doc = 0;
 	close(f1);
 }
 

@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:57:38 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/21 16:03:21 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/21 18:27:29 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+static	t_global_lst	*declare_global_struct(void)
+{
+	t_global_lst	*list;
+
+	list = ft_calloc(sizeof(t_global_lst), 1);
+	list->g_output_code = 0;
+	list->is_here_doc = 0;
+	list->signal_heredoc = 0;
+	return (list);
+}
 
 static void	free_env(t_env **env_lst)
 {
@@ -25,11 +36,11 @@ int	main(void)
 	t_lst	*nodes;
 	t_env	*env_lst;
 
-	g_output_code = 0;
-	signal_declaration();
+	g_general_data = declare_global_struct();
 	env_lst = init_env();
 	while (1)
 	{
+		signal_main();
 		argv = readline(BLUE"Mini"YELLOW"Shell"RESET" ");
 		if (argv == NULL)
 			exit(0);

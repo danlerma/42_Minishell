@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:55:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/21 12:05:26 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/21 19:17:51 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,6 @@ void	check_here(t_info *info, t_lst *lst);
 t_lst	*argv_init_temp(char **argv, int argc);
 
 //signals
-void	signal_declaration(void);
+void	signal_main(void);
+//void	signal_heredoc(void);
 #endif
