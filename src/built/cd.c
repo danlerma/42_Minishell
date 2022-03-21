@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 12:13:58 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/18 17:45:37 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/21 12:08:55 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ static void	move_dir(t_lst *lst, t_info *info, t_env **env)
 	getcwd(dir, sizeof(dir));
 	change_dir(env, dir, "OLDPWD", "OLDPWD=");
 	cmd = create_cmd(lst, info);
-	chdir(cmd[1]);
+	if (chdir(cmd[1]) == -1)
+		printf("cd: %s: No such file or directory\n", cmd[1]);
 	free(cmd);
 	getcwd(dir, sizeof(dir));
 	change_dir(env, dir, "PWD", "PWD=");

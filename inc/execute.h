@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:55:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/18 18:22:39 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/21 12:05:26 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	search_command(t_info *info, t_lst *lst, char *com, t_env **env);
 
 //norm_exec
 void	norm_cmd_child(t_lst *lst, t_info *info, char *com);
+void	norm_cmd_father(t_info *info, char **cmd);
 
 //show list
 void	s_list(t_lst *lst);
