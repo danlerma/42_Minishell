@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 13:09:10 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/18 17:51:16 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:06:40 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	check_numeric_arg(t_lst *lst)
 	str = ft_itoa(exit_nbr);
 	if (ft_strncmp(lst->argv[1], str, sizeof(lst->argv[1])) != 0)
 	{
+		g_output_code = 255;
 		printf("bash: exit: %s: numeric argument required\n", lst->argv[1]);
 		free(str);
 		check = 0;
@@ -53,5 +54,8 @@ void	make_exit(t_lst *lst, t_info *info)
 			exec_exit(0, lst, info);
 	}
 	else
+	{
+		g_output_code = 1;
 		printf("bash: exit: too many arguments\n");
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 12:13:58 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/21 12:08:55 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:01:14 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ static void	move_dir(t_lst *lst, t_info *info, t_env **env)
 	change_dir(env, dir, "OLDPWD", "OLDPWD=");
 	cmd = create_cmd(lst, info);
 	if (chdir(cmd[1]) == -1)
+	{
+		g_output_code = 1;
 		printf("cd: %s: No such file or directory\n", cmd[1]);
+	}
 	free(cmd);
 	getcwd(dir, sizeof(dir));
 	change_dir(env, dir, "PWD", "PWD=");
