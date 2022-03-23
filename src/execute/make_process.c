@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:40:23 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/02 14:38:24 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/23 20:01:52 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,15 @@ void	make_process(t_info *info, t_lst *lst, t_env **env)
 
 	i = 0;
 	check_here(info, lst);
-	while (lst)
+	if (g_general_data->signal_heredoc == 0)
 	{
-		info->pos = i;
-		commands(info, lst, env);
-		lst = lst->next;
-		i++;
+		while (lst)
+		{
+			info->pos = i;
+			commands(info, lst, env);
+			lst = lst->next;
+			i++;
+		}
+		wait_child(info);
 	}
-	wait_child(info);
 }

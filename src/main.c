@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:57:38 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/21 18:27:29 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/23 18:07:31 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ static	t_global_lst	*declare_global_struct(void)
 	t_global_lst	*list;
 
 	list = ft_calloc(sizeof(t_global_lst), 1);
-	list->g_output_code = 0;
-	list->is_here_doc = 0;
+	list->g_output_code = 1;
 	list->signal_heredoc = 0;
 	return (list);
 }
@@ -43,7 +42,10 @@ int	main(void)
 		signal_main();
 		argv = readline(BLUE"Mini"YELLOW"Shell"RESET" ");
 		if (argv == NULL)
+		{
+			printf("exit\n");
 			exit(0);
+		}
 		add_history(argv);
 		nodes = create_nodes_rework(argv, env_lst->env);
 		if (nodes_check_error(nodes))

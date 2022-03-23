@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 14:03:39 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/21 15:54:39 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/23 16:27:41 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ static void	make_last_command(t_info *info, t_lst *lst, char *com, t_env **env)
 
 	cmd = create_cmd(lst, info);
 	info->np--;
+	g_general_data->g_output_code = 0;
 	child = fork();
 	if (child < 0 || info->pipe[info->np] == NULL)
 		exit(0);
 	if (child == 0)
 	{
+		signal_son();
 		check_redir(info, lst, 1);
 		close(info->pipe[info->np][0]);
 		close(info->pipe[info->np][1]);
@@ -41,12 +43,14 @@ static void	make_command(t_info *info, t_lst *lst, char *com, t_env **env)
 	pid_t	child;
 	char	**cmd;
 
+	g_general_data->g_output_code = 0;
 	cmd = create_cmd(lst, info);
 	child = fork();
 	if (child < 0 || info->pipe[info->np] == NULL)
 		exit(0);
 	if (child == 0)
 	{
+		signal_son();
 		norm_cmd_child(lst, info, com);
 		close(info->pipe[info->np][0]);
 		dup2(info->pipe[info->np][1], STDOUT_FILENO);
@@ -67,12 +71,14 @@ static void	make_one_command(t_info *info, t_lst *lst, char *com, t_env **env)
 	char	**cmd;
 
 	(void)env;
+	g_general_data->g_output_code = 0;
 	cmd = create_cmd(lst, info);
 	child = fork();
 	if (child < 0)
 		exit(0);
 	if (child == 0)
 	{
+		signal_son();
 		check_redir(info, lst, 1);
 		if (execve(com, cmd, info->env) == -1)
 		{

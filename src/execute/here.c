@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:33:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/21 19:18:10 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/23 21:11:54 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,7 @@ static int	loop_heredoc(t_lst *lst, int pos, char *file)
 	char	*line;
 	int		f;
 
-	//line = get_next_line(STDIN_FILENO);
 	line = readline("> ");
-	if (g_general_data->signal_heredoc == 1)
-	{
-		free (line);
-		return (1);
-	}
 	if (line == NULL)
 		return (1);
 	if (ft_strncmp(line, lst->argv[pos], ft_strlen(lst->argv[pos])) == 0
@@ -45,6 +39,7 @@ static int	loop_heredoc(t_lst *lst, int pos, char *file)
 static void	make_heredoc(t_lst *lst, char *file, int pos)
 {
 	int		f1;
+	pid_t	child;
 
 	f1 = open(file, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (f1 < 0)
@@ -52,13 +47,19 @@ static void	make_heredoc(t_lst *lst, char *file, int pos)
 		perror(file);
 		exit(0);
 	}
-	//signal_heredoc();
-	g_general_data->is_here_doc = 1;
-	while (1)
-		if (loop_heredoc(lst, pos, file) == 1)
-			break ;
-	g_general_data->signal_heredoc = 0;
-	g_general_data->is_here_doc = 0;
+	child = fork();
+	if (child < 0)
+		exit(0);
+	if (child == 0)
+	{
+		signal_heredoc();
+		while (1)
+			if (loop_heredoc(lst, pos, file) == 1)
+				break ;
+		heredoc_signal_check(0);
+		exit(0);
+	}
+	wait(&child);
 	close(f1);
 }
 
@@ -71,7 +72,7 @@ static int	loop_check_here(t_lst *lst, t_info *info, int y, int n)
 
 	i = 0;
 	num = n;
-	while (lst->argv[i])
+	while (lst->argv[i] && g_general_data->signal_heredoc == 0)
 	{
 		if (lst->type[i] == 6)
 		{
@@ -80,6 +81,8 @@ static int	loop_check_here(t_lst *lst, t_info *info, int y, int n)
 			make_heredoc(lst, file, i + 1);
 			free(file);
 			free(nbr);
+			if (heredoc_signal_check(1))
+				g_general_data->signal_heredoc = 1;
 			info->nh = num;
 			num++;
 		}
@@ -95,9 +98,12 @@ void	check_here(t_info *info, t_lst *lst)
 
 	num = 0;
 	y = 0;
+	g_general_data->signal_heredoc = 0;
 	while (lst)
 	{
 		num = loop_check_here(lst, info, y, num);
+		if (g_general_data->signal_heredoc == 1)
+			break ;
 		lst = lst->next;
 		y++;
 	}

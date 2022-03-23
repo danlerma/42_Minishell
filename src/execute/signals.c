@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 12:50:27 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/21 19:17:55 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/23 16:49:19 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 static	void	jump_line(void)
 {
-	if (g_general_data->is_here_doc == 1)
-			g_general_data->signal_heredoc = 1;
+	//printf("jfewkejgbeb");
 	printf("\n");
 	rl_on_new_line();
 	rl_replace_line("", 0);
@@ -33,22 +32,24 @@ static void	signal_control(int signum)
 		rl_redisplay();
 	}
 }
-/*
-static void	signal_control_heredoc(int signum)
+
+void	signal_son(void)
 {
-	if (signum == SIGINT)
-	{
-		if (g_general_data->is_here_doc == 1)
-			g_general_data->signal_heredoc = 1;
-	}
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_IGN);
+}
+
+void	signal_ing(void)
+{
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 void	signal_heredoc(void)
 {
-	signal(SIGINT, signal_control_heredoc);
-	signal(SIGQUIT, signal_control_heredoc);
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_IGN);
 }
-*/
 
 void	signal_main(void)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:41:41 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/17 09:57:31 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/23 16:29:13 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	exec(t_lst *lst, t_env **env)
 {
 	t_info		info;
 
+	signal_ing();
 	init_structs(&lst, &info, (*env)->env);
 	make_process(&info, lst, env);
 	dup2(info.fd_in, STDIN_FILENO);

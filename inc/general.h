@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:20:16 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/21 18:07:34 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/23 18:06:08 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 typedef struct s_global_lst
 {
 	int	g_output_code;
-	int	is_here_doc;
 	int	signal_heredoc;
 }t_global_lst;
 
