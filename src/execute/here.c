@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:33:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/21 19:18:10 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/23 13:24:30 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static int	loop_heredoc(t_lst *lst, int pos, char *file)
 static void	make_heredoc(t_lst *lst, char *file, int pos)
 {
 	int		f1;
+	pid_t	child;
 
 	f1 = open(file, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (f1 < 0)
@@ -54,11 +55,19 @@ static void	make_heredoc(t_lst *lst, char *file, int pos)
 	}
 	//signal_heredoc();
 	g_general_data->is_here_doc = 1;
-	while (1)
-		if (loop_heredoc(lst, pos, file) == 1)
-			break ;
-	g_general_data->signal_heredoc = 0;
-	g_general_data->is_here_doc = 0;
+	child = fork();
+	if (child < 0)
+		exit(0);
+	if (child == 0)
+	{
+		while (1)
+			if (loop_heredoc(lst, pos, file) == 1)
+				break ;
+		g_general_data->signal_heredoc = 0;
+		g_general_data->is_here_doc = 0;
+		exit(0);
+	}
+	wait(&child);
 	close(f1);
 }
 
