@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:39:33 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/23 20:25:03 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/24 15:48:20 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	error_cmd(char *str)
 	}
 	else
 	{
-		g_general_data->g_output_code = 1;
+		g_general_data->g_output_code = 127;
 		printf("%s: no such file or directory\n", str);
 	}
 }

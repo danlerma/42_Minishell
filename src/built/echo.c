@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:29:18 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/18 17:35:47 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/24 15:37:31 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ static void	cod_echo(t_lst *lst, int num)
 	{
 		while (++i < num - 1)
 			if (lst->argv[i] != NULL && lst->type[i] == 1)
+			{
 				write(1, lst->argv[i], ft_strlen(lst->argv[i]));
+				write(1, " ", 1);
+			}
 		if (lst->argv[i] != NULL && lst->type[i] == 1)
 			write(1, lst->argv[i], ft_strlen(lst->argv[i]));
 	}

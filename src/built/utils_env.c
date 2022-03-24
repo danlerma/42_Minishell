@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:45:04 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/21 17:20:27 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/24 15:59:32 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,9 @@ void	split_variables(char *variable, t_mirage **env)
 	(*env)->name = var[0];
 	(*env)->value = var[1];
 	i = 1;
-	while (var[++i] != NULL)
-		free(var[i]);
+	if (var[1]!= NULL)
+		while (var[++i] != NULL)
+			free(var[i]);
 	free(var);
 }
 
