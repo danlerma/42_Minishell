@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:40:23 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/23 20:01:52 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/26 22:50:15 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,12 @@
 static void	wait_child(t_info *info)
 {
 	int	i;
-	int	*k;
+	int	k;
 
 	i = 0;
-	k = NULL;
 	while (i < info->nlst)
 	{
-		waitpid(-1, k, 0);
+		waitpid(-1, &k, 0);
 		i++;
 	}
 }

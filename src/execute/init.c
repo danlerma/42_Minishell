@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:35:29 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/15 17:14:45 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/26 22:21:51 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ t_env	*init_env(void)
 	i = 0;
 	env_ret = (t_env *)ft_calloc(1, sizeof(t_env));
 	if (env_ret == NULL)
-		exit(0);
+		exit(EXIT_FAILURE);
 	while (environ[i])
 	{
 		temp = (t_mirage *)ft_calloc(1, sizeof(t_mirage));
 		if (temp == NULL)
-			exit(0);
+			exit(EXIT_FAILURE);
 		temp->var = environ[i];
 		split_variables(environ[i], &temp);
 		temp->next = NULL;
@@ -67,9 +67,10 @@ void	init_structs(t_lst **lst, t_info *info, t_mirage *env)
 	info->cmd = (t_command *)ft_calloc(1, sizeof(t_command));
 	info->pipe = (int **)ft_calloc(info->nlst, sizeof(int *));
 	if (info->cmd == NULL || info->pipe == NULL)
-		exit(0);
+		exit(EXIT_FAILURE);
 	info->pos = 0;
 	info->np = 0;
+	info->ex = 0;
 	info->iter = 0;
 	info->built = 0;
 }

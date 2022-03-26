@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   files.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:32:42 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/21 15:50:24 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/26 21:15:27 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	redir_out(t_info *info, t_lst *lst, char *file, int n)
 	if (out < 0)
 	{
 		perror(file);
-		exit(0);
+		exit(EXIT_FAILURE);
 	}
 	if (n == 1)
 		dup2(out, STDOUT_FILENO);
@@ -39,7 +39,7 @@ static void	redir_in(t_info *info, t_lst *lst, char *file, int n)
 	if (in < 0)
 	{
 		perror(file);
-		exit(0);
+		exit(EXIT_FAILURE);
 	}
 	if (n == 1)
 		dup2(in, STDIN_FILENO);
@@ -56,7 +56,7 @@ static void	redir_appd(t_info *info, t_lst *lst, char *file, int n)
 	if (end < 0)
 	{
 		perror(file);
-		exit(0);
+		exit(EXIT_FAILURE);
 	}
 	if (n == 1)
 		dup2(end, STDOUT_FILENO);

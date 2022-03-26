@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 12:13:58 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/21 16:32:50 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/26 21:14:53 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_mirage	*new_node_env(char *cont)
 
 	node = (t_mirage *)ft_calloc(1, sizeof(t_mirage));
 	if (node == NULL)
-		exit(0);
+		exit(EXIT_FAILURE);
 	node->var = ft_strdup(cont);
 	split_variables(cont, &node);
 	node->mem = -1;

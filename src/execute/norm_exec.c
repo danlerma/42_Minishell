@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:12:34 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/18 18:24:34 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/26 21:16:08 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	norm_cmd_child(t_lst *lst, t_info *info, char *com)
 	if (com == NULL)
 	{
 		check_redir(info, lst, 0);
-		exit(0);
+		exit(EXIT_SUCCESS);
 	}
 }
 

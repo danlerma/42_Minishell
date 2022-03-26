@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:39:33 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/24 15:48:20 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/26 21:16:17 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	**create_cmd(t_lst *lst, t_info *info)
 
 	str = (char **)ft_calloc(info->cmd->nc + 1, sizeof(char *));
 	if (str == NULL)
-		exit(0);
+		exit(EXIT_FAILURE);
 	i = 0;
 	y = 0;
 	if (ft_strchr(lst->argv[i], '/') != NULL)
@@ -75,7 +75,7 @@ void	valid_path(t_info *info)
 		i++;
 	info->path = ft_calloc(i + 1, sizeof(char *));
 	if (info->path == NULL)
-		exit(0);
+		exit(EXIT_FAILURE);
 	i = 0;
 	while (info->paths[i])
 	{

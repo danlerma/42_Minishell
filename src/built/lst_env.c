@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 12:54:42 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/18 17:45:49 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/26 21:13:02 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_mirage	*lstnew_env(t_mirage **env)
 	{
 		aux = (t_mirage *)ft_calloc(1, sizeof(t_mirage));
 		if (aux == NULL)
-			exit(0);
+			exit(EXIT_FAILURE);
 		aux->var = temp->var;
 		aux->name = ft_strdup(temp->name);
 		if (temp->value != NULL)
