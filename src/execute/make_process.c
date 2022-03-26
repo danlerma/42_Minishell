@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:40:23 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/26 22:50:15 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/26 23:45:03 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static void	wait_child(t_info *info)
 	while (i < info->nlst)
 	{
 		waitpid(-1, &k, 0);
+		// if (g_general_data->g_output_code != 0 && WIFSIGNALED(k))
+		// 	g_general_data->g_output_code += WTERMSIG(k) + 1;
 		i++;
 	}
 }

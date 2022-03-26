@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 12:50:27 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/26 20:36:08 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/26 23:45:59 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,11 @@ static void	signal_control(int signum)
 
 void	signal_son(void)
 {
+	int k;
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_IGN);
+	if (g_general_data->g_output_code != 0 && WIFSIGNALED(k))
+			g_general_data->g_output_code += WTERMSIG(k) + 1;
 }
 
 void	signal_ing(void)
