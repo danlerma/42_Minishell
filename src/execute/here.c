@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:33:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/28 15:10:07 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/28 16:33:27 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	loop_heredoc(t_lst *lst, int pos, char *file)
 	}
 	f = open(file, O_RDWR | O_APPEND, line);
 	if (f < 0)
-		exit(0);
+		exit(EXIT_FAILURE);
 	write(f, line, ft_strlen(line));
 	write(f, "\n", 1);
 	close(f);
@@ -45,11 +45,11 @@ static void	make_heredoc(t_lst *lst, char *file, int pos)
 	if (f1 < 0)
 	{
 		perror(file);
-		exit(0);
+		exit(EXIT_FAILURE);
 	}
 	child = fork();
 	if (child < 0)
-		exit(0);
+		exit(EXIT_FAILURE);
 	if (child == 0)
 	{
 		signal_heredoc();
@@ -57,13 +57,13 @@ static void	make_heredoc(t_lst *lst, char *file, int pos)
 			if (loop_heredoc(lst, pos, file) == 1)
 				break ;
 		heredoc_signal_check(0);
-		exit(0);
+		exit(EXIT_FAILURE);
 	}
 	wait(&child);
 	close(f1);
 }
 
-static int	loop_check_here(t_lst *lst, t_info *info, int y, int n)
+static int	loop_check_here(t_lst *lst, int y, int n)
 {
 	int		i;
 	char	*nbr;
@@ -83,7 +83,6 @@ static int	loop_check_here(t_lst *lst, t_info *info, int y, int n)
 			free(nbr);
 			if (heredoc_signal_check(1))
 				g_general_data->signal_heredoc = 1;
-			info->nh = num;
 			num++;
 		}
 		i++;
@@ -98,15 +97,14 @@ void	check_here(t_info *info, t_lst *lst)
 
 	num = 0;
 	y = 0;
+	(void)info;
 	g_general_data->signal_heredoc = 0;
 	while (lst)
 	{
-		num = loop_check_here(lst, info, y, num);
+		num = loop_check_here(lst, y, num);
 		if (g_general_data->signal_heredoc == 1)
 			break ;
 		lst = lst->next;
 		y++;
 	}
-	if (info->nh == 0)
-		info->nh = -1;
 }

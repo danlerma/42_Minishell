@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:40:23 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/25 19:21:31 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/28 16:34:12 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static void	wait_child(t_info *info)
 		//printf("Prueba %i\n",WIFEXITED);
 		i++;
 	}
-	
 	free(k);
 }
 

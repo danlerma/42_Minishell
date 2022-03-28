@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:45:04 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/24 15:59:32 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/26 23:51:56 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	split_variables(char *variable, t_mirage **env)
 	(*env)->name = var[0];
 	(*env)->value = var[1];
 	i = 1;
-	if (var[1]!= NULL)
+	if (var[1] != NULL)
 		while (var[++i] != NULL)
 			free(var[i]);
 	free(var);
@@ -79,7 +79,7 @@ char	**lst2array(t_mirage *env)
 
 	arr = (char **)ft_calloc(lstsize_env(env) + 1, sizeof(char *));
 	if (arr == NULL)
-		exit(0);
+		exit(EXIT_FAILURE);
 	i = 0;
 	while (env != NULL)
 	{

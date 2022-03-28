@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 14:03:39 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/28 16:10:30 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/28 16:38:18 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	make_last_command(t_info *info, t_lst *lst, char *com, t_env **env)
 	info->np--;
 	child = fork();
 	if (child < 0 || info->pipe[info->np] == NULL)
-		exit(0);
+		exit(EXIT_FAILURE);
 	if (child == 0)
 	{
 		signal_son();
@@ -30,10 +30,8 @@ static void	make_last_command(t_info *info, t_lst *lst, char *com, t_env **env)
 		close(info->pipe[info->np][1]);
 		if (check_built(lst, info, env) != 1)
 			if (execve(com, cmd, info->env) == -1)
-			{
 				error_cmd(cmd[0]);
-			}
-		exit(0);
+		exit(EXIT_FAILURE);
 	}
 	else
 		norm_cmd_father(info, cmd);
@@ -48,7 +46,7 @@ static void	make_command(t_info *info, t_lst *lst, char *com, t_env **env)
 	cmd = create_cmd(lst, info);
 	child = fork();
 	if (child < 0 || info->pipe[info->np] == NULL)
-		exit(0);
+		exit(EXIT_FAILURE);
 	if (child == 0)
 	{
 		signal_son();
@@ -59,10 +57,8 @@ static void	make_command(t_info *info, t_lst *lst, char *com, t_env **env)
 		check_redir(info, lst, 1);
 		if (check_built(lst, info, env) != 1)
 			if (execve(com, cmd, info->env) == -1)
-			{
 				error_cmd(cmd[0]);
-			}
-		exit(0);
+		exit(EXIT_FAILURE);
 	}
 	else
 		norm_cmd_father(info, cmd);
@@ -81,7 +77,7 @@ static void	make_one_command(t_info *info, t_lst *lst, char *com, t_env **env)
 	cmd = create_cmd(lst, info);
 	child = fork();
 	if (child < 0)
-		exit(0);
+		exit(EXIT_FAILURE);
 	if (child == 0)
 	{
 		signal_son();
@@ -91,6 +87,7 @@ static void	make_one_command(t_info *info, t_lst *lst, char *com, t_env **env)
 		if (execve(com, cmd, info->env) == -1)
 		{
 			error_cmd(cmd[0]);
+			exit(EXIT_FAILURE);
 		}
 		exit(0);
 	}
@@ -104,7 +101,7 @@ static void	make_one_command(t_info *info, t_lst *lst, char *com, t_env **env)
 
 void	search_command(t_info *info, t_lst *lst, char *com, t_env **env)
 {
-	if (info->nlst == 1)
+	if (info->nlst == 1 || (info->ex < 0 && info->pos == info->nlst - 1))
 	{
 		if (lst->built == 1)
 			check_redir(info, lst, 1);
@@ -115,7 +112,7 @@ void	search_command(t_info *info, t_lst *lst, char *com, t_env **env)
 	{
 		info->pipe[info->np] = (int *)ft_calloc(2, sizeof(int));
 		if (info->pipe[info->np] == NULL)
-			exit(0);
+			exit(EXIT_FAILURE);
 		pipe(info->pipe[info->np]);
 		if ((info->pos == 0 || info->pos != 0) && info->pos != info->nlst - 1)
 			make_command(info, lst, com, env);

@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:37:32 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/25 18:22:30 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/28 16:33:08 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,12 @@ static void	no_path(t_lst *lst, t_info *info, t_env **env)
 		
 }
 
-static void	with_path(t_lst *lst, t_info *info, t_env **env)
+static int	with_path(t_lst *lst, t_info *info, t_env **env)
 {
 	char	*com;
 	int		i;
-	int		flag;
 
 	i = -1;
-	flag = 0;
 	while (info->path[++i])
 	{
 		if (ft_strchr(lst->argv[info->cmd->pos], '/') != NULL)
@@ -51,22 +49,29 @@ static void	with_path(t_lst *lst, t_info *info, t_env **env)
 		{
 			search_command(info, lst, com, env);
 			free (com);
-			flag = 1;
-			return ;
+			return (1);
 		}
 		free(com);
 	}
-	if (flag == 0 && lst->type[info->cmd->pos] == 1 && lst->built != 1)
-		error_cmd(lst->argv[info->cmd->pos]);
-	else if (flag == 0)
-		search_command(info, lst, NULL, env);
+	return (0);
 }
 
 void	commands(t_info *info, t_lst *lst, t_env **env)
 {
+	int	flag;
+
 	init_commands(lst, info);
 	if (info->path == NULL)
 		no_path(lst, info, env);
 	else
-		with_path(lst, info, env);
+	{
+		flag = with_path(lst, info, env);
+		if (flag == 0 && lst->type[info->cmd->pos] == 1 && lst->built != 1)
+		{
+			error_cmd(lst->argv[info->cmd->pos]);
+			info->ex--;
+		}
+		else if (flag == 0)
+			search_command(info, lst, NULL, env);
+	}
 }

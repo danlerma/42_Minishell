@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:55:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/28 16:10:10 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/28 16:36:37 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_command
 	char	*com;
 }t_command;
 
-typedef struct s_info
+/*typedef struct s_info
 {
 	int			nlst;
 	int			built;
@@ -35,6 +35,23 @@ typedef struct s_info
 	int			pos;
 	int			np;
 	int			nh;
+	int			fd_in;
+	int			fd_out;
+	char		**env;
+	t_command	*cmd;
+}t_info;*/
+
+typedef struct s_info
+{
+	int			nlst;
+	int			built;
+	int			iter;
+	char		**paths;
+	char		**path;
+	int			**pipe;
+	int			pos;
+	int			np;
+	int			ex;
 	int			fd_in;
 	int			fd_out;
 	char		**env;

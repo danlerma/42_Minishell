@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:57:38 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/25 17:53:31 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/28 16:33:05 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(void)
 		if (argv == NULL)
 		{
 			printf("exit\n");
-			exit(0);
+			exit(EXIT_FAILURE);
 		}
 		add_history(argv);
 		nodes = create_nodes_rework(argv, env_lst->env);
