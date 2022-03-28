@@ -30,9 +30,10 @@ static int	check_chars_ex(t_lst *lst, int i)
 			if (lst->argv[i][y] == 0)
 				break ;
 		}
-		if ((lst->argv[i][y] >= 33 && lst->argv[i][y] <= 47) ||
-			(lst->argv[i][y] >= 58 && lst->argv[i][y] <= 64))
+		if ((lst->argv[i][y] >= 33 && lst->argv[i][y] <= 45) ||
+			(lst->argv[i][y] >= 59 && lst->argv[i][y] <= 64))
 		{
+			printf(">>>>>>>>>>>> %d %c\n", lst->argv[i][y], lst->argv[i][y]);
 			printf("export: '%s' : not a valid identifier\n", lst->argv[i]);
 			return (1);
 		}
