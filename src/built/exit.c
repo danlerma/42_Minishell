@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 13:09:10 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/21 16:33:02 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:09:56 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ int	check_numeric_arg(t_lst *lst)
 
 void	make_exit(t_lst *lst, t_info *info)
 {
-	printf("exit\n");
 	if (lst->n_words <= 2)
 	{
 		if (lst->n_words == 2)
 		{
+		printf("exit\n");
 			if (check_numeric_arg(lst))
 				exec_exit(ft_atoi(lst->argv[1]), lst, info);
 		}

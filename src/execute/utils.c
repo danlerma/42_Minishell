@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:39:33 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/24 15:48:20 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/28 16:13:12 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	valid_path(t_info *info)
 
 void	error_cmd(char *str)
 {
+	printf("Error en execution\n");
 	if (ft_strchr(str, '/') == NULL)
 	{
 		g_general_data->g_output_code = 127;
@@ -95,10 +96,22 @@ void	error_cmd(char *str)
 	}
 	else
 	{
-		g_general_data->g_output_code = 127;
+		printf("a?\n");
+		g_general_data->g_output_code = 1;
 		printf("%s: no such file or directory\n", str);
 	}
 }
+
+void	output_check(pid_t son)
+{
+	if (WIFEXITED(son))
+	{
+		g_general_data->g_output_code = WEXITSTATUS(son);
+	}
+	if (WIFSIGNALED(son) && !WIFEXITED(son))
+		g_general_data->g_output_code = WTERMSIG(son) + 128;
+	printf("Prueba %i %i | %i %i\n", WIFEXITED(son), WEXITSTATUS(son) , WIFSIGNALED(son), WTERMSIG(son) + 128);
+} 
 
 int	heredoc_signal_check(int i)
 {
@@ -122,3 +135,4 @@ int	heredoc_signal_check(int i)
 	}
 	return (check);
 }
+

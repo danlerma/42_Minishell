@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:55:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/23 20:28:29 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/28 16:10:10 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,5 @@ void	signal_main(void);
 void	signal_heredoc(void);
 void	signal_son(void);
 void	signal_ing(void);
+void	output_check(pid_t son);
 #endif

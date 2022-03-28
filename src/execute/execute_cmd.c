@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 14:03:39 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/24 15:48:28 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/28 16:10:30 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static void	make_last_command(t_info *info, t_lst *lst, char *com, t_env **env)
 
 	cmd = create_cmd(lst, info);
 	info->np--;
-	g_general_data->g_output_code = 0;
 	child = fork();
 	if (child < 0 || info->pipe[info->np] == NULL)
 		exit(0);
@@ -31,11 +30,14 @@ static void	make_last_command(t_info *info, t_lst *lst, char *com, t_env **env)
 		close(info->pipe[info->np][1]);
 		if (check_built(lst, info, env) != 1)
 			if (execve(com, cmd, info->env) == -1)
+			{
 				error_cmd(cmd[0]);
+			}
 		exit(0);
 	}
 	else
 		norm_cmd_father(info, cmd);
+	output_check(child);
 }
 
 static void	make_command(t_info *info, t_lst *lst, char *com, t_env **env)
@@ -43,7 +45,6 @@ static void	make_command(t_info *info, t_lst *lst, char *com, t_env **env)
 	pid_t	child;
 	char	**cmd;
 
-	g_general_data->g_output_code = 0;
 	cmd = create_cmd(lst, info);
 	child = fork();
 	if (child < 0 || info->pipe[info->np] == NULL)
@@ -58,11 +59,17 @@ static void	make_command(t_info *info, t_lst *lst, char *com, t_env **env)
 		check_redir(info, lst, 1);
 		if (check_built(lst, info, env) != 1)
 			if (execve(com, cmd, info->env) == -1)
+			{
 				error_cmd(cmd[0]);
+			}
 		exit(0);
 	}
 	else
 		norm_cmd_father(info, cmd);
+		//wait(&child);
+	//printf("Prueba 2 %i %i %i\n",WIFEXITED(child) , WIFSIGNALED(child), WTERMSIG(child) + 128);
+	output_check(child);
+	
 }
 
 static void	make_one_command(t_info *info, t_lst *lst, char *com, t_env **env)
@@ -71,7 +78,6 @@ static void	make_one_command(t_info *info, t_lst *lst, char *com, t_env **env)
 	char	**cmd;
 
 	(void)env;
-	g_general_data->g_output_code = 0;
 	cmd = create_cmd(lst, info);
 	child = fork();
 	if (child < 0)
@@ -80,15 +86,18 @@ static void	make_one_command(t_info *info, t_lst *lst, char *com, t_env **env)
 	{
 		signal_son();
 		check_redir(info, lst, 1);
+		printf("Command : %s\n", com);
+		printf("Command : %s\n", cmd[0]);
 		if (execve(com, cmd, info->env) == -1)
 		{
 			error_cmd(cmd[0]);
-			exit(0);
 		}
+		exit(0);
 	}
 	else
 	{
 		wait(&child);
+		output_check(child);
 		free(cmd);
 	}
 }

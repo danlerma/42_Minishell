@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 12:50:27 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/24 15:23:22 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/25 18:32:47 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	signal_control(int signum)
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
+		
 	}
 	else if (signum == SIGQUIT)
 	{
@@ -32,7 +33,7 @@ static void	signal_control(int signum)
 void	signal_son(void)
 {
 	signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, SIG_IGN);
+	signal(SIGQUIT, SIG_DFL);
 }
 
 void	signal_ing(void)
