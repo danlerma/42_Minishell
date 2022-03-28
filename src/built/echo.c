@@ -66,4 +66,5 @@ void	make_echo(t_lst *lst)
 	num = num_argv(lst);
 	if (lst->argv[1] != NULL)
 		cod_echo(lst, num);
+	g_general_data->g_output_code = 0;
 }
