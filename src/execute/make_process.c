@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:40:23 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/28 16:42:57 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/29 15:34:20 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ static void	wait_child(t_info *info)
 	while (i < info->nlst)
 	{
 		waitpid(-1, k, 0);
-		//printf("Prueba 2 %i %i\n",WIFEXITED(-1) , WIFSIGNALED(-1) + 128);
-		//printf("Prueba %i\n",WIFEXITED);
 		i++;
 	}
 	free(k);
@@ -46,5 +44,10 @@ void	make_process(t_info *info, t_lst *lst, t_env **env)
 			i++;
 		}
 		wait_child(info);
+	}
+	else
+	{
+		g_general_data->g_output_code = 1;
+		printf("\n");
 	}
 }
