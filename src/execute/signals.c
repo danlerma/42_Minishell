@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 12:50:27 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/28 16:42:31 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/29 12:19:17 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static void	signal_control(int signum)
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
-		
 	}
 	else if (signum == SIGQUIT)
 	{

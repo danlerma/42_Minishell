@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:33:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/28 16:51:32 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/29 12:41:36 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,11 @@ static void	make_heredoc(t_lst *lst, char *file, int pos)
 		while (1)
 			if (loop_heredoc(lst, pos, file) == 1)
 				break ;
-		heredoc_signal_check(0);
 		exit(EXIT_FAILURE);
 	}
 	wait(&child);
+	if (WIFSIGNALED(child) && !WIFEXITED(child))
+		g_general_data->signal_heredoc = 1;
 	close(f1);
 }
 
@@ -81,8 +82,6 @@ static int	loop_check_here(t_lst *lst, int y, int n)
 			make_heredoc(lst, file, i + 1);
 			free(file);
 			free(nbr);
-			if (heredoc_signal_check(1))
-				g_general_data->signal_heredoc = 1;
 			num++;
 		}
 		i++;

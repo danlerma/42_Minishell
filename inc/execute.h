@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:55:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/28 16:51:24 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/29 12:42:14 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,6 @@ void	check_redir(t_info *info, t_lst *lst, int n);
 
 //here.c
 void	check_here(t_info *info, t_lst *lst);
-
-//here_utils_signal
-int		heredoc_signal_check(int i);
 
 //argv_temp
 t_lst	*argv_init_temp(char **argv, int argc);

@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:39:33 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/28 16:43:26 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/29 13:29:10 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,29 +110,5 @@ void	output_check(pid_t son)
 	}
 	if (WIFSIGNALED(son) && !WIFEXITED(son))
 		g_general_data->g_output_code = WTERMSIG(son) + 128;
-	printf("Prueba %i %i | %i %i\n", WIFEXITED(son), WEXITSTATUS(son) , WIFSIGNALED(son), WTERMSIG(son) + 128);
-} 
-
-int	heredoc_signal_check(int i)
-{
-	int	fd;
-	int	check;
-
-	check = 0;
-	if (i == 1)
-	{
-		fd = open("/tmp/sig_clear", O_RDONLY, 0644);
-		if (fd == -1)
-			check = 1;
-		close(fd);
-		unlink("/tmp/sig_clear");
-	}
-	else
-	{
-		fd = open("/tmp/sig_clear", O_CREAT, 0644);
-		write (fd, "0", 1);
-		close(fd);
-	}
-	return (check);
+	//printf("Prueba %i %i | %i %i\n", WIFEXITED(son), WEXITSTATUS(son) , WIFSIGNALED(son), WTERMSIG(son) + 128);
 }
-

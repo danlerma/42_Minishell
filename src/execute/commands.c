@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:37:32 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/28 16:43:25 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/29 12:19:26 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static void	no_path(t_lst *lst, t_info *info, t_env **env)
 		g_general_data->g_output_code = 1;
 		printf("a?\n");
 	}
-		
 }
 
 static int	with_path(t_lst *lst, t_info *info, t_env **env)
