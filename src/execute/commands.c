@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:37:32 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/29 12:19:26 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:15:36 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static void	no_path(t_lst *lst, t_info *info, t_env **env)
 	{
 		printf("%s: no such file or directory\n", lst->argv[info->cmd->pos]);
 		g_general_data->g_output_code = 1;
-		printf("a?\n");
 	}
 }
 

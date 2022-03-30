@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 16:34:24 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/16 19:14:04 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:25:10 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,24 @@ static int	check_chars_ex(t_lst *lst, int i)
 	if (ft_isalpha(lst->argv[i][0]) == 0 && lst->type[i] == 1)
 	{
 		printf("export: '%s' : not a valid identifier\n", lst->argv[i]);
+		g_general_data->g_output_code = 1;
 		return (1);
 	}
-	y = 0;
-	while (lst->argv[i][y] != 0 && lst->type[i] == 1)
+	y = -1;
+	while (lst->argv[i][++y] != 0 && lst->type[i] == 1)
 	{
 		if (lst->argv[i][y] == 61)
 		{
-			y++;
-			if (lst->argv[i][y] == 0)
+			if (lst->argv[i][++y] == 0)
 				break ;
 		}
-		if ((lst->argv[i][y] >= 33 && lst->argv[i][y] <= 45) ||
+		if ((lst->argv[i][y] >= 33 && lst->argv[i][y] <= 44) ||
 			(lst->argv[i][y] >= 59 && lst->argv[i][y] <= 64))
 		{
-			printf(">>>>>>>>>>>> %d %c\n", lst->argv[i][y], lst->argv[i][y]);
 			printf("export: '%s' : not a valid identifier\n", lst->argv[i]);
+			g_general_data->g_output_code = 1;
 			return (1);
 		}
-		y++;
 	}
 	return (0);
 }
@@ -89,7 +88,7 @@ static void	con_env_var(t_lst *lst, int i, t_env **env)
 
 static void	new_variable(t_lst *lst, t_env **env)
 {
-	int			i;
+	int	i;
 
 	i = 0;
 	while (lst->argv[++i] != NULL)

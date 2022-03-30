@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:55:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/30 15:59:39 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:16:23 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,6 @@ typedef struct s_command
 	char	**cmd;
 	char	*com;
 }t_command;
-
-/*typedef struct s_info
-{
-	int			nlst;
-	int			built;
-	int			iter;
-	char		**paths;
-	char		**path;
-	int			**pipe;
-	int			pos;
-	int			np;
-	int			nh;
-	int			fd_in;
-	int			fd_out;
-	char		**env;
-	t_command	*cmd;
-}t_info;*/
 
 typedef struct s_info
 {

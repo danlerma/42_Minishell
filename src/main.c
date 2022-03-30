@@ -51,7 +51,6 @@ int	main(void)
 		if (nodes_check_error(nodes))
 			exec(nodes, &env_lst);
 		free_nodes(nodes, argv);
-		//system("leaks -q minishell");
 	}
 	s_mirage(env_lst->ex_env);
 	free_env(&env_lst);

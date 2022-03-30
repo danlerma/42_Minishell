@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 14:03:39 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/30 15:59:57 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:30:09 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ static void	make_last_command(t_info *info, t_lst *lst, char *com, t_env **env)
 	else
 		norm_cmd_father(info, cmd);
 	output_check(child, 1);
-	//printf("Prueba %i %i | %i %i\n", WIFEXITED(info->order_pid), WEXITSTATUS(info->order_pid) , WIFSIGNALED(info->order_pid), WTERMSIG(info->order_pid));
-	
 }
 
 static void	make_command(t_info *info, t_lst *lst, char *com, t_env **env)

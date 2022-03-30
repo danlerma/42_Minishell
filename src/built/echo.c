@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:29:18 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/24 15:37:31 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:29:55 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,23 @@ static int	num_argv(t_lst *lst)
 	return (i);
 }
 
+static void	norm_echo(t_lst *lst, int num)
+{
+	int	i;
+
+	i = 1;
+	while (++i < num - 1)
+	{
+		if (lst->argv[i] != NULL && lst->type[i] == 1)
+		{
+			write(1, lst->argv[i], ft_strlen(lst->argv[i]));
+			write(1, " ", 1);
+		}
+	}
+	if (lst->argv[i] != NULL && lst->type[i] == 1)
+		write(1, lst->argv[i], ft_strlen(lst->argv[i]));
+}
+
 static void	cod_echo(t_lst *lst, int num)
 {
 	int	i;
@@ -37,14 +54,7 @@ static void	cod_echo(t_lst *lst, int num)
 	if (ft_strncmp(lst->argv[1], "-n", ft_strlen(lst->argv[1])) == 0
 		&& ft_strlen("-n") == ft_strlen(lst->argv[1]))
 	{
-		while (++i < num - 1)
-			if (lst->argv[i] != NULL && lst->type[i] == 1)
-			{
-				write(1, lst->argv[i], ft_strlen(lst->argv[i]));
-				write(1, " ", 1);
-			}
-		if (lst->argv[i] != NULL && lst->type[i] == 1)
-			write(1, lst->argv[i], ft_strlen(lst->argv[i]));
+		norm_echo(lst, num);
 	}
 	else
 	{
