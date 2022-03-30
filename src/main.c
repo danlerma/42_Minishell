@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 18:57:38 by mortiz-d          #+#    #+#             */
-/*   Updated: 2022/03/28 16:43:27 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/30 15:07:42 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,14 @@ int	main(void)
 		if (argv == NULL)
 		{
 			printf("exit\n");
-			exit(EXIT_FAILURE);
+			exit(EXIT_SUCCESS);
 		}
 		add_history(argv);
 		nodes = create_nodes_rework(argv, env_lst->env);
 		if (nodes_check_error(nodes))
 			exec(nodes, &env_lst);
 		free_nodes(nodes, argv);
+		//system("leaks -q minishell");
 	}
 	s_mirage(env_lst->ex_env);
 	free_env(&env_lst);

@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 14:03:39 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/29 15:34:56 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/30 15:59:57 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	make_last_command(t_info *info, t_lst *lst, char *com, t_env **env)
 {
 	pid_t	child;
-	char	**cmd;
+	char	**cmd;	
 
 	cmd = create_cmd(lst, info);
 	info->np--;
@@ -35,7 +35,9 @@ static void	make_last_command(t_info *info, t_lst *lst, char *com, t_env **env)
 	}
 	else
 		norm_cmd_father(info, cmd);
-	output_check(child);
+	output_check(child, 1);
+	//printf("Prueba %i %i | %i %i\n", WIFEXITED(info->order_pid), WEXITSTATUS(info->order_pid) , WIFSIGNALED(info->order_pid), WTERMSIG(info->order_pid));
+	
 }
 
 static void	make_command(t_info *info, t_lst *lst, char *com, t_env **env)
@@ -62,8 +64,6 @@ static void	make_command(t_info *info, t_lst *lst, char *com, t_env **env)
 	}
 	else
 		norm_cmd_father(info, cmd);
-		//wait(&child);
-	output_check(child);
 }
 
 static void	make_one_command(t_info *info, t_lst *lst, char *com, t_env **env)
@@ -81,19 +81,14 @@ static void	make_one_command(t_info *info, t_lst *lst, char *com, t_env **env)
 		signal_son();
 		check_redir(info, lst, 1);
 		if (com != NULL)
-		{
 			if (execve(com, cmd, info->env) == -1)
-			{
 				error_cmd(cmd[0]);
-				exit (EXIT_FAILURE);
-			}
-		}
 		exit(0);
 	}
 	else
 	{
 		wait(&child);
-		output_check(child);
+		output_check(child, 0);
 		free(cmd);
 	}
 }

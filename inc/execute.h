@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:55:19 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/29 12:42:14 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/30 15:59:39 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,13 @@ void	check_here(t_info *info, t_lst *lst);
 //argv_temp
 t_lst	*argv_init_temp(char **argv, int argc);
 
+//output
+void	output_check(pid_t son, int multiple_comands);
+
 //signals
 void	signal_main(void);
 void	signal_heredoc(void);
 void	signal_son(void);
 void	signal_ing(void);
-void	output_check(pid_t son);
+
 #endif

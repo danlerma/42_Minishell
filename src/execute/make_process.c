@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:40:23 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/29 15:34:20 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/30 14:50:52 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,17 @@ static void	wait_child(t_info *info)
 	while (i < info->nlst)
 	{
 		waitpid(-1, k, 0);
+		//printf("Pid a tratar -> %i\n", info->order_pid[i]);
+		//printf("Prueba %i %i | %i %i\n", WIFEXITED(info->order_pid[i]), WEXITSTATUS(info->order_pid[i]) , WIFSIGNALED(info->order_pid[i]), WTERMSIG(info->order_pid[i]));
+		//printf("Resultado -> %i\n", *k);
 		i++;
 	}
-	free(k);
+	/*waitpid(info->order_pid, k, 0);
+	//wait(&info->order_pid);
+	printf("Resultados del ultimo lst -> %i \n", info->order_pid);
+	printf("Resultado -> %i\n", *k);
+	printf("Prueba %i %i | %i %i\n", WIFEXITED(info->order_pid), WEXITSTATUS(info->order_pid) , WIFSIGNALED(info->order_pid), WTERMSIG(info->order_pid));
+	*/free(k);
 }
 
 void	make_process(t_info *info, t_lst *lst, t_env **env)

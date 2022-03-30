@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:39:33 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/29 15:34:37 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/30 15:59:24 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,25 @@ void	error_cmd(char *str)
 	}
 }
 
-void	output_check(pid_t son)
+void	output_check(pid_t son, int multiple_comands)
 {
-	if (WIFEXITED(son))
+	int		*k;
+
+	k = ft_calloc(sizeof(int), 1);
+	if (multiple_comands == 0)
 	{
-		g_general_data->g_output_code = WEXITSTATUS(son);
+		if (WIFEXITED(son))
+			g_general_data->g_output_code = WEXITSTATUS(son);
+		if (WIFSIGNALED(son) && !WIFEXITED(son))
+			g_general_data->g_output_code = WTERMSIG(son) + 128;
 	}
-	if (WIFSIGNALED(son) && !WIFEXITED(son))
-		g_general_data->g_output_code = WTERMSIG(son) + 128;
-	//printf("Prueba %i %i | %i %i\n", WIFEXITED(son), WEXITSTATUS(son) , WIFSIGNALED(son), WTERMSIG(son) + 128);
+	else
+	{
+		waitpid(son, k, 0);
+		if (*k == 256)
+			g_general_data->g_output_code = 1;
+		if (*k == 2 || *k == 3)
+			g_general_data->g_output_code = *k + 128;
+	}
+	free(k);
 }
