@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:29:18 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/30 17:29:55 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/03/31 15:02:19 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,9 @@ void	make_echo(t_lst *lst)
 	int	num;
 
 	num = num_argv(lst);
-	if (lst->argv[1] != NULL)
+	if (num == 1)
+		printf("\n");
+	else if (lst->argv[1] != NULL)
 		cod_echo(lst, num);
 	g_general_data->g_output_code = 0;
 }
