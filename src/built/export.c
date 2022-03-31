@@ -19,7 +19,7 @@ static int	check_chars_ex(t_lst *lst, int i)
 	if (ft_isalpha(lst->argv[i][0]) == 0 && lst->type[i] == 1)
 	{
 		printf("export: '%s' : not a valid identifier\n", lst->argv[i]);
-		g_general_data->g_output_code = 1;
+		g_output_code = 1;
 		return (1);
 	}
 	y = -1;
@@ -34,7 +34,7 @@ static int	check_chars_ex(t_lst *lst, int i)
 			(lst->argv[i][y] >= 59 && lst->argv[i][y] <= 64))
 		{
 			printf("export: '%s' : not a valid identifier\n", lst->argv[i]);
-			g_general_data->g_output_code = 1;
+			g_output_code = 1;
 			return (1);
 		}
 	}

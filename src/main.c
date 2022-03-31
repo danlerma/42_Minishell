@@ -12,16 +12,6 @@
 
 #include <minishell.h>
 
-static	t_global_lst	*declare_global_struct(void)
-{
-	t_global_lst	*list;
-
-	list = ft_calloc(sizeof(t_global_lst), 1);
-	list->g_output_code = 0;
-	list->signal_heredoc = 0;
-	return (list);
-}
-
 static void	free_env(t_env **env_lst)
 {
 	lstclear_env(&(*env_lst)->env, free);
@@ -35,7 +25,7 @@ int	main(void)
 	t_lst	*nodes;
 	t_env	*env_lst;
 
-	g_general_data = declare_global_struct();
+	g_output_code = 0;
 	env_lst = init_env();
 	while (1)
 	{

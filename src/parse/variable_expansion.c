@@ -49,7 +49,7 @@ char	*get_variable_value(char *s, t_mirage *env)
 	if (ft_isdigit(s[i]))
 		return (ft_strdup(""));
 	if (s[i] == '?')
-		return (ft_itoa(g_general_data->g_output_code));
+		return (ft_itoa(g_output_code));
 	if (is_char_special_parameter(s[i]))
 		return (ft_strdup("$"));
 	while (s[i] != 0)

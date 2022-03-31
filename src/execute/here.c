@@ -60,7 +60,7 @@ static void	make_heredoc(t_lst *lst, char *file, int pos)
 	}
 	wait(&child);
 	if (WIFSIGNALED(child) && !WIFEXITED(child))
-		g_general_data->signal_heredoc = 1;
+		g_output_code = 1;
 	close(f1);
 }
 
@@ -73,7 +73,7 @@ static int	loop_check_here(t_lst *lst, int y, int n)
 
 	i = 0;
 	num = n;
-	while (lst->argv[i] && g_general_data->signal_heredoc == 0)
+	while (lst->argv[i] && g_output_code == 0)
 	{
 		if (lst->type[i] == 6)
 		{
@@ -97,11 +97,11 @@ void	check_here(t_info *info, t_lst *lst)
 	num = 0;
 	y = 0;
 	(void)info;
-	g_general_data->signal_heredoc = 0;
+	g_output_code = 0;
 	while (lst)
 	{
 		num = loop_check_here(lst, y, num);
-		if (g_general_data->signal_heredoc == 1)
+		if (g_output_code == 1)
 			break ;
 		lst = lst->next;
 		y++;

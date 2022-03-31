@@ -90,12 +90,12 @@ void	error_cmd(char *str)
 {
 	if (ft_strchr(str, '/') == NULL)
 	{
-		g_general_data->g_output_code = 127;
+		g_output_code = 127;
 		printf("%s: command not found\n", str);
 	}
 	else
 	{
-		g_general_data->g_output_code = 1;
+		g_output_code = 1;
 		printf("%s: no such file or directory\n", str);
 	}
 }
@@ -108,17 +108,19 @@ void	output_check(pid_t son, int multiple_comands)
 	if (multiple_comands == 0)
 	{
 		if (WIFEXITED(son))
-			g_general_data->g_output_code = WEXITSTATUS(son);
+			g_output_code = WEXITSTATUS(son);
 		if (WIFSIGNALED(son) && !WIFEXITED(son))
-			g_general_data->g_output_code = WTERMSIG(son) + 128;
+			g_output_code = WTERMSIG(son) + 128;
 	}
 	else
 	{
 		waitpid(son, k, 0);
 		if (*k == 256)
-			g_general_data->g_output_code = 1;
+			g_output_code = 1;
 		if (*k == 2 || *k == 3)
-			g_general_data->g_output_code = *k + 128;
+			g_output_code = *k + 128;
 	}
+	if (g_output_code == 130 || g_output_code == 131)
+		printf("\n");
 	free(k);
 }

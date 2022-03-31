@@ -30,7 +30,7 @@ int	check_numeric_arg(t_lst *lst)
 	str = ft_itoa(exit_nbr);
 	if (ft_strncmp(lst->argv[1], str, sizeof(lst->argv[1])) != 0)
 	{
-		g_general_data->g_output_code = 255;
+		g_output_code = 255;
 		printf("bash: exit: %s: numeric argument required\n", lst->argv[1]);
 		free(str);
 		check = 0;
@@ -42,22 +42,22 @@ int	check_numeric_arg(t_lst *lst)
 
 void	make_exit(t_lst *lst, t_info *info)
 {
+	printf("exit\n");
 	if (lst->n_words <= 2)
 	{
 		if (lst->n_words == 2)
 		{
-			printf("exit\n");
 			if (check_numeric_arg(lst))
 				exec_exit(ft_atoi(lst->argv[1]), lst, info);
 			else
-				exec_exit(g_general_data->g_output_code, lst, info);
+				exec_exit(g_output_code, lst, info);
 		}
 		else
 			exec_exit(0, lst, info);
 	}
 	else
 	{
-		g_general_data->g_output_code = 1;
+		g_output_code = 1;
 		printf("bash: exit: too many arguments\n");
 	}
 }

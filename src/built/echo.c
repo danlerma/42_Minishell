@@ -78,5 +78,5 @@ void	make_echo(t_lst *lst)
 		printf("\n");
 	else if (lst->argv[1] != NULL)
 		cod_echo(lst, num);
-	g_general_data->g_output_code = 0;
+	g_output_code = 0;
 }

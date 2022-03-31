@@ -14,6 +14,7 @@
 
 # define GENERAL_H
 
+/*
 typedef struct s_global_lst
 {
 	int	g_output_code;
@@ -21,6 +22,8 @@ typedef struct s_global_lst
 }t_global_lst;
 
 t_global_lst	*g_general_data;
+*/
+int	g_output_code;
 
 typedef struct s_lst
 {

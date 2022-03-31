@@ -27,7 +27,7 @@ static void	no_path(t_lst *lst, t_info *info, t_env **env)
 	else if (check_built(lst, info, env) == 0)
 	{
 		printf("%s: no such file or directory\n", lst->argv[info->cmd->pos]);
-		g_general_data->g_output_code = 1;
+		g_output_code = 1;
 	}
 }
 

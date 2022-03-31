@@ -33,11 +33,11 @@ void	make_process(t_info *info, t_lst *lst, t_env **env)
 
 	i = 0;
 	check_here(info, lst);
-	if (g_general_data->signal_heredoc == 0)
+	if (g_output_code == 0)
 	{
 		while (lst)
 		{
-			g_general_data->g_output_code = 0;
+			g_output_code = 0;
 			info->pos = i;
 			commands(info, lst, env);
 			lst = lst->next;
@@ -47,7 +47,6 @@ void	make_process(t_info *info, t_lst *lst, t_env **env)
 	}
 	else
 	{
-		g_general_data->g_output_code = 1;
 		printf("\n");
 	}
 }
