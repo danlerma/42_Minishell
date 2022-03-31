@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 12:13:58 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/28 16:43:33 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2022/03/31 16:38:37 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ void	make_cd(t_lst *lst, t_info *info, t_env **env)
 		else
 			printf("%s\n", get_val_env((*env)->env, "OLDPWD"));
 	}
-	else if (ft_strncmp(lst->argv[1], "-", 1) != 0
-		&& ft_strlen(lst->argv[1]) != 1)
+	else if (ft_strncmp(lst->argv[1], "-", 1) != 0)
 		move_dir(lst, info, env);
 }
