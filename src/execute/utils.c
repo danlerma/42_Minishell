@@ -109,8 +109,11 @@ void	output_check(pid_t son, int multiple_comands)
 	{
 		if (WIFEXITED(son))
 			g_output_code = WEXITSTATUS(son);
-		if (WIFSIGNALED(son) && !WIFEXITED(son))
+		else if (WIFSIGNALED(son) && !WIFEXITED(son))
+		{
 			g_output_code = WTERMSIG(son) + 128;
+			printf("\n");
+		}
 	}
 	else
 	{
@@ -120,7 +123,5 @@ void	output_check(pid_t son, int multiple_comands)
 		if (*k == 2 || *k == 3)
 			g_output_code = *k + 128;
 	}
-	if (g_output_code == 130 || g_output_code == 131)
-		printf("\n");
 	free(k);
 }
