@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 18:21:10 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/03/24 15:56:58 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:50:50 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ void	change_val_env(t_mirage **env, char *var, char *value, char *all)
 		{
 			if (aux->value)
 				free(aux->value);
-			free(aux->var);
+			if (aux->mem != 0)
+				free(aux->var);
 			if (value != NULL)
 				aux->value = ft_strdup(value);
 			else
@@ -84,4 +85,6 @@ void	change_val_env(t_mirage **env, char *var, char *value, char *all)
 		}
 		aux = aux->next;
 	}
+	if (aux->mem == 0)
+		aux->mem = -1;
 }
