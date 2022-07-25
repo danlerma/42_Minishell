@@ -96,7 +96,7 @@ void	error_cmd(char *str)
 	else
 	{
 		g_output_code = 1;
-		printf("%s: no such file or directory\n", str);
+		printf("%s: No such file or directory\n", str);
 	}
 }
 
